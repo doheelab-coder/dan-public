@@ -129,12 +129,6 @@
   .dropped b{font-family:var(--display);font-size:16px}
   .dropped p{font-size:13.5px;color:var(--soft)}
 
-  .fit{display:grid;gap:10px}
-  .fit-row{display:grid;grid-template-columns:104px 1fr;gap:14px;align-items:start;
-           padding-bottom:10px;border-bottom:1px dashed var(--line)}
-  .fit-row:last-child{border-bottom:0;padding-bottom:0}
-  .fit-key{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);padding-top:4px}
-  .fit-val{font-size:14px}
 
   .days{display:grid;gap:14px}
   .day{background:var(--surface);border:1px solid var(--line);padding:20px 22px;display:grid;gap:12px}
@@ -264,8 +258,8 @@
     .day-photo figcaption{margin:7px 16px 0}
     .day-photo img{aspect-ratio:16/10}
     .step{grid-template-columns:52px 1fr;gap:9px;font-size:13.5px}
-    .fit-row{grid-template-columns:1fr;gap:2px}
-    .fit-key{padding-top:0}
+  
+  
     .stay{padding:16px}
     .link{grid-template-columns:54px 1fr;gap:9px;font-size:13.5px}
     table.matrix th,table.matrix td{padding:9px 8px}
@@ -414,16 +408,9 @@
 <section id="view-sendai" class="view" data-accent="sendai" role="tabpanel" aria-labelledby="tab-sendai" hidden>
 <header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
 <h1>센다이와 아키우온천<span>SENDAI · AKIU ONSEN — 미야기현</span></h1>
-<p class="lede">도호쿠에서 가장 큰 도시 옆에 천 년 된 온천이 붙어 있다. 네 조건을 가장 고르게 만족하는 곳.</p></header>
+<p class="lede">도호쿠에서 가장 큰 도시 옆에 천 년 된 온천이 붙어 있다. 여섯 조건을 가장 고르게 만족하는 곳.</p></header>
 <figure><img src="pageant.jpg" alt="느티나무 가로수를 감싼 전구 조명" loading="lazy"><figcaption>조젠지도리 광의 페이전트 — 12월 한정, 느티나무 가로수 700m에 48만 구</figcaption></figure>
-<section><div class="sec-head"><h2>조건과 맞춰보기</h2><p class="sec-note">이동이 가장 짧고, 도시와 바다와 온천이 한 시간 안에 다 있다.</p></div><div class="fit">
-<div class="fit-row"><div class="fit-key">이동</div><div class="fit-val">공항철도 <b>25분</b>으로 시내, 마츠시마 <b>40분</b>, 아키우온천 <b>40~50분</b>. 모든 구간이 한 시간 안이다.</div></div>
-<div class="fit-row"><div class="fit-key">프라이빗</div><div class="fit-val">아키우에 객실 노천탕을 갖춘 여관이 여럿이다. 대욕장을 쓰지 않아도 된다.</div></div>
-<div class="fit-row"><div class="fit-key">미식</div><div class="fit-val">겨울 마츠시마 굴(12~3월 제철), 규탄의 발상지, 산리쿠 해산물, 센다이규.</div></div>
-<div class="fit-row"><div class="fit-key">도시</div><div class="fit-val">인구 100만의 도호쿠 최대 도시. 아케이드 상점가와 이자카야가 시내에 모여 있다.</div></div>
-<div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">관광도시가 아니라 생활 도시다. 12월 페이전트 기간만 붐빈다.</div></div>
-<div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">눈은 적은 편. 이동이 막힐 걱정은 낮지만 설경을 기대하면 아쉽다.</div></div>
-</div></section>
+
 <section><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><picture><source srcset="route-sendai-dark.png" media="(prefers-color-scheme: dark)"><img src="route-sendai.png" alt="sendai 3박 4일 동선 지도" loading="lazy"></picture><figcaption>센다이공항에서 시내 25분, 마츠시마 40분, 아키우온천 50분. 세 방향이 모두 한 시간 안이다.</figcaption></figure></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">하루에 큰 일정 하나씩. 셋째 날은 온천에서 통째로 쉰다.</p></div><div class="days">
 <article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>도착하고, 도시를 걷는다</h3><span class="day-stay">센다이 1박</span></div><div class="steps">
@@ -493,14 +480,7 @@
 <h1>하코다테와 유노카와온천<span>HAKODATE · YUNOKAWA ONSEN — 홋카이도</span></h1>
 <p class="lede">공항에서 온천까지 버스로 6분. 다섯 후보 중 이동이 가장 짧고, 겨울 해산물이 가장 세다.</p></header>
 <figure><img src="hakodate-night.jpg" alt="산 위에서 내려다본 항구 도시의 야경" loading="lazy"><figcaption>하코다테산 야경 — 양쪽이 바다로 좁아지는 지형 때문에 도시가 빛의 띠로 보인다</figcaption></figure>
-<section><div class="sec-head"><h2>조건과 맞춰보기</h2><p class="sec-note">이동을 줄이는 것이 목적이라면 이 후보가 압도적이다.</p></div><div class="fit">
-<div class="fit-row"><div class="fit-key">이동</div><div class="fit-val">하코다테공항에서 유노카와온천까지 <b>버스 6분</b>. 시내는 노면전차로 20~30분이면 닿는다.</div></div>
-<div class="fit-row"><div class="fit-key">프라이빗</div><div class="fit-val">유노카와에 객실 노천탕을 둔 숙소가 많다. 한 곳은 그런 객실만 120실이다.</div></div>
-<div class="fit-row"><div class="fit-key">미식</div><div class="fit-val">아침시장의 오징어·해산물 덮밥, 겨울 대게, 시오라멘. 250여 점포가 역에서 도보 1분.</div></div>
-<div class="fit-row"><div class="fit-key">도시</div><div class="fit-val">모토마치의 서양식 건물 거리, 베이 에어리어, 고료카쿠. 도시가 작아 걸어 다닌다.</div></div>
-<div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">겨울은 비수기라 사람이 적다. 홋카이도 3대 온천마을이지만 번잡하지 않다.</div></div>
-<div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">눈이 확실히 온다. 12~3월은 눈에 반사된 야경이 더 밝다.</div></div>
-</div></section>
+
 <section><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><picture><source srcset="route-hakodate-dark.png" media="(prefers-color-scheme: dark)"><img src="route-hakodate.png" alt="hakodate 3박 4일 동선 지도" loading="lazy"></picture><figcaption>공항에서 온천까지 버스 6분. 짐을 한 번만 옮기고 시내는 전차로 오간다.</figcaption></figure></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">숙소를 옮기지 않고 온천에 3박. 매일 같은 방으로 돌아온다.</p></div><div class="days">
 <article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>도착하자마자 온천</h3><span class="day-stay">유노카와온천 1박</span></div><div class="steps">
@@ -564,14 +544,7 @@
 <h1>가나자와와 유와쿠온천<span>KANAZAWA · YUWAKU ONSEN — 이시카와현</span></h1>
 <p class="lede">눈 덮인 겐로쿠엔과 겨울 대게. 도시의 격과 미식이 가장 세고, 설경도 가장 확실하다.</p></header>
 <figure><img src="kanazawa-yukitsuri.jpg" alt="눈이 두껍게 덮인 일본 정원" loading="lazy"><figcaption>겨울의 겐로쿠엔 — 소나무마다 우산 모양으로 밧줄을 매는 유키즈리가 이 도시의 겨울 상징이다</figcaption></figure>
-<section><div class="sec-head"><h2>조건과 맞춰보기</h2><p class="sec-note">도시와 미식을 가장 크게 얻는 대신, 이동이 조금 길고 사람이 조금 많다.</p></div><div class="fit">
-<div class="fit-row"><div class="fit-key">이동</div><div class="fit-val">고마쓰공항에서 시내까지 리무진버스, 시내에서 유와쿠온천까지 <b>차 20~25분</b>. 모두 한 시간 안이다.</div></div>
-<div class="fit-row"><div class="fit-key">프라이빗</div><div class="fit-val">유와쿠는 여관이 6곳뿐이고 객실 노천탕을 둔 곳은 그중 4곳이다. <b>일찍 잡아야 한다.</b></div></div>
-<div class="fit-row"><div class="fit-key">미식</div><div class="fit-val">겨울 즈와이가니(대게), 노도구로, 오뎅, 오미초시장. 다섯 후보 중 미식의 폭이 가장 넓다.</div></div>
-<div class="fit-row"><div class="fit-key">도시</div><div class="fit-val">겐로쿠엔, 히가시차야가이, 가나자와성, 21세기미술관. 도시 자체가 관광지다.</div></div>
-<div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">유와쿠는 조용하지만 <b>겐로쿠엔·차야가이는 관광객이 많다.</b> 이른 아침에 도는 편이 낫다.</div></div>
-<div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">호쿠리쿠라 눈이 많다. 겐로쿠엔 유키즈리 야간 라이트업은 1월 하순~2월.</div></div>
-</div></section>
+
 <section><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><picture><source srcset="route-kanazawa-dark.png" media="(prefers-color-scheme: dark)"><img src="route-kanazawa.png" alt="kanazawa 3박 4일 동선 지도" loading="lazy"></picture><figcaption>고마쓰공항에서 시내 40분. 유와쿠온천은 시내에서 차로 25분이고 여관 송영이 있다.</figcaption></figure></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">도시를 이틀 보고, 마지막 밤을 온천에서 보낸다.</p></div><div class="days">
 <article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>도착하고, 시장과 찻집 거리</h3><span class="day-stay">가나자와 1박</span></div><div class="steps">
@@ -636,14 +609,7 @@
 <h1>아오모리와 아사무시온천<span>AOMORI · ASAMUSHI ONSEN — 아오모리현</span></h1>
 <p class="lede">눈이 가장 확실하고 겨울 해산물이 가장 세다. 그런데 공식 소개부터 “조용하고 혼잡하지 않은” 곳이다.</p></header>
 <figure><img src="aomori-winter.jpg" alt="눈과 얼음에 덮인 나무들" loading="lazy"><figcaption>핫코다의 수빙 — 로프웨이로 올라가 보는 겨울 아오모리의 상징</figcaption></figure>
-<section><div class="sec-head"><h2>조건과 맞춰보기</h2><p class="sec-note">눈·미식·조용함 셋이 동시에 높은 드문 조합이다.</p></div><div class="fit">
-<div class="fit-row"><div class="fit-key">이동</div><div class="fit-val">공항에서 시내까지 리무진 약 35분, 시내에서 아사무시온천까지 <b>아오이모리철도 20분</b>.</div></div>
-<div class="fit-row"><div class="fit-key">프라이빗</div><div class="fit-val">무쓰만을 바라보는 객실 노천탕 여관이 있다. 2인 <b>22,700엔~</b>부터 폭이 넓다.</div></div>
-<div class="fit-row"><div class="fit-key">미식</div><div class="fit-val">무쓰만 해산물, 오마 참치, 겨울 대게, 사과. 시장에서 덮밥을 직접 만들어 먹는 노케동이 명물.</div></div>
-<div class="fit-row"><div class="fit-key">도시</div><div class="fit-val">아오모리 시내에 네부타 박물관·A-FACTORY·미술관이 모여 있다. 규모는 작지만 실내 볼거리가 많다.</div></div>
-<div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">겨울 비수기에는 사람이 적다. 아사무시는 역 앞 족욕이 있는 작은 온천마을이다.</div></div>
-<div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">다섯 후보 중 눈이 가장 많다. 대신 폭설로 열차가 지연될 수 있다.</div></div>
-</div></section>
+
 <section><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><picture><source srcset="route-aomori-dark.png" media="(prefers-color-scheme: dark)"><img src="route-aomori.png" alt="aomori 3박 4일 동선 지도" loading="lazy"></picture><figcaption>공항에서 시내 35분, 아사무시온천까지 철도 20분. 한 방향으로 곧게 간다.</figcaption></figure></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">추운 지역이라 실내 일정을 중심에 두고, 야외는 짧게 끊었다.</p></div><div class="days">
 <article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>도착하고 실내부터</h3><span class="day-stay">아오모리 1박</span></div><div class="steps">
@@ -706,14 +672,7 @@
 <h1>요나고와 마쓰에, 가이케온천<span>YONAGO · MATSUE · KAIKE ONSEN — 돗토리·시마네현</span></h1>
 <p class="lede">공항에서 온천까지 택시 20분. 바다에서 솟는 온천에 겨울 대게, 그리고 눈 쌓인 국보 천수각.</p></header>
 <figure><img src="yonago-matsue.jpg" alt="눈 덮인 검은 목조 천수각" loading="lazy"><figcaption>눈 쌓인 마쓰에성 천수각 — 현존하는 12천수 중 하나이고 국보다</figcaption></figure>
-<section><div class="sec-head"><h2>조건과 맞춰보기</h2><p class="sec-note">여섯 축 중 조용함·미식·이동이 가장 세다. 도시는 대도시가 아니라 성곽도시다.</p></div><div class="fit">
-<div class="fit-row"><div class="fit-key">이동</div><div class="fit-val">에어서울 인천–요나고 직항 <b>1시간 25분</b>, 인천 13:20 출발. 요나고 기타로공항에서 가이케온천까지 <b>택시 약 20분</b>. 요나고역에서 마쓰에까지 JR 약 30분.</div></div>
-<div class="fit-row"><div class="fit-key">프라이빗</div><div class="fit-val">가이케의 <b>가이케 쇼게츠</b>·<b>가이케 유게쓰</b>에 객실 노천탕이 있고, 타마쓰쿠리온천의 <b>호시노 리조트 카이 이즈모</b>는 전 객실이 노천탕이다.</div></div>
-<div class="fit-row"><div class="fit-key">미식</div><div class="fit-val"><b>마쓰바가니(대게) 11월 6일 해금~3월 20일.</b> 옆 항구 사카이미나토는 게 수확량이 일본에서 가장 많다. 이즈모 소바(와리고), 신지호 시지미 조개국, 노도구로.</div></div>
-<div class="fit-row"><div class="fit-key">도시</div><div class="fit-val">마쓰에 — 국보 마쓰에성, 해자를 도는 유람선(겨울엔 고타쓰 배), 신지호 석양. 요나고 — 기타로 캐릭터의 사카이미나토가 옆이다.</div></div>
-<div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">인천 직항이 하루 한 편뿐이라 한국인 관광객이 적다. 마쓰에는 인구 20만의 성곽도시라 붐비지 않는다.</div></div>
-<div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">산인은 눈이 온다. 마쓰에성과 아다치 정원의 설경은 운이 따라야 하지만 12~1월엔 한두 번은 본다. 다이센 설산이 가이케 해변에서 바다 너머로 보인다.</div></div>
-</div></section>
+
 <section><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><picture><source srcset="route-yonago-dark.png" media="(prefers-color-scheme: dark)"><img src="route-yonago.png" alt="yonago 3박 4일 동선 지도" loading="lazy"></picture><figcaption>공항에서 가이케온천 택시 20분. 마쓰에·아다치미술관이 서쪽으로 이어진다.</figcaption></figure></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">가이케 2박 + 타마쓰쿠리 1박. 이동은 서쪽으로 한 방향이고, 가장 긴 구간이 1시간 10분이다.</p></div><div class="days">
 <article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>바다 온천에서 시작</h3><span class="day-stay">가이케온천 1박</span></div><div class="steps">
@@ -875,7 +834,6 @@
     drawWeights();
     drawMatrix();
   });
-
 
   /* ---------- 탭 전환 ---------- */
   function show(name, push) {
