@@ -47,7 +47,8 @@ ROUTES = {
             ("마츠시마", 38.3697, 141.0603, "spot"),
             ("아키우온천", 38.2361, 140.7183, "stay"),
         ],
-        "legs": [(0, 1, "공항철도 25분"), (1, 2, "JR 40분"), (2, 3, "JR 40분 + 버스 50분")],
+        "legs": [(0, 1, "공항철도 25분"), (1, 2, "JR 40분"), (2, 3, "JR 40분 + 버스 50분"),
+                 (3, 0, "버스 50분 + 공항철도 25분", "back")],
         "stays": {1: "1박", 3: "2·3박"},
         "note": "시내 1박 → 아키우온천 2박. 모든 구간이 한 시간 안이다.",
     },
@@ -62,7 +63,7 @@ ROUTES = {
             ("아침시장·역", 41.7736, 140.7263, "spot", "up"),
             ("모토마치·하코다테산", 41.7600, 140.7070, "spot", "down"),
         ],
-        "legs": [(0, 1, "버스 6분"), (1, 2, "전차 25분"), (2, 3, "도보·전차 10분")],
+        "legs": [(0, 1, "버스 6분"), (1, 2, "전차 25분"), (2, 3, "도보·전차 10분"), (1, 0, "버스 6분", "back", 0.4, (0.006, -0.016))],
         "stays": {1: "1·2·3박"},
         "note": "온천에 3박. 짐을 한 번만 옮기고 매일 같은 방으로 돌아온다.",
     },
@@ -75,7 +76,7 @@ ROUTES = {
             ("가나자와 시내\n겐로쿠엔·차야가이", 36.5700, 136.6550, "stay"),
             ("유와쿠온천", 36.4783, 136.7500, "stay"),
         ],
-        "legs": [(0, 1, "리무진 40분"), (1, 2, "차 25분 (송영)")],
+        "legs": [(0, 1, "리무진 40분"), (1, 2, "차 25분 (송영)"), (2, 0, "송영 25분 + 리무진 40분", "back", 0.25, (0.02, -0.04))],
         "stays": {1: "1박", 2: "2·3박"},
         "note": "시내 1박 → 유와쿠온천 2박. 여관 무료 송영이 있다.",
     },
@@ -88,7 +89,7 @@ ROUTES = {
             ("아오모리 시내", 40.8280, 140.7350, "stay"),
             ("아사무시온천", 40.8930, 140.8600, "stay"),
         ],
-        "legs": [(0, 1, "버스 35분"), (1, 2, "철도 20분")],
+        "legs": [(0, 1, "버스 35분"), (1, 2, "철도 20분"), (2, 0, "철도 20분 + 리무진 35분", "back", 0.34, (0.135, -0.012))],
         "stays": {1: "1박", 2: "2·3박"},
         "note": "시내에서 네부타 박물관 → 아사무시온천으로 들어간다.",
     },
@@ -105,7 +106,7 @@ ROUTES = {
             ("타마쓰쿠리온천", 35.4253, 132.9847, "stay", "down"),
         ],
         "legs": [(0, 1, "택시 20분"), (1, 2, "JR+셔틀 30분"), (2, 3, "JR 30분"),
-                 (3, 4, "JR 10분")],
+                 (3, 4, "JR 10분"), (4, 0, "JR 60분", "back", -0.3, (0.075, 0.012))],
         "stays": {1: "1·2박", 4: "3박"},
         "note": "가이케온천 2박 + 타마쓰쿠리 1박. 대게의 본고장이다.",
     },
@@ -173,19 +174,26 @@ def draw(key, cfg, prefs, theme="light"):
             ax.fill(*zip(*ring), facecolor=C["land"], edgecolor=C["edge"],
                     linewidth=0.8, zorder=1)
 
-    for a, b, label in cfg["legs"]:
+    for leg in cfg["legs"]:
+        a, b, label = leg[:3]
+        back = len(leg) > 3 and leg[3] == "back"   # 귀국 구간 — 점선으로 구분
         (_, ya, xa), (_, yb, xb) = pts[a][:3], pts[b][:3]
-        style = dict(connectionstyle="arc3,rad=0.14", shrinkA=14, shrinkB=16)
+        rad = leg[4] if len(leg) > 4 else 0.14   # 귀국 구간은 왕복 선이 겹치지 않게 곡률을 따로 준다
+        style = dict(connectionstyle="arc3,rad=%s" % rad, shrinkA=14, shrinkB=16)
+        if back:
+            style["linestyle"] = (0, (4, 3))
+            label = "귀국 · " + label
         # 같은 곡선을 굵고 연하게 한 번 깔아 선에 두께감을 준다
         ax.add_patch(FancyArrowPatch((xa, ya), (xb, yb), arrowstyle="-",
                      linewidth=5.5, color=accent, alpha=.16, zorder=3, **style))
         ax.add_patch(FancyArrowPatch((xa, ya), (xb, yb), arrowstyle="-|>",
                      mutation_scale=16, linewidth=2.2, color=accent, alpha=.95,
                      zorder=4, **style))
-        rad = 0.14
         cx = (xa + xb) / 2 + rad * (yb - ya)
         cy = (ya + yb) / 2 - rad * (xb - xa) * kx * kx
         mx, my = (xa + 2 * cx + xb) / 4, (ya + 2 * cy + yb) / 4
+        if len(leg) > 5:                          # 라벨이 다른 라벨·노드를 덮을 때 손으로 비켜 준다
+            mx, my = mx + leg[5][0], my + leg[5][1]
         ax.text(mx, my, label, fontsize=9.5, color=accent, weight="bold",
                 ha="center", va="center", zorder=6,
                 bbox=dict(boxstyle="round,pad=0.34", fc=C["label"], ec="none"))
@@ -204,7 +212,8 @@ def draw(key, cfg, prefs, theme="light"):
         # 라벨은 그 지점에 붙은 화살표들의 반대편에 둔다 — 안 그러면 화살표가 글자를 관통한다
         forced = p[4] if len(p) > 4 else None
         vx = vy = 0.0
-        for a, b, _ in cfg["legs"]:
+        for leg in cfg["legs"]:
+            a, b = leg[:2]
             other = b if a == i else a if b == i else None
             if other is None:
                 continue
