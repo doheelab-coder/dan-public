@@ -217,8 +217,11 @@ def draw(key, cfg, prefs, theme="light"):
         else:
             mag = math.hypot(vx, vy)
             ux, uy = (0.0, -1.0) if mag < 1e-9 else (-vx / mag, -vy / mag)
-        dy = (y1 - y0) * (0.090 if "\n" in name else 0.077)
+        dy = (y1 - y0) * (0.098 if "\n" in name else 0.086)
         dx = dy / kx
+        if abs(ux) > 0.7:
+            # 옆으로 놓을 때는 간격을 세로 기준으로 잡으면 노드를 비껴가지 못한다
+            dx *= 2.1
         ax.text(lon + ux * dx, lat + uy * dy, name, fontsize=11,
                 color=C["ink"], weight="bold" if kind != "spot" else "normal",
                 ha="center", va="center", zorder=8,
