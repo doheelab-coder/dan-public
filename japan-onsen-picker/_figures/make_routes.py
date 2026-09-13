@@ -32,7 +32,7 @@ THEMES = {
 # 도시 강조색 — 라이트 / 다크
 ACCENTS = {
     "#B5632F": "#D98A52", "#2F6B8F": "#6FB0D4", "#9E3B4A": "#D4788A",
-    "#3F6B4A": "#7FB68C", "#6B5B8F": "#A79BC9",
+    "#3F6B4A": "#7FB68C", "#6B5B8F": "#A79BC9", "#8F5A2F": "#D0996A", "#2F6B5A": "#6FC0A8",
 }
 
 # 지점: (이름, 위도, 경도, 종류)  종류 — air 공항 · stay 숙박 · spot 관광
@@ -47,8 +47,8 @@ ROUTES = {
             ("마츠시마", 38.3697, 141.0603, "spot"),
             ("아키우온천", 38.2361, 140.7183, "stay"),
         ],
-        "legs": [(0, 1, "공항철도 25분"), (1, 2, "JR 40분"), (2, 3, "JR 40분 + 버스 50분"),
-                 (3, 0, "버스 50분 + 공항철도 25분", "back")],
+        "legs": [(0, 1, "공항철도 25분"), (1, 2, "JR 40분"), (2, 3, "JR 40분 + 버스 50분", None, 0.14, (-0.045, 0.022)),
+                 (3, 0, "버스 50분 + 공항철도 25분", "back", -0.22, (-0.05, -0.04))],
         "stays": {1: "1박", 3: "2·3박"},
         "note": "시내 1박 → 아키우온천 2박. 모든 구간이 한 시간 안이다.",
     },
@@ -110,6 +110,37 @@ ROUTES = {
         "stays": {1: "1·2박", 4: "3박"},
         "note": "가이케온천 2박 + 타마쓰쿠리 1박. 대게의 본고장이다.",
     },
+    "unzen": {
+        "title": "나가사키 · 운젠온천",
+        "accent": "#8F5A2F",
+        "prefs": ["Nagasaki Ken", "Saga Ken", "Fukuoka Ken"],
+        "points": [
+            ("나가사키공항", 32.9169, 129.9136, "air"),
+            ("이사하야", 32.8444, 130.0592, "spot"),
+            ("운젠온천", 32.7333, 130.2611, "stay"),
+            ("니타고개·묘켄다케", 32.7597, 130.2944, "spot"),
+            ("나가사키 시내", 32.7522, 129.8706, "stay"),
+        ],
+        "legs": [(0, 1, "버스 30~45분", None, 0.14, (0.0, 0.032)), (1, 2, "버스 80분"), (2, 3, "차 15분"), (2, 4, "버스 100분"),
+                 (4, 0, "리무진 40분", "back", 0.3)],
+        "stays": {2: "1·2박", 4: "3박"},
+        "note": "공항에서 이사하야를 거쳐 운젠으로. 마지막 밤은 시내로 내려온다.",
+    },
+    "zao": {
+        "title": "야마가타 · 자오온천",
+        "accent": "#2F6B5A",
+        "prefs": ["Yamagata Ken", "Miyagi Ken", "Fukushima Ken"],
+        "points": [
+            ("센다이공항", 38.1397, 140.9170, "air"),
+            ("야마가타 시내", 38.2404, 140.3633, "stay"),
+            ("자오온천", 38.1614, 140.4014, "stay"),
+            ("지조산초·수빙", 38.1417, 140.4394, "spot"),
+        ],
+        "legs": [(0, 1, "버스 80분"), (1, 2, "버스 33분"), (2, 3, "로프웨이 17분", None, 0.14, (0.075, 0.038)),
+                 (1, 0, "버스 80분", "back", -0.3, (0.0, 0.03))],
+        "stays": {2: "1·2박", 1: "3박"},
+        "note": "센다이 직항을 그대로 쓴다. 자오 2박 뒤 야마가타 시내 1박.",
+    },
 }
 
 # 종류는 글리프 대신 마커 모양으로 구분한다 (Pretendard에 ✈·♨ 글리프가 없다)
@@ -130,6 +161,9 @@ def load_prefs(path):
         polys = geom["coordinates"] if geom["type"] == "MultiPolygon" else [geom["coordinates"]]
         out[name] = [ring[0] for ring in polys]
     return out
+
+
+_FIGS = []
 
 
 def draw(key, cfg, prefs, theme="light"):
@@ -226,8 +260,11 @@ def draw(key, cfg, prefs, theme="light"):
         else:
             mag = math.hypot(vx, vy)
             ux, uy = (0.0, -1.0) if mag < 1e-9 else (-vx / mag, -vy / mag)
-        dy = (y1 - y0) * (0.090 if "\n" in name else 0.077)
+        dy = (y1 - y0) * (0.098 if "\n" in name else 0.086)
         dx = dy / kx
+        if abs(ux) > 0.7:
+            # 옆으로 놓을 때는 간격을 세로 기준으로 잡으면 노드를 비껴가지 못한다
+            dx *= 2.1
         ax.text(lon + ux * dx, lat + uy * dy, name, fontsize=11,
                 color=C["ink"], weight="bold" if kind != "spot" else "normal",
                 ha="center", va="center", zorder=8,
@@ -268,7 +305,10 @@ def draw(key, cfg, prefs, theme="light"):
     suffix = "" if theme == "light" else "-dark"
     path = os.path.join(OUT, f"route-{key}{suffix}.png")
     fig.savefig(path, dpi=155, bbox_inches="tight", facecolor=C["bg"])
-    plt.close(fig)
+    if os.environ.get("KEEP_FIGS"):
+        _FIGS.append((key, theme, fig))
+    else:
+        plt.close(fig)
     return path
 
 

@@ -1,4 +1,4 @@
-<title>겨울 온천 다섯 후보</title>
+<title>겨울 온천 일곱 후보</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -39,18 +39,24 @@
   .view[data-accent="kurokawa"]{--accent:#3F6B4A;--accent-soft:#DDE9DF}
   .view[data-accent="aomori"]{--accent:#3F6B4A;--accent-soft:#DDE9DF}
   .view[data-accent="yonago"]{--accent:#2F6E66;--accent-soft:#DAEBE8}
+  .view[data-accent="unzen"]{--accent:#8F5A2F;--accent-soft:#EFE3D8}
+  .view[data-accent="zao"]{--accent:#2F6B5A;--accent-soft:#DAEAE3}
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .view[data-accent="sendai"]{--accent:#D98A52;--accent-soft:#3A2A1E}
     :root:not([data-theme="light"]) .view[data-accent="hakodate"]{--accent:#6FB0D4;--accent-soft:#182833}
     :root:not([data-theme="light"]) .view[data-accent="kanazawa"]{--accent:#D4788A;--accent-soft:#33191E}
     :root:not([data-theme="light"]) .view[data-accent="kurokawa"]{--accent:#7FB68C;--accent-soft:#1B2A1E}
     :root:not([data-theme="light"]) .view[data-accent="aomori"]{--accent:#7FB68C;--accent-soft:#1B2A1E}
-    :root:not([data-theme="light"]) .view[data-accent="yonago"]{--accent:#7FC2B8;--accent-soft:#12302C}}
+    :root:not([data-theme="light"]) .view[data-accent="yonago"]{--accent:#7FC2B8;--accent-soft:#12302C}
+    :root:not([data-theme="light"]) .view[data-accent="unzen"]{--accent:#D0996A;--accent-soft:#33251A}
+    :root:not([data-theme="light"]) .view[data-accent="zao"]{--accent:#6FC0A8;--accent-soft:#12302A}}
   :root[data-theme="dark"] .view[data-accent="sendai"]{--accent:#D98A52;--accent-soft:#3A2A1E}
   :root[data-theme="dark"] .view[data-accent="hakodate"]{--accent:#6FB0D4;--accent-soft:#182833}
   :root[data-theme="dark"] .view[data-accent="kanazawa"]{--accent:#D4788A;--accent-soft:#33191E}
   :root[data-theme="dark"] .view[data-accent="kurokawa"]{--accent:#7FB68C;--accent-soft:#1B2A1E}
   :root[data-theme="dark"] .view[data-accent="aomori"]{--accent:#7FB68C;--accent-soft:#1B2A1E}
   :root[data-theme="dark"] .view[data-accent="yonago"]{--accent:#7FC2B8;--accent-soft:#12302C}
+  :root[data-theme="dark"] .view[data-accent="unzen"]{--accent:#D0996A;--accent-soft:#33251A}
+  :root[data-theme="dark"] .view[data-accent="zao"]{--accent:#6FC0A8;--accent-soft:#12302A}
 
   /* 탭 */
   .tabs{position:sticky;top:0;z-index:20;background:var(--ground);
@@ -238,6 +244,13 @@
   .sc-legend{display:none;font-size:13px;color:var(--soft);margin-top:12px;line-height:1.7}
   .sc-legend b{font-weight:500;color:var(--ink)}
 
+  /* 한눈에 보기 — 도시별 한두 문장 */
+  .glance{display:grid;border-top:1px solid var(--line)}
+  .g-row{display:grid;grid-template-columns:200px 1fr;gap:18px;padding:13px 0;border-bottom:1px solid var(--line);align-items:start}
+  .g-row b{font-family:var(--display);font-size:17px;font-weight:700;line-height:1.3}
+  .g-row b small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--steam);font-weight:400;margin-top:4px}
+  .g-row p{font-size:15px;color:var(--ink);line-height:1.7}
+
   /* 컨텐츠 비교 */
   table.content td{font-size:13.5px;line-height:1.6}
   table.content tbody tr:first-child th{font-family:var(--display);font-size:15px;border-bottom:2px solid var(--ink)}
@@ -294,6 +307,7 @@
     .day-photo img{aspect-ratio:16/10}
     .step{grid-template-columns:52px 1fr;gap:9px;font-size:14.5px}
     .fit-row{grid-template-columns:1fr;gap:2px}
+    .g-row{grid-template-columns:1fr;gap:5px}
     .fit-key{padding-top:0}
     .stay{padding:16px}
     .link{grid-template-columns:54px 1fr;gap:9px;font-size:14.5px}
@@ -320,30 +334,43 @@
 <button class="tab" type="button" role="tab" id="tab-sendai" data-view="sendai" aria-controls="view-sendai" aria-selected="false">센다이</button>
 <button class="tab" type="button" role="tab" id="tab-kanazawa" data-view="kanazawa" aria-controls="view-kanazawa" aria-selected="false">가나자와</button>
 <button class="tab" type="button" role="tab" id="tab-yonago" data-view="yonago" aria-controls="view-yonago" aria-selected="false">요나고</button>
+<button class="tab" type="button" role="tab" id="tab-zao" data-view="zao" aria-controls="view-zao" aria-selected="false">자오</button>
 <button class="tab" type="button" role="tab" id="tab-aomori" data-view="aomori" aria-controls="view-aomori" aria-selected="false">아오모리</button>
+<button class="tab" type="button" role="tab" id="tab-unzen" data-view="unzen" aria-controls="view-unzen" aria-selected="false">운젠</button>
 </nav>
 <section id="view-compare" class="view" role="tabpanel" aria-labelledby="tab-compare">
 <header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
-<h1>겨울 온천, 다섯 곳 중 하나</h1>
+<h1>겨울 온천, 일곱 곳 중 하나</h1>
 <p class="thesis">조용하고, 도시도 볼 수 있고, 미식과 온천을 겸한다.</p>
-<p style="font-size:15px;color:var(--soft);max-width:40em">이안아, 12~1월에 3박 4일로 갈 겨울 온천 여행지를 다섯 곳으로 추렸어. 같은 기준으로 점수를 매겨봤고, 도시마다 탭을 눌러보면 일정·숙소·비용까지 볼 수 있어. <b>다 보고 맨 아래에서 한 곳만 골라줘.</b></p>
+<p style="font-size:15px;color:var(--soft);max-width:40em">이안아, 12~1월에 3박 4일로 갈 겨울 온천 여행지를 일곱 곳으로 추렸어. 같은 기준으로 점수를 매겨봤고, 도시마다 탭을 눌러보면 일정·숙소·비용까지 볼 수 있어. <b>다 보고 맨 아래에서 한 곳만 골라줘.</b></p>
 <div class="terms"><span class="term"><b>프라이빗 온천</b> 필수</span><span class="term"><b>미식</b> 필수</span><span class="term"><b>이동</b> 한 구간 2시간 이내</span><span class="term"><b>여유로운 일정</b></span><span class="term"><b>사람 많은 곳</b> 제외</span><span class="term"><b>숙소 이동</b> 무관</span></div></header>
-<section><div class="sec-head"><h2>같은 자로 잰 결과</h2><p class="sec-note">다섯 칸이 만점. 판정 근거는 각 도시 탭의 수치에 있다.</p></div>
+<section><div class="sec-head"><h2>한눈에 보기</h2><p class="sec-note">먼저 느낌부터. 숫자는 그다음 표에, 자세한 건 도시 탭에 있다.</p></div><div class="glance">
+<div class="g-row"><b>하코다테와 유노카와온천<small>HAKODATE · YUNOKAWA ONSEN</small></b><p>양쪽이 바다로 좁아지는 지형이라 산 위에서 보면 도시가 빛의 띠가 된다. 개항기 서양식 목조 건물의 언덕을 걷고, 사흘 밤을 유노카와 한 여관의 객실 노천탕에서 보낸다.</p></div>
+<div class="g-row"><b>센다이와 아키우온천<small>SENDAI · AKIU ONSEN</small></b><p>인구 100만 도시의 느티나무 가로수 700m가 12월이면 전구 48만 구로 덮인다. 그 옆 천 년 된 아키우온천에서 협곡을 걷고 객실 노천탕으로 돌아온다.</p></div>
+<div class="g-row"><b>가나자와와 유와쿠온천<small>KANAZAWA · YUWAKU ONSEN</small></b><p>눈 많은 호쿠리쿠의 도시, 겨울이면 겐로쿠엔의 소나무마다 우산 모양으로 밧줄을 맨다. 찻집 거리와 시장을 돌고, 여관 여섯 곳뿐인 유와쿠온천의 저녁상에 대게가 올라온다.</p></div>
+<div class="g-row"><b>요나고와 마쓰에, 가이케온천<small>YONAGO · MATSUE · KAIKE ONSEN</small></b><p>가이케는 바다에서 온천이 솟고 그 너머로 다이센 설산이 보이는 곳이다. 이웃한 성곽도시 마쓰에에서 국보 천수각에 오르고, 고타쓰를 넣은 배로 해자를 돈다.</p></div>
+<div class="g-row"><b>야마가타와 자오온천<small>YAMAGATA · ZAO ONSEN</small></b><p>로프웨이로 지조산초역까지 오르면 스노우 몬스터라 부르는 수빙 군락이 서 있고, 밤에는 라이트업이 켜진다. 산 아래 온천가는 1900년에 문을 연 강산성 유황천이다.</p></div>
+<div class="g-row"><b>아오모리와 아사무시온천<small>AOMORI · ASAMUSHI ONSEN</small></b><p>폭설이 잦은 땅이다. 시내의 네부타 박물관과 사과 시드르 공방을 보고, 무쓰만에 면한 작은 온천마을 아사무시로 옮겨 객실 노천탕에서 16시 반의 노을을 본다.</p></div>
+<div class="g-row"><b>나가사키와 운젠온천<small>NAGASAKI · UNZEN ONSEN</small></b><p>해발 700m 온천가 한가운데로 분기공 30여 개의 유황 증기가 올라온다. 로프웨이로 묘켄다케에 오르면 나뭇가지마다 안개가 얼어붙어 있고, 내려와 유백색 탕에 든다.</p></div>
+</div></section>
+<section><div class="sec-head"><h2>같은 기준으로 잰 결과</h2><p class="sec-note">다섯 칸이 만점. 판정 근거는 각 도시 탭의 수치에 있다.</p></div>
 <div class="matrix-scroll"><table class="matrix"><tbody id="matrix-body"></tbody></table></div>
 <div class="scores-m" id="scores-m"></div>
 <p class="sc-legend"><b>조용함</b> 사람에 치이지 않는가 · <b>도시</b> 볼거리가 있는 시내 · <b>미식</b> 겨울 제철이 분명한가 · <b>프라이빗 온천</b> 객실 전용탕 · <b>이동</b> 현지 이동 + 직항 요일 · <b>겨울 풍경</b> 눈이 오는가</p>
-<p class="sec-note" style="margin-top:14px">합계는 여섯 축을 같은 무게로 더한 값. 미식은 다섯 곳 다 만점이라 순위를 가르지 않고, 직항·비용은 점수에 넣지 않았다. 이동 점수엔 직항 운항 요일까지 반영했다(주 3회면 출발·귀국 요일이 강제된다).</p>
+<p class="sec-note" style="margin-top:14px">합계는 여섯 축을 같은 무게로 더한 값. 미식은 모든 후보가 만점이라 순위를 가르지 않고, 직항·비용은 점수에 넣지 않았다. 이동 점수엔 직항 운항 요일까지 반영했다(주 3회면 출발·귀국 요일이 강제된다).</p>
 </section>
-<section><div class="sec-head"><h2>어디에 있나</h2><p class="sec-note">회색 점은 위치를 가늠하기 위한 참고점(도쿄·오사카)이다.</p></div><div class="mapwrap"><img src="japan-map.png" alt="일본 지도 위 다섯 후보의 위치">
+<section><div class="sec-head"><h2>어디에 있나</h2><p class="sec-note">회색 점은 위치를 가늠하기 위한 참고점(도쿄·오사카)이다.</p></div><div class="mapwrap"><img src="japan-map.png" alt="일본 지도 위 후보의 위치">
 <div class="pin left" style="left:63.4%;top:23.5%"><span>하코다테</span></div>
 <div class="pin left" style="left:63.4%;top:27.4%"><span>아오모리</span></div>
-<div class="pin left" style="left:63.8%;top:37.7%"><span>센다이</span></div>
+<div class="pin" style="left:63.8%;top:37.7%"><span>센다이</span></div>
+<div class="pin left" style="left:62.3%;top:38.2%"><span>자오</span></div>
 <div class="pin" style="left:49.6%;top:44.7%"><span>가나자와</span></div>
 <div class="pin" style="left:38.4%;top:49.3%"><span>요나고</span></div>
+<div class="pin" style="left:26.7%;top:60.2%"><span>나가사키</span></div>
 <div class="pin ref left" style="left:59.7%;top:48.3%"><span>도쿄</span></div>
 <div class="pin ref" style="left:45.7%;top:52.3%"><span>오사카</span></div>
 </div></section>
-<section><div class="sec-head"><h2>후보 다섯</h2><p class="sec-note">각 카드의 마지막 두 줄이 핵심이다 — 무엇을 얻고 무엇을 포기하는가.</p></div><div class="cands">
+<section><div class="sec-head"><h2>후보 일곱</h2><p class="sec-note">각 카드의 마지막 두 줄이 핵심이다 — 무엇을 얻고 무엇을 포기하는가.</p></div><div class="cands">
 <article class="cand lead">
 <figure class="cand-thumb"><img src="hakodate-night.jpg" alt="하코다테산에서 본 야경" loading="lazy"></figure>
 <div class="cand-top"><h3>하코다테와 유노카와온천<small>HAKODATE · YUNOKAWA ONSEN</small></h3><span class="tag">최소 이동형<b>28<small>/30</small></b></span></div>
@@ -397,6 +424,19 @@
 <p class="gotopage"><button type="button" data-goto="yonago">일정·숙소·비용 보기 →</button></p>
 </article>
 <article class="cand">
+<figure class="cand-thumb"><img src="zao-juhyo.jpg" alt="자오의 수빙 — 스노우 몬스터" loading="lazy"></figure>
+<div class="cand-top"><h3>야마가타와 자오온천<small>YAMAGATA · ZAO ONSEN</small></h3><span class="tag">수빙형<b>26<small>/30</small></b></span></div>
+<p class="pitch">12월부터 스노우 몬스터라 부르는 수빙이 서고, 밤에 라이트업 로프웨이로 올라 본다. 루리쿠라는 그 승강장에서 도보 1분, 노천탕 객실이 6실이다. 야마가타규와 소바, 대구탕 돈가라지루가 있다. 센다이공항에서 버스 80분, 다시 33분이면 닿는다. 수빙은 보되 추위에 오래 서 있긴 싫으면 여기다.</p><dl class="facts">
+<dt>대표 관광지</dt><dd>자오 로프웨이·지조산초 수빙(야간 라이트업) · 자오온천 온천가 · 야마가타 문쇼칸</dd>
+<dt>대표 음식</dt><dd>야마가타규·요네자와규(흑우 와규) · 야마가타 소바 · 돈가라지루(대구탕)</dd>
+<dt>이동</dt><dd>센다이공항→야마가타 버스 80분 · 야마가타→자오 버스 33분</dd>
+<dt>총 비용</dt><dd>1인 약 85~134만원</dd>
+</dl><div class="tradeoff">
+<div class="gain"><span>얻는다</span><span>센다이 직항을 그대로 쓰면서 눈을 확실히 본다. 수빙을 실내(곤돌라·산정 식당)에서 보는 구조라 춥지 않다.</span></div>
+<div class="lose"><span>포기</span><span>수빙은 2월이 절정이라 12월엔 덜 자라 있을 수 있다. 자오 대노천탕은 겨울 휴업. 야마가타시는 작다.</span></div></div>
+<p class="gotopage"><button type="button" data-goto="zao">일정·숙소·비용 보기 →</button></p>
+</article>
+<article class="cand">
 <figure class="cand-thumb"><img src="asamushi.jpg" alt="무쓰만에 면한 아사무시 온천마을" loading="lazy"></figure>
 <div class="cand-top"><h3>아오모리와 아사무시온천<small>AOMORI · ASAMUSHI ONSEN</small></h3><span class="tag">설국형<b>25<small>/30</small></b></span></div>
 <p class="pitch">눈·해산물·조용함, 셋이 동시에 높은 드문 조합이다. 눈이 가장 많이 오는데 겨울은 비수기라 사람이 적다. 시장에서 해산물을 골라 밥에 얹는 노케동이 명물이고, 오마 참치가 따라온다. 아사무시는 무쓰만에 면해 있어 객실 노천탕에서 바다가 보인다. 설국의 겨울을 붐비지 않게 보내려면 여기다.</p><dl class="facts">
@@ -409,11 +449,24 @@
 <div class="lose"><span>포기</span><span>폭설로 열차·항공이 지연될 수 있다. 도시 규모는 작다.</span></div></div>
 <p class="gotopage"><button type="button" data-goto="aomori">일정·숙소·비용 보기 →</button></p>
 </article>
+<article class="cand">
+<figure class="cand-thumb"><img src="unzen-town.jpg" alt="산속 온천가 운젠과 오시도리 연못" loading="lazy"></figure>
+<div class="cand-top"><h3>나가사키와 운젠온천<small>NAGASAKI · UNZEN ONSEN</small></h3><span class="tag">규슈 설경형<b>22<small>/30</small></b></span></div>
+<p class="pitch">규슈에서 안개가 나뭇가지에 얼어붙는 무빙을 보는 몇 안 되는 곳이다. 해발 700m 온천가에 분기공 30여 개가 유황 증기를 올리고, 후쿠다야는 별채 7객실 전부에 노천탕이 있다. 나가사키 시내엔 짬뽕과 사라우동, 겨울 복어와 굴이 있다. 조용한 산 위 온천가와 시내의 미식을 다 원하면 여기다.</p><dl class="facts">
+<dt>대표 관광지</dt><dd>운젠 지옥 · 니타고개 로프웨이(무빙) · 이나사야마 야경 · 데지마·글로버정원</dd>
+<dt>대표 음식</dt><dd>나가사키 짬뽕 · 사라우동(튀긴 면) · 겨울 복어·굴 · 온천 계란</dd>
+<dt>이동</dt><dd>공항→운젠 이사하야 환승 약 2시간 · 운젠→나가사키 버스 100분</dd>
+<dt>총 비용</dt><dd>1인 약 103~157만원</dd>
+</dl><div class="tradeoff">
+<div class="gain"><span>얻는다</span><span>규슈에서 눈과 무빙을 보는 드문 온천. 나가사키의 야경·짬뽕·랜턴이 따라온다.</span></div>
+<div class="lose"><span>포기</span><span>직항이 화·목·토뿐이라 토요일 출발만 3박 4일이 된다. 공항에서 온천까지 환승 포함 2시간. 비용도 가장 높다.</span></div></div>
+<p class="gotopage"><button type="button" data-goto="unzen">일정·숙소·비용 보기 →</button></p>
+</article>
 </div></section>
 <section><div class="sec-head"><h2>재봤지만 뺀 곳</h2><p class="sec-note">이름은 알려져 있지만 이번 조건과 어긋난다. 한 줄 사유를 누르면 자세히 나온다.</p></div><div class="dropped">
 <details class="row"><summary><b>마쓰야마·도고온천</b><span>눈이 거의 없다</span></summary><p>일본에서 가장 오래된 온천이고 비용도 가장 낮다. 그런데 세토우치 기후라 눈이 거의 없어 겨울 풍경이 1점이라 다섯 후보에 들지 못했다. 대신 산인의 요나고·마쓰에를 넣었다.</p></details>
 <details class="row"><summary><b>쿠로카와온천</b><span>도시가 없고 공항에서 2시간</span></summary><p>온천과 조용함은 최고지만 도시와 이동이 약하다. 쿠로카와엔 도시가 없어 구마모토를 따로 붙여야 하고, 공항에서 규슈횡단버스로 약 2시간이라 이동도 길다.</p></details>
-<details class="row"><summary><b>후쿠오카</b><span>눈이 거의 없다</span></summary><p>도시·미식·직항은 다섯 후보 어디에도 밀리지 않는다. 온천도 우레시노(신칸센 1시간 10분, 일본 3대 미인탕, 객실 노천탕 료칸 여럿)가 「한 구간 2시간」 안에 있어 이동 조건은 걸리지 않는다. 걸리는 건 하나다 — <b>규슈 북부라 눈이 거의 오지 않는다.</b> 겨울 온천이 목적인데 설경이 없어, 도고온천과 같은 사유로 뺐다.</p></details>
+<details class="row"><summary><b>후쿠오카</b><span>눈이 거의 없다</span></summary><p>도시·미식·직항은 어느 후보에도 밀리지 않는다. 온천도 우레시노(신칸센 1시간 10분, 일본 3대 미인탕, 객실 노천탕 료칸 여럿)가 「한 구간 2시간」 안에 있어 이동 조건은 걸리지 않는다. 걸리는 건 하나다 — <b>규슈 북부라 눈이 거의 오지 않는다.</b> 겨울 온천이 목적인데 설경이 없어, 도고온천과 같은 사유로 뺐다.</p></details>
 <details class="row"><summary><b>벳푸</b><span>지옥순례가 대표 혼잡지</span></summary><p>온천 밀도와 가족탕 문화는 훌륭하다. 다만 간판인 지옥순례가 대표적인 관광 혼잡지라 “사람 많은 곳 제외”에 정면으로 걸린다.</p></details>
 <details class="row"><summary><b>기노사키온센</b><span>오사카·교토에서 2시간 넘음</span></summary><p>겨울 대게와 온천마을 정취는 최고다. 그런데 오사카에서 특급 2시간 35분, 교토에서 2시간 21분이라 <b>한 구간 2시간</b>을 넘는다. 핵심 경험인 외탕 7곳 순례도 프라이빗 온천과 방향이 반대다.</p></details>
 <details class="row"><summary><b>게로온센</b><span>도시(나고야)를 따로 붙여야 함</span></summary><p>일본 3대 명천이고 객실 노천탕 료칸도 있다. 나고야에서 특급 1시간 30분으로 이동 조건은 통과하지만, 도시를 붙이려면 나고야를 따로 넣어야 해 일정이 빡빡해진다.</p></details>
@@ -424,7 +477,7 @@
 <section id="view-hakodate" class="view" data-accent="hakodate" role="tabpanel" aria-labelledby="tab-hakodate" hidden>
 <header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
 <h1>하코다테와 유노카와온천<span>HAKODATE · YUNOKAWA ONSEN — 홋카이도</span></h1>
-<p class="lede">공항에서 온천까지 버스로 6분. 다섯 후보 중 이동이 가장 짧고, 겨울 해산물이 가장 세다.</p></header>
+<p class="lede">양쪽이 바다로 좁아지는 지형이라 산 위에서 보면 도시가 빛의 띠가 된다. 개항기 서양식 목조 건물의 언덕을 걷고, 사흘 밤을 유노카와 한 여관의 객실 노천탕에서 보낸다.</p></header>
 <figure><img src="hakodate-night.jpg" alt="산 위에서 내려다본 항구 도시의 야경" loading="lazy"><figcaption>하코다테산 야경 — 양쪽이 바다로 좁아지는 지형 때문에 도시가 빛의 띠로 보인다</figcaption></figure>
 <section class="route"><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><picture><source srcset="route-hakodate-dark.png" media="(prefers-color-scheme: dark)"><img src="route-hakodate.png" alt="하코다테와 유노카와온천 3박 4일 동선 지도" loading="lazy"></picture><figcaption>공항에서 온천까지 버스 6분. 짐을 한 번만 옮기고 시내는 전차로 오간다.</figcaption></figure></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">숙소를 옮기지 않고 온천에 3박. 매일 같은 방으로 돌아온다.</p></div><div class="days">
@@ -472,7 +525,7 @@
 <section><div class="sec-head"><h2>총 가격대</h2><p class="sec-note">2인 동행 기준, 1인 금액. 온천 3박이라 숙박 비중이 크다.</p></div><div class="tw"><table class="cost"><tbody><tr><th>항목</th><th class="num">1인 기준</th><th>메모</th></tr>
 <tr><td>항공</td><td class="num">25~40만원</td><td>제주항공 직항 (2025년 6월 개설)</td></tr>
 <tr><td>숙박</td><td class="num">30~45만원</td><td>유노카와 객실 노천탕 3박(1박 2식 기준). 1박을 시내 호텔로 바꾸면 내려간다</td></tr>
-<tr><td>교통</td><td class="num">3~5만원</td><td>공항버스 6분, 노면전차 1일권. 다섯 후보 중 교통비가 가장 적다</td></tr>
+<tr><td>교통</td><td class="num">3~5만원</td><td>공항버스 6분, 노면전차 1일권. 후보 중 교통비가 가장 적다</td></tr>
 <tr><td>식비</td><td class="num">15~22만원</td><td>아침시장 해산물, 시오라멘, 대게</td></tr>
 <tr><td>입장·체험</td><td class="num">3~5만원</td><td>로프웨이·고료카쿠 타워</td></tr>
 </tbody><tfoot><tr><td>합계</td><td class="num">약 76~117만원</td><td>숙박 등급에 따라 폭이 가장 크다</td></tr></tfoot></table></div></section>
@@ -489,7 +542,7 @@
 <section id="view-sendai" class="view" data-accent="sendai" role="tabpanel" aria-labelledby="tab-sendai" hidden>
 <header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
 <h1>센다이와 아키우온천<span>SENDAI · AKIU ONSEN — 미야기현</span></h1>
-<p class="lede">도호쿠에서 가장 큰 도시 옆에 천 년 된 온천이 붙어 있다. 여섯 조건을 가장 고르게 만족하는 곳.</p></header>
+<p class="lede">인구 100만 도시의 느티나무 가로수 700m가 12월이면 전구 48만 구로 덮인다. 그 옆 천 년 된 아키우온천에서 협곡을 걷고 객실 노천탕으로 돌아온다.</p></header>
 <figure><img src="pageant.jpg" alt="느티나무 가로수를 감싼 전구 조명" loading="lazy"><figcaption>조젠지도리 광의 페이전트 — 12월 한정, 느티나무 가로수 700m에 48만 구</figcaption></figure>
 <section class="route"><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><picture><source srcset="route-sendai-dark.png" media="(prefers-color-scheme: dark)"><img src="route-sendai.png" alt="센다이와 아키우온천 3박 4일 동선 지도" loading="lazy"></picture><figcaption>센다이공항에서 시내 25분, 마츠시마 40분, 아키우온천 50분. 세 방향이 모두 한 시간 안이다.</figcaption></figure></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">하루에 큰 일정 하나씩. 둘째 날 저녁부터 온천에서 2박, 셋째 날은 통째로 쉰다.</p></div><div class="days">
@@ -545,7 +598,7 @@
 <tr><td>교통</td><td class="num">4~6만원</td><td>공항철도·루플 1일권·센세키선·아키우 버스</td></tr>
 <tr><td>식비</td><td class="num">12~17만원</td><td>규탄·굴·이자카야. 둘째·셋째 날 저녁은 숙박비에 포함</td></tr>
 <tr><td>입장·체험</td><td class="num">2~4만원</td><td>즈이호덴·즈이간지·유람선</td></tr>
-</tbody><tfoot><tr><td>합계</td><td class="num">약 75~112만원</td><td>다섯 후보 중 낮은 편</td></tr></tfoot></table></div></section>
+</tbody><tfoot><tr><td>합계</td><td class="num">약 75~112만원</td><td>후보 중 낮은 편</td></tr></tfoot></table></div></section>
 <section><div class="sec-head"><h2>한국어로 미리 보기</h2><p class="sec-note">한국어로 된 공식 가이드와 코스 정리.</p></div><div class="links">
 <div class="link"><span class="kind">유튜브</span><span><a href="https://www.youtube.com/watch?v=G_3wroJGuFQ">일본 동북의 미지의 땅 — 센다이·마쓰시마 여행 (규탄·굴·즈이간지)</a></span></div>
 <div class="link"><span class="kind">유튜브</span><span><a href="https://www.youtube.com/watch?v=G9V89oXbW4o">센다이 브이로그 — 아키우온천 료칸 1박</a></span></div>
@@ -560,7 +613,7 @@
 <section id="view-kanazawa" class="view" data-accent="kanazawa" role="tabpanel" aria-labelledby="tab-kanazawa" hidden>
 <header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
 <h1>가나자와와 유와쿠온천<span>KANAZAWA · YUWAKU ONSEN — 이시카와현</span></h1>
-<p class="lede">눈 덮인 겐로쿠엔과 겨울 대게. 도시의 격과 미식이 가장 세고, 설경도 가장 확실하다.</p></header>
+<p class="lede">눈 많은 호쿠리쿠의 도시, 겨울이면 겐로쿠엔의 소나무마다 우산 모양으로 밧줄을 맨다. 찻집 거리와 시장을 돌고, 여관 여섯 곳뿐인 유와쿠온천의 저녁상에 대게가 올라온다.</p></header>
 <figure><img src="kanazawa-yukitsuri.jpg" alt="눈이 두껍게 덮인 일본 정원" loading="lazy"><figcaption>겨울의 겐로쿠엔 — 소나무마다 우산 모양으로 밧줄을 매는 유키즈리가 이 도시의 겨울 상징이다</figcaption></figure>
 <section class="route"><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><picture><source srcset="route-kanazawa-dark.png" media="(prefers-color-scheme: dark)"><img src="route-kanazawa.png" alt="가나자와와 유와쿠온천 3박 4일 동선 지도" loading="lazy"></picture><figcaption>고마쓰공항에서 시내 40분. 유와쿠온천은 시내에서 차로 25분이고 여관 송영이 있다.</figcaption></figure></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">첫날은 도시, 둘째 날 겐로쿠엔을 보고 저녁부터 온천에서 2박. 여관 송영이 시내까지 온다.</p></div><div class="days">
@@ -605,7 +658,7 @@
 <figure><img src="kana-omicho.jpg" alt="해산물이 쌓인 시장 통로" loading="lazy"><figcaption>오미초시장 — 가나자와의 부엌. 첫날 오후에 들른다</figcaption></figure>
 <section><div class="sec-head"><h2>추천 숙소</h2><p class="sec-note">유와쿠 2박. 가나자와역·시내에서 무료 송영을 운행하는 여관이 있다.</p></div><div class="stays">
 <article class="stay"><h3>가나자와 유와쿠온천 료칸 카나야<small>金沢湯涌温泉 かなや</small></h3><p>유와쿠의 대표 여관. <b>노천탕 딸린 객실</b>과 이로리(화로)가 있는 별채 「세이란소」, 온천가에서 유일한 대절탕이 있다. 가나자와역 무료 송영.</p><p class="price">1박 2식 1인 3~5만엔, 대게 플랜은 별도</p><p class="book">예약 · <a href="https://www.agoda.com/ko-kr/kanazawa-yuwaku-onsen-ryokan-kanaya/hotel/kanazawa-jp.html">아고다</a> · <a href="https://www.yuwaku-kanaya.com/">공식</a></p></article>
-<article class="stay"><h3>유노데 료칸<small>金沢湯涌温泉 湯の出旅館</small></h3><p>온천 노천탕이 딸린 객실이 있고, 겨울엔 대게 요리 플랜이 따로 나온다. 온천가의 여관은 <b>6곳</b>이고 객실 노천탕을 둔 곳은 그중 4곳 — 방 수가 적어 <b>다섯 후보 중 예약을 가장 먼저 잡아야 한다.</b></p><p class="price">1박 2식 1인 — 일반실 17,850엔~ · 노천탕 객실 28,350~47,300엔 · 겨울 게 코스 39,900엔~</p><p class="book">예약 · <a href="https://www.jalan.net/onsen/heya_roten/OSN_50605/">じゃらん 객실 노천탕 목록</a> · <a href="https://www.agoda.com/ko-kr/yuwaku-onsen-sakaeya-ryokan/hotel/kanazawa-jp.html">아고다 유와쿠</a></p></article>
+<article class="stay"><h3>유노데 료칸<small>金沢湯涌温泉 湯の出旅館</small></h3><p>온천 노천탕이 딸린 객실이 있고, 겨울엔 대게 요리 플랜이 따로 나온다. 온천가의 여관은 <b>6곳</b>이고 객실 노천탕을 둔 곳은 그중 4곳 — 방 수가 적어 <b>후보 중 예약을 가장 먼저 잡아야 한다.</b></p><p class="price">1박 2식 1인 — 일반실 17,850엔~ · 노천탕 객실 28,350~47,300엔 · 겨울 게 코스 39,900엔~</p><p class="book">예약 · <a href="https://www.jalan.net/onsen/heya_roten/OSN_50605/">じゃらん 객실 노천탕 목록</a> · <a href="https://www.agoda.com/ko-kr/yuwaku-onsen-sakaeya-ryokan/hotel/kanazawa-jp.html">아고다 유와쿠</a></p></article>
 <article class="stay"><h3>가나자와 시내 호텔<small>1일차</small></h3><p>가나자와역 또는 고린보·가타마치 주변. 역 주변이 공항버스와 가깝고, 고린보는 밤에 먹으러 다니기 좋다.</p><p class="price">2인 1박 10~18만원대</p><p class="book">예약 · <a href="https://www.agoda.com/ko-kr/city/kanazawa-jp.html">아고다 가나자와</a></p></article>
 </div>
 <div class="note"><b>유와쿠는 겐로쿠엔에서 차로 20~25분이고 무료 송영이 있다.</b> 짐을 들고 버스를 갈아탈 일이 없어, 시내 하룻밤 + 온천 이틀 구성이 매끄럽다.</div>
@@ -616,7 +669,7 @@
 <tr><td>교통</td><td class="num">4~6만원</td><td>리무진버스 왕복, 시내버스, 유와쿠 송영</td></tr>
 <tr><td>식비</td><td class="num">15~25만원</td><td>이틀 저녁이 숙박에 포함. 대게가 들어가면 한 끼에 크게 오른다</td></tr>
 <tr><td>입장·체험</td><td class="num">3~5만원</td><td>겐로쿠엔·가나자와성·21세기미술관</td></tr>
-</tbody><tfoot><tr><td>합계</td><td class="num">약 89~136만원</td><td>다섯 후보 중 가장 높다 — 대게와 유와쿠 2박이 이유</td></tr></tfoot></table></div></section>
+</tbody><tfoot><tr><td>합계</td><td class="num">약 89~136만원</td><td>후보 중 가장 높다 — 대게와 유와쿠 2박이 이유</td></tr></tfoot></table></div></section>
 <section><div class="sec-head"><h2>한국어로 미리 보기</h2><p class="sec-note">가나자와는 한국어 공식 사이트가 충실하다.</p></div><div class="links">
 <div class="link"><span class="kind">유튜브</span><span><a href="https://www.youtube.com/watch?v=s5JGBYeO9_w">가나자와 필수코스 — 겐로쿠엔·가나자와성·히가시차야가이</a></span></div>
 <div class="link"><span class="kind">유튜브</span><span><a href="https://www.youtube.com/watch?v=3qF2DCCWjQI">가나자와 여행 브이로그 — 감성 넘치는 소도시</a></span></div>
@@ -630,7 +683,7 @@
 <section id="view-yonago" class="view" data-accent="yonago" role="tabpanel" aria-labelledby="tab-yonago" hidden>
 <header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
 <h1>요나고와 마쓰에, 가이케온천<span>YONAGO · MATSUE · KAIKE ONSEN — 돗토리·시마네현</span></h1>
-<p class="lede">공항에서 온천까지 택시 20분. 바다에서 솟는 온천에 겨울 대게, 그리고 눈 쌓인 국보 천수각.</p></header>
+<p class="lede">가이케는 바다에서 온천이 솟고 그 너머로 다이센 설산이 보이는 곳이다. 이웃한 성곽도시 마쓰에에서 국보 천수각에 오르고, 고타쓰를 넣은 배로 해자를 돈다.</p></header>
 <figure><img src="yonago-matsue.jpg" alt="눈 덮인 검은 목조 천수각" loading="lazy"><figcaption>눈 쌓인 마쓰에성 천수각 — 현존하는 12천수 중 하나이고 국보다</figcaption></figure>
 <section class="route"><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><picture><source srcset="route-yonago-dark.png" media="(prefers-color-scheme: dark)"><img src="route-yonago.png" alt="요나고와 마쓰에, 가이케온천 3박 4일 동선 지도" loading="lazy"></picture><figcaption>공항에서 가이케온천 택시 20분. 마쓰에·아다치미술관이 서쪽으로 이어진다.</figcaption></figure></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">가이케 2박 + 타마쓰쿠리 1박. 이동은 서쪽으로 한 방향이고, 가장 긴 구간이 1시간 10분이다.</p></div><div class="days">
@@ -679,7 +732,7 @@
 </div>
 <div class="note">가이케에서 아다치미술관으로 가던 무료 셔틀은 2016년에 없어졌다. <b>요나고역 → JR 야스기역 10분 → 야스기역 무료 셔틀 20분</b>(20~30분 간격)이 정석이다. 셔틀에 큰 캐리어는 못 싣는다.</div>
 </section>
-<section><div class="sec-head"><h2>총 가격대</h2><p class="sec-note">2인 동행 기준, 1인 금액. 카이 이즈모를 넣으면 다섯 후보 중 위쪽이고, 가이케 3박이면 70만원대부터다.</p></div><div class="tw"><table class="cost"><tbody><tr><th>항목</th><th class="num">1인 기준</th><th>메모</th></tr>
+<section><div class="sec-head"><h2>총 가격대</h2><p class="sec-note">2인 동행 기준, 1인 금액. 카이 이즈모를 넣으면 후보 중 위쪽이고, 가이케 3박이면 70만원대부터다.</p></div><div class="tw"><table class="cost"><tbody><tr><th>항목</th><th class="num">1인 기준</th><th>메모</th></tr>
 <tr><td>항공</td><td class="num">25~40만원</td><td>에어서울 직항 1시간 25분. 하루 한 편이라 좌석이 빨리 찬다</td></tr>
 <tr><td>숙박</td><td class="num">45~70만원</td><td>가이케 객실 노천탕 2박 + 카이 이즈모 1박(1박 2식)</td></tr>
 <tr><td>교통</td><td class="num">4~6만원</td><td>공항 택시, JR 요나고–마쓰에–타마쓰쿠리, 야스기 셔틀은 무료</td></tr>
@@ -699,10 +752,78 @@
 </div></section>
 <footer><p><b>에어서울 요나고편은 하루 한 편</b>(인천 13:20 출발, 귀국편 인천 17:40 도착)이라 좌석을 먼저 잡아야 한다. 고타쓰 배는 12/1~3/31, 마쓰바가니는 11/6~3/20.</p><p>사진 · <a href="https://commons.wikimedia.org/wiki/File:Matsue_Castle_Keep_Tower_20170126-1.jpg">마쓰에성</a> CC BY-SA 4.0 Suicasmo · <a href="https://commons.wikimedia.org/wiki/File:Kaike_onsen04n4592.jpg">가이케 해안</a> CC BY 2.5 663highland · <a href="https://commons.wikimedia.org/wiki/File:The_gardens_of_the_Adachi_Museum_of_Art_20170127.jpg">아다치미술관 정원</a> CC BY-SA 4.0 Suicasmo · <a href="https://commons.wikimedia.org/wiki/File:Matsue_Horikawa_Pleasure_Boat_ac.jpg">호리카와 유람선</a> CC BY-SA 4.0 Asturio Cantabrio · <a href="https://commons.wikimedia.org/wiki/File:140426_Tamatsukuri_Onsen_Matsue_Shimane_pref_Japan01n.jpg">타마쓰쿠리온천</a> CC BY 2.5 663highland · <a href="https://commons.wikimedia.org/wiki/File:%E3%81%8B%E3%81%AB%E3%81%99%E3%81%8D%EF%BC%88%E3%82%AB%E3%83%8B%E9%8D%8B%EF%BC%89.jpg">카니스키</a> CC0 — Wikimedia Commons</p></footer>
 </section>
+<section id="view-zao" class="view" data-accent="zao" role="tabpanel" aria-labelledby="tab-zao" hidden>
+<header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
+<h1>야마가타와 자오온천<span>YAMAGATA · ZAO ONSEN — 야마가타현</span></h1>
+<p class="lede">로프웨이로 지조산초역까지 오르면 스노우 몬스터라 부르는 수빙 군락이 서 있고, 밤에는 라이트업이 켜진다. 산 아래 온천가는 1900년에 문을 연 강산성 유황천이다.</p></header>
+<figure><img src="zao-juhyo.jpg" alt="눈과 얼음에 통째로 덮인 나무들이 산비탈을 메운 풍경" loading="lazy"><figcaption>자오의 수빙 — 눈과 얼음이 나무를 통째로 덮어 「스노우 몬스터」가 된다. 12~2월, 2월이 절정</figcaption></figure>
+<section class="route"><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><picture><source srcset="route-zao-dark.png" media="(prefers-color-scheme: dark)"><img src="route-zao.png" alt="야마가타와 자오온천 3박 4일 동선 지도" loading="lazy"></picture><figcaption>센다이공항에서 야마가타 80분, 자오온천 33분. 자오 2박 뒤 야마가타 시내에서 하루.</figcaption></figure></section>
+<section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">자오 2박 + 야마가타 시내 1박. 센다이 직항이 매일 있어 날짜가 자유롭다.</p></div><div class="days">
+<article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>센다이에서 산으로</h3><span class="day-stay">자오온천 1박</span></div><div class="steps">
+<div class="step"><time>12:00</time><div>센다이공항 도착 → <span class="move">공항버스 80분 · 1,500엔</span> 야마가타역</div></div>
+<div class="step"><time>13:30</time><div>점심 — 야마가타 소바(메밀국수). 역 앞에 소바집이 모여 있다 <span class="io in">실내</span></div></div>
+<div class="step"><time>14:30</time><div><span class="move">버스 33~37분 · 1,000엔</span> 자오온천 버스터미널</div></div>
+<div class="step"><time>15:15</time><div>료칸 체크인 → 객실 노천탕. 강산성 유황천이라 피부가 매끈해진다</div></div>
+<div class="step"><time>16:30</time><div>온천가 산책 — 개탕 1900년, 공동욕장 세 곳이 마을 안에 있다 <span class="io out">야외 짧게</span></div></div>
+<div class="step"><time>18:00</time><div>저녁 — 야마가타규(흑우 와규) 가이세키 <span class="io in">실내</span></div></div>
+</div>
+<figure class="day-photo"><img src="zao-town.jpg" alt="자오온천 공동욕장 — 온천가 안에 세 곳. 도착한 오후에 걷는다" loading="lazy"><figcaption>자오온천 공동욕장 — 온천가 안에 세 곳. 도착한 오후에 걷는다</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 2</span><h3>수빙 — 낮에 한 번, 밤에 한 번</h3><span class="day-stay">자오온천 1박</span></div><div class="steps">
+<div class="step"><time>09:00</time><div>아침 온천 + 조식</div></div>
+<div class="step"><time>10:00</time><div><span class="move">로프웨이 17분</span> 지조산초역 — 수빙 군락 사이를 걷는다 <span class="io out">야외 30분</span></div></div>
+<div class="step"><time>11:30</time><div>산정 레스토랑에서 유리창 너머로 수빙을 본다 <span class="io in">실내</span></div></div>
+<div class="step"><time>13:00</time><div>객실 노천탕, 낮잠</div></div>
+<div class="step"><time>17:30</time><div>저녁 — 돈가라지루(대구탕) <span class="io in">실내</span></div></div>
+<div class="step"><time>19:00</time><div><span class="move">로프웨이 야간 운행</span> 조명 받은 수빙 — 수빙 시즌 한정, 산정 20:30까지 <span class="io in">곤돌라·산정 실내</span></div></div>
+</div>
+<figure class="day-photo"><img src="zao-juhyo-close.jpg" alt="수빙 근경 — 눈과 얼음이 나무를 통째로 덮는다" loading="lazy"><figcaption>수빙 근경 — 눈과 얼음이 나무를 통째로 덮는다</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 3</span><h3>온천가를 걷고, 시내로</h3><span class="day-stay">야마가타 시내 1박</span></div><div class="steps">
+<div class="step"><time>09:00</time><div>아침 온천 + 조식</div></div>
+<div class="step"><time>10:00</time><div>객실 노천탕 한 번 더, 짐 정리</div></div>
+<div class="step"><time>11:30</time><div>체크아웃 → <span class="move">버스 37분</span> 야마가타역</div></div>
+<div class="step"><time>12:30</time><div>점심 — 소바 또는 요네자와규 <span class="io in">실내</span></div></div>
+<div class="step"><time>14:00</time><div>문쇼칸 — 1916년 옛 현청, 실내 전시 <span class="io in">실내</span></div></div>
+<div class="step"><time>18:30</time><div>저녁 — 야마가타 시내 이자카야</div></div>
+</div>
+<figure class="day-photo"><img src="yamagata-bunshokan.jpg" alt="문쇼칸 — 1916년 옛 야마가타현청, 실내 전시" loading="lazy"><figcaption>문쇼칸 — 1916년 옛 야마가타현청, 실내 전시</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 4</span><h3>천천히, 그리고 귀국</h3><span class="day-stay">—</span></div><div class="steps">
+<div class="step"><time>09:00</time><div>조식, 역 앞에서 기념품 — 라프랑스 과자·사쿠란보 잼</div></div>
+<div class="step"><time>11:00</time><div><span class="move">공항버스 80분</span> 센다이공항</div></div>
+<div class="step"><time>12:30</time><div>공항 도착 → 오후 편 귀국</div></div>
+</div>
+</article>
+</div></section>
+<figure><img src="zao-juhyo-hill.jpg" alt="능선을 따라 늘어선 눈 덮인 수빙" loading="lazy"><figcaption>지조산초의 수빙 능선 — 로프웨이 산정역에서 바로 이 풍경이다</figcaption></figure>
+<section><div class="sec-head"><h2>추천 숙소</h2><p class="sec-note">자오 2박은 로프웨이 앞 객실 노천탕, 시내 1박은 야마가타역 근처.</p></div><div class="stays">
+<article class="stay"><h3>다카미야 리조트 루리쿠라<small>たかみや瑠璃倶楽リゾート</small></h3><p><b>노천탕 객실 6실</b>, 전 객실에서 자오 산맥이 보인다. 로프웨이 승강장까지 도보 1분이라 야간 수빙을 보고 바로 돌아온다. 계열 료칸 4곳 온천 무료.</p><p class="price">1박 2식 1인 — 반노천탕 객실 22,100~46,300엔 · 마운틴뷰 트윈 15,500엔~ (JTB 기준)</p><p class="book">예약 · <a href="https://www.agoda.com/ko-kr/takamiya-hotel-rurikura-resort/hotel/yamagata-jp.html">아고다</a> · <a href="https://www.jtb.co.jp/kokunai-hotel/htl/2447037/plan/">JTB</a> · <a href="https://www.zao-rurikura.com/">공식</a></p></article>
+<article class="stay"><h3>다카미야 료칸 미야마소<small>深山荘高見屋</small></h3><p>300년 된 노포. 전용 노천탕이 딸린 프리미엄 객실이 있고, 온천가 위쪽이라 조용하다.</p><p class="price">1박 2식 1인 2.5~5만엔대 (아고다에서 확인)</p><p class="book">예약 · <a href="https://www.agoda.com/ko-kr/takamiya-ryokan-miyamaso/hotel/yamagata-jp.html">아고다</a></p></article>
+<article class="stay"><h3>야마가타 시내 호텔<small>3일차</small></h3><p>야마가타역 주변. 공항버스가 역에서 출발한다.</p><p class="price">2인 1박 8~15만원대</p><p class="book">예약 · <a href="https://www.agoda.com/ko-kr/city/yamagata-jp.html">아고다 야마가타</a></p></article>
+</div>
+<div class="note"><b>수빙 야간 라이트업은 시즌 한정</b>(대략 12월 하순~2월, 특정 요일)이라 날짜를 잡을 때 자오 로프웨이 공식 일정을 먼저 본다. 자오 대노천탕은 11월~4월 휴업이라 겨울엔 객실 노천탕과 공동욕장이 전부다.</div>
+</section>
+<section><div class="sec-head"><h2>총 가격대</h2><p class="sec-note">2인 동행 기준, 1인 금액. 센다이와 항공·공항 접근이 같다.</p></div><div class="tw"><table class="cost"><tbody><tr><th>항목</th><th class="num">1인 기준</th><th>메모</th></tr>
+<tr><td>항공</td><td class="num">25~40만원</td><td>아시아나 매일 + LCC, 센다이 2시간 20분</td></tr>
+<tr><td>숙박</td><td class="num">40~65만원</td><td>자오 객실 노천탕 2박(1박 2식) + 시내 호텔 1박</td></tr>
+<tr><td>교통</td><td class="num">4~6만원</td><td>공항버스 왕복 3,000엔, 자오 버스 왕복 2,000엔</td></tr>
+<tr><td>식비</td><td class="num">12~17만원</td><td>이틀 저녁·아침이 숙박에 포함. 소바·와규 추가</td></tr>
+<tr><td>입장·체험</td><td class="num">4~6만원</td><td>자오 로프웨이 산정선 왕복 3,800엔 + 야간 운행, 문쇼칸 무료</td></tr>
+</tbody><tfoot><tr><td>합계</td><td class="num">약 85~134만원</td><td>센다이보다 10만원쯤 위</td></tr></tfoot></table></div></section>
+<section><div class="sec-head"><h2>한국어로 미리 보기</h2><p class="sec-note">자오는 센다이 근교 코스로 한국어 소개가 많다.</p></div><div class="links">
+<div class="link"><span class="kind">유튜브</span><span><a href="https://www.youtube.com/watch?v=mIhTag_FNQ0">아직도 삿포로만 가세요? — 겨울 일본 소도시 8곳 (자오 포함)</a></span></div>
+<div class="link"><span class="kind">가이드</span><span><a href="https://livejapan.com/en/in-tohoku/in-pref-yamagata/in-yamagata-suburbs/article-a3000055/">LIVE JAPAN — 야마가타 자오 1박 2일: 수빙·스키·온천</a></span></div>
+<div class="link"><span class="kind">투어</span><span><a href="https://experiences.myrealtrip.com/products/4318208">마이리얼트립 — 센다이 근교 자오온천·수빙·여우마을 일일투어</a></span></div>
+<div class="link"><span class="kind">공식</span><span><a href="https://www.zao-spa.or.jp/korea/access/">자오온천 관광협회 — 한국어 교통 안내</a></span></div>
+<div class="link"><span class="kind">가이드</span><span><a href="https://travel.rakuten.com/contents/kor/ko-kr/guide/winter-onsen-japan/">라쿠텐 트래블 — 일본 겨울 온천 여행 가이드(자오 포함)</a></span></div>
+</div></section>
+<footer><p><b>수빙은 2월이 절정</b>이고 12월엔 덜 자라 있다. 1월 중순 이후가 안전하다. 야간 라이트업 요일은 해마다 바뀐다.</p><p>사진 · <a href="https://commons.wikimedia.org/wiki/File:%E8%94%B5%E7%8E%8B%E3%81%AE%E6%A8%B9%E6%B0%B7(2013.1.21)_-_panoramio.jpg">자오 수빙</a> CC BY 3.0 yuukokukirei · <a href="https://commons.wikimedia.org/wiki/File:%E8%94%B5%E7%8E%8B%E3%81%AE%E6%A8%B9%E6%B0%B7_-_panoramio.jpg">수빙 근경</a> CC BY 3.0 alonfloc · <a href="https://commons.wikimedia.org/wiki/File:Mt.Zao(Mt.Jizo)_Juhyo.JPG">지조산 수빙</a> CC BY-SA 3.0 Suz-b · <a href="https://commons.wikimedia.org/wiki/File:220428_ZaoOnsen_Yamagata_Yamagata_pref_Japan01s3.jpg">자오온천 공동욕장</a> CC BY-SA 4.0 663highland · <a href="https://commons.wikimedia.org/wiki/File:220430_Bunshokan_Yamagata_Yamagata_pref_Japan01s3.jpg">문쇼칸</a> CC BY-SA 4.0 663highland — Wikimedia Commons</p></footer>
+</section>
 <section id="view-aomori" class="view" data-accent="aomori" role="tabpanel" aria-labelledby="tab-aomori" hidden>
 <header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
 <h1>아오모리와 아사무시온천<span>AOMORI · ASAMUSHI ONSEN — 아오모리현</span></h1>
-<p class="lede">눈이 가장 확실하고 겨울 해산물이 가장 세다. 그런데 공식 소개부터 “조용하고 혼잡하지 않은” 곳이다.</p></header>
+<p class="lede">폭설이 잦은 땅이다. 시내의 네부타 박물관과 사과 시드르 공방을 보고, 무쓰만에 면한 작은 온천마을 아사무시로 옮겨 객실 노천탕에서 16시 반의 노을을 본다.</p></header>
 <figure><img src="aomori-yanagi.jpg" alt="눈 쌓인 정원 옆 김이 오르는 나무 노천탕" loading="lazy"><figcaption>아사무시 야나기노유의 노천탕 — 눈 쌓인 정원 옆에서 김이 오른다. 이런 탕이 객실에 붙는다</figcaption></figure>
 <section class="route"><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><picture><source srcset="route-aomori-dark.png" media="(prefers-color-scheme: dark)"><img src="route-aomori.png" alt="아오모리와 아사무시온천 3박 4일 동선 지도" loading="lazy"></picture><figcaption>공항에서 시내 35분, 아사무시온천까지 철도 20분. 한 방향으로 곧게 간다.</figcaption></figure></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">추운 지역이라 실내 일정을 중심에 두고, 야외는 짧게 끊었다.</p></div><div class="days">
@@ -764,12 +885,81 @@
 </div></section>
 <footer><p>폭설이 잦은 지역이라 <b>열차·항공 지연 여유</b>를 두는 편이 좋다. 핫코다 수빙은 왕복 3시간 넘는 야외 일정이라 넣지 않았다.</p><p>사진 · <a href="https://commons.wikimedia.org/wiki/File:Asamushi_Onsen_-Yanagi_no_yu.jpg">야나기노유 노천탕</a> CC BY-SA 3.0 · <a href="https://commons.wikimedia.org/wiki/Category:Asamushi_Onsen">아사무시온천</a> CC BY 4.0 · <a href="https://commons.wikimedia.org/wiki/Category:Aomori_Bay_Bridge">A-FACTORY</a> CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:Yunoshima_-Asamushi.jpg">유노시마</a> CC BY-SA 2.1 jp · <a href="https://commons.wikimedia.org/wiki/File:Asamushi_Onsen_Ashiyu.JPG">족욕</a> — Wikimedia Commons</p></footer>
 </section>
+<section id="view-unzen" class="view" data-accent="unzen" role="tabpanel" aria-labelledby="tab-unzen" hidden>
+<header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
+<h1>나가사키와 운젠온천<span>NAGASAKI · UNZEN ONSEN — 나가사키현</span></h1>
+<p class="lede">해발 700m 온천가 한가운데로 분기공 30여 개의 유황 증기가 올라온다. 로프웨이로 묘켄다케에 오르면 나뭇가지마다 안개가 얼어붙어 있고, 내려와 유백색 탕에 든다.</p></header>
+<figure><img src="unzen-town.jpg" alt="산으로 둘러싸인 작은 온천 마을과 호수" loading="lazy"><figcaption>운젠온천 — 해발 700m 국립공원 안의 작은 온천가. 마을 한가운데서 유황 증기가 오른다</figcaption></figure>
+<section class="route"><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><picture><source srcset="route-unzen-dark.png" media="(prefers-color-scheme: dark)"><img src="route-unzen.png" alt="나가사키와 운젠온천 3박 4일 동선 지도" loading="lazy"></picture><figcaption>공항에서 이사하야를 거쳐 운젠까지 약 2시간. 마지막 밤은 나가사키 시내로 내려온다.</figcaption></figure></section>
+<section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">운젠 2박 + 나가사키 시내 1박. 직항이 화·목·토뿐이라 3박 4일은 토요일 출발·화요일 귀국으로만 맞는다.</p></div><div class="days">
+<article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>이사하야를 지나 산속 온천으로</h3><span class="day-stay">운젠온천 1박</span></div><div class="steps">
+<div class="step"><time>10:35</time><div>인천 → <span class="move">대한항공 1시간 30분</span> 나가사키공항 12:05</div></div>
+<div class="step"><time>12:40</time><div><span class="move">공항버스 30~45분</span> 이사하야 → <span class="move">시마테츠 버스 80분</span> 운젠온천 (환승 대기 포함 약 2시간)</div></div>
+<div class="step"><time>15:00</time><div>료칸 체크인 → 객실 노천탕</div></div>
+<div class="step"><time>16:30</time><div>운젠 지옥 산책 — 분기공 30여 개, 지옥 증기로 찐 온천 계란 <span class="io out">야외 40분</span></div></div>
+<div class="step"><time>18:30</time><div>가이세키 저녁 — 겨울 복어·굴 <span class="io in">실내</span></div></div>
+</div>
+<figure class="day-photo"><img src="unzen-jigoku.jpg" alt="운젠 지옥 — 분기공 30여 개에서 유황 증기가 오른다. 도착한 오후에 걷는다" loading="lazy"><figcaption>운젠 지옥 — 분기공 30여 개에서 유황 증기가 오른다. 도착한 오후에 걷는다</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 2</span><h3>무빙을 보고, 온천에서 쉰다</h3><span class="day-stay">운젠온천 1박</span></div><div class="steps">
+<div class="step"><time>08:30</time><div>아침 온천 + 조식</div></div>
+<div class="step"><time>10:00</time><div><span class="move">택시 15분</span> 니타고개 → <span class="move">로프웨이 3분</span> 묘켄다케(1,333m). 겨울 무빙 — 나뭇가지에 얼어붙은 안개 <span class="io out">야외 30분</span></div></div>
+<div class="step"><time>12:30</time><div>점심 — 온천가 식당. 지옥 찜 요리, 온천 유바 <span class="io in">실내</span></div></div>
+<div class="step"><time>14:00</time><div>객실 노천탕, 낮잠</div></div>
+<div class="step"><time>18:00</time><div>가이세키 저녁</div></div>
+</div>
+<figure class="day-photo"><img src="unzen-hotel.jpg" alt="지옥 바로 옆에 여관이 선다 — 온천가 한가운데가 지옥이다" loading="lazy"><figcaption>지옥 바로 옆에 여관이 선다 — 온천가 한가운데가 지옥이다</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 3</span><h3>항구 도시로 내려온다</h3><span class="day-stay">나가사키 시내 1박</span></div><div class="steps">
+<div class="step"><time>10:00</time><div>체크아웃 → <span class="move">시마테츠 버스 100분</span> 나가사키역</div></div>
+<div class="step"><time>12:00</time><div>점심 — 짬뽕 또는 사라우동. 차이나타운의 원조집 <span class="io in">실내</span></div></div>
+<div class="step"><time>13:30</time><div>호텔 체크인 → 글로버정원 — 개항기 서양식 저택과 항구 전망 <span class="io out">야외 짧게</span></div></div>
+<div class="step"><time>17:00</time><div>이나사야마 로프웨이 — 전망대에서 야경. 겨울 일몰은 17시 반 <span class="io in">실내 전망대</span></div></div>
+<div class="step"><time>19:00</time><div>저녁 — 시내. 1월 하순 이후면 랜턴 페스티벌, 등불 15,000개 <span class="io out">야외 짧게</span></div></div>
+</div>
+<figure class="day-photo"><img src="nagasaki-night.jpg" alt="이나사야마 전망대에서 본 나가사키 야경 — 셋째 날 저녁" loading="lazy"><figcaption>이나사야마 전망대에서 본 나가사키 야경 — 셋째 날 저녁</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 4</span><h3>짧은 아침, 그리고 귀국</h3><span class="day-stay">—</span></div><div class="steps">
+<div class="step"><time>08:30</time><div>조식</div></div>
+<div class="step"><time>09:30</time><div>데지마 — 에도 시대 네덜란드 상관 복원, 실내 전시 <span class="io in">실내</span></div></div>
+<div class="step"><time>11:00</time><div><span class="move">리무진 40분</span> 나가사키공항</div></div>
+<div class="step"><time>13:20</time><div>귀국 → 인천 14:55</div></div>
+</div>
+<figure class="day-photo"><img src="nagasaki-dejima.jpg" alt="데지마 — 에도 시대 네덜란드 상관을 복원한 실내 전시, 마지막 아침" loading="lazy"><figcaption>데지마 — 에도 시대 네덜란드 상관을 복원한 실내 전시, 마지막 아침</figcaption></figure>
+</article>
+</div></section>
+<figure><img src="nagasaki-champon.jpg" alt="해산물과 채소가 얹힌 국물 면" loading="lazy"><figcaption>나가사키 짬뽕 — 차이나타운에서 시작된 국물 면. 셋째 날 점심</figcaption></figure>
+<figure><img src="nagasaki-lantern.jpg" alt="다리 위에 줄지어 걸린 분홍 등불" loading="lazy"><figcaption>나가사키 랜턴 페스티벌 — 1월 하순~2월 하순, 시내에 등불 15,000개. 1월 말 출발이면 걸친다</figcaption></figure>
+<section><div class="sec-head"><h2>추천 숙소</h2><p class="sec-note">운젠 2박은 객실 노천탕, 시내 1박은 역 근처 호텔.</p></div><div class="stays">
+<article class="stay"><h3>운젠 후쿠다야<small>民芸モダンの宿 雲仙福田屋</small></h3><p>민예 모던풍 료칸. 별채 「산쇼 벳테이」는 <b>전 7객실이 원천 노천탕</b>, 본관에도 노천탕+사우나 트윈이 있다. 유백색 유황천.</p><p class="price">1박 2식 1인 — 본관 노천탕 트윈 36,784엔 · 별채 노천탕 객실 51,414엔 (라쿠텐 기준)</p><p class="book">예약 · <a href="https://www.agoda.com/ko-kr/unzen-fukudaya/hotel/unzen-jp.html">아고다</a> · <a href="https://hotel.travel.rakuten.co.jp/hotelinfo/plan/6194">라쿠텐</a> · <a href="https://www.jalan.net/yad320580/">じゃらん</a></p></article>
+<article class="stay"><h3>유야도 운젠 신유<small>ゆやど雲仙新湯</small></h3><p>부지 안에 원천이 4개. <b>노천탕 딸린 객실</b>과 시간제 대절탕이 있고, 운젠 지옥 바로 옆이다.</p><p class="price">1박 2식 1인 2만엔대부터 (아고다에서 확인)</p><p class="book">예약 · <a href="https://www.agoda.com/ko-kr/unzen-shinyu-h9076989/hotel/unzen-jp.html">아고다</a></p></article>
+<article class="stay"><h3>운젠 미야자키 료칸<small>雲仙宮崎旅館</small></h3><p>창업 93년, 리뉴얼한 노포. 지옥이 보이는 정원과 객실 노천탕.</p><p class="price">1박 2식 2인 66,640엔~ (JTB 기준)</p><p class="book">예약 · <a href="https://www.agoda.com/ko-kr/unzen-miyazaki-ryokan/hotel/unzen-jp.html">아고다</a> · <a href="https://www.jtb.co.jp/kokunai-hotel/htl/8218002/plan/">JTB</a></p></article>
+<article class="stay"><h3>나가사키 시내 호텔<small>3일차</small></h3><p>나가사키역 주변. 공항 리무진과 노면전차가 역에서 출발한다.</p><p class="price">2인 1박 10~18만원대</p><p class="book">예약 · <a href="https://www.agoda.com/ko-kr/city/nagasaki-jp.html">아고다 나가사키</a></p></article>
+</div>
+<div class="note">대한항공 나가사키편은 <b>화·목·토 주 3회</b>. 3박 4일은 토요일 출발 → 화요일 귀국으로만 맞고, 귀국편이 13:20이라 마지막 날 오전이 짧다. 그래서 셋째 밤을 시내로 잡았다.</div>
+</section>
+<section><div class="sec-head"><h2>총 가격대</h2><p class="sec-note">2인 동행 기준, 1인 금액. 운젠 객실 노천탕 2박이 비용의 절반이다.</p></div><div class="tw"><table class="cost"><tbody><tr><th>항목</th><th class="num">1인 기준</th><th>메모</th></tr>
+<tr><td>항공</td><td class="num">25~40만원</td><td>대한항공 주 3회, 1시간 30분</td></tr>
+<tr><td>숙박</td><td class="num">60~90만원</td><td>운젠 객실 노천탕 2박(1박 2식) + 시내 호텔 1박</td></tr>
+<tr><td>교통</td><td class="num">5~7만원</td><td>공항버스·시마테츠 버스·니타 로프웨이·리무진</td></tr>
+<tr><td>식비</td><td class="num">10~15만원</td><td>이틀 저녁·아침이 숙박에 포함. 짬뽕·복어 추가</td></tr>
+<tr><td>입장·체험</td><td class="num">3~5만원</td><td>니타 로프웨이 왕복 1,300엔 · 글로버정원 620엔 · 이나사야마 로프웨이 왕복 1,250엔 · 데지마 520엔</td></tr>
+</tbody><tfoot><tr><td>합계</td><td class="num">약 103~157만원</td><td>여섯 후보 중 가장 높다 — 운젠 별채 2박이 이유</td></tr></tfoot></table></div></section>
+<section><div class="sec-head"><h2>한국어로 미리 보기</h2><p class="sec-note">나가사키는 한국어 후기가 많고, 운젠은 적다.</p></div><div class="links">
+<div class="link"><span class="kind">유튜브</span><span><a href="https://www.youtube.com/watch?v=zbwrdFLLX0I">나가사키 여행 — 노면전차 거리와 운젠온천 지옥순례</a></span></div>
+<div class="link"><span class="kind">유튜브</span><span><a href="https://www.youtube.com/watch?v=YfYZfQkj4EU">나가사키 렌트카 여행 2탄 — 소도시 운젠</a></span></div>
+<div class="link"><span class="kind">블로그</span><span><a href="https://www.tripstore.kr/blog/%EB%82%98%EA%B0%80%EC%82%AC%ED%82%A4-%EA%B4%80%EA%B4%91-%EC%98%A8%EC%B2%9C-%EC%86%8C%EB%8F%84%EC%8B%9C-%EC%97%AC%ED%96%89">트립스토어 — 뻔한 시내 말고 온천 힐링 소도시, 나가사키</a></span></div>
+<div class="link"><span class="kind">가이드</span><span><a href="https://travel.rakuten.com/contents/kor/ko-kr/guide/unzen-onsen-guide/">라쿠텐 트래블 — 운젠 온천 가이드(한국어)</a></span></div>
+<div class="link"><span class="kind">공식</span><span><a href="https://unzenonsen.unzen.org/k_ver/">운젠온천 관광협회 — 한국어</a></span></div>
+</div></section>
+<footer><p><b>직항이 화·목·토뿐</b>이라 날짜가 먼저 정해진다. 연말연시 좌석은 빨리 찬다.</p><p>사진 · <a href="https://commons.wikimedia.org/wiki/File:140322_Unzen_Onsen_Nagasaki_pref_Japan01s3.jpg">운젠온천</a> CC BY 2.5 663highland · <a href="https://commons.wikimedia.org/wiki/File:Unzen_Jigoku_%E6%B8%85%E4%B8%83%E5%9C%B0%E7%8D%84_Dec_13,_2009.jpg">운젠 지옥</a> CC BY 2.0 Barry Silver · <a href="https://commons.wikimedia.org/wiki/File:140322_Unzen_Onsen_Jigoku_Unzen_Nagasaki_pref_Japan18s3.jpg">지옥 옆 여관</a> CC BY 2.5 · <a href="https://commons.wikimedia.org/wiki/File:Nagasaki_night_view_(49658801407).jpg">이나사야마 야경</a> CC BY 2.0 Raita Futo · <a href="https://commons.wikimedia.org/wiki/File:View_of_the_Former_Dutch_Trading_Post_on_Dejima_from_Tamae_Bridge,_Nagasaki,_20240815_1501_3720.jpg">데지마</a> CC BY 4.0 Jakub Hałun · <a href="https://commons.wikimedia.org/wiki/File:Champon_in_Nagasaki_02.jpg">짬뽕</a> CC BY 4.0 · <a href="https://commons.wikimedia.org/wiki/File:20190202_Nagasaki_Chinese_New_Year_lantern-1.jpg">랜턴 페스티벌</a> CC0 — Wikimedia Commons</p></footer>
+</section>
 </div>
 <script>
-  const OPTIONS = [{"id": "hakodate", "name": "하코다테 + 유노카와", "tag": "최소 이동형"}, {"id": "sendai", "name": "센다이 + 아키우온천", "tag": "균형형"}, {"id": "kanazawa", "name": "가나자와 + 유와쿠", "tag": "도시 품격형"}, {"id": "yonago", "name": "요나고·마쓰에 + 가이케", "tag": "산인 미식형"}, {"id": "aomori", "name": "아오모리 + 아사무시", "tag": "설국형"}];
-  const VIEWS = ["compare", "hakodate", "sendai", "kanazawa", "yonago", "aomori"];
+  const OPTIONS = [{"id": "hakodate", "name": "하코다테 + 유노카와", "tag": "최소 이동형"}, {"id": "sendai", "name": "센다이 + 아키우온천", "tag": "균형형"}, {"id": "kanazawa", "name": "가나자와 + 유와쿠", "tag": "도시 품격형"}, {"id": "yonago", "name": "요나고·마쓰에 + 가이케", "tag": "산인 미식형"}, {"id": "zao", "name": "야마가타 + 자오", "tag": "수빙형"}, {"id": "aomori", "name": "아오모리 + 아사무시", "tag": "설국형"}, {"id": "unzen", "name": "나가사키 + 운젠", "tag": "규슈 설경형"}];
+  const VIEWS = ["compare", "hakodate", "sendai", "kanazawa", "yonago", "zao", "aomori", "unzen"];
   const AXES = [{"key": "quiet", "name": "조용함", "note": "사람에 치이지 않는가", "short": "조용함"}, {"key": "city", "name": "도시", "note": "볼거리가 있는 시내", "short": "도시"}, {"key": "food", "name": "미식", "note": "겨울 제철이 분명한가", "short": "미식"}, {"key": "private", "name": "프라이빗 온천", "note": "객실 전용탕", "short": "전용탕"}, {"key": "move", "name": "이동", "note": "현지 이동 + 직항 요일", "short": "이동"}, {"key": "winter", "name": "겨울 풍경", "note": "눈이 오는가", "short": "겨울"}];
-  const SCORES = [{"id": "hakodate", "name": "하코다테", "sub": "유노카와온천", "s": {"quiet": 4, "city": 4, "food": 5, "private": 5, "move": 5, "winter": 5}, "flight": "제주항공 직항 <em>(2025년 6월 개설)</em>", "cost": "76~117만"}, {"id": "sendai", "name": "센다이", "sub": "아키우온천", "s": {"quiet": 4, "city": 5, "food": 5, "private": 4, "move": 5, "winter": 3}, "flight": "아시아나 <em>매일</em> + LCC 여러 편", "cost": "75~112만"}, {"id": "kanazawa", "name": "가나자와", "sub": "유와쿠온천", "s": {"quiet": 3, "city": 5, "food": 5, "private": 4, "move": 4, "winter": 5}, "flight": "대한항공 <em>매일</em> 1회 (고마쓰)", "cost": "89~136만"}, {"id": "yonago", "name": "요나고·마쓰에", "sub": "가이케온천", "s": {"quiet": 5, "city": 4, "food": 5, "private": 4, "move": 4, "winter": 4}, "flight": "에어서울 <em>매일</em> 1회 (12/23~3/28)", "cost": "89~138만"}, {"id": "aomori", "name": "아오모리", "sub": "아사무시온천", "s": {"quiet": 5, "city": 3, "food": 5, "private": 4, "move": 3, "winter": 5}, "flight": "대한항공 <em>주 3회</em>", "cost": "73~114만"}];
+  const SCORES = [{"id": "hakodate", "name": "하코다테", "sub": "유노카와온천", "s": {"quiet": 4, "city": 4, "food": 5, "private": 5, "move": 5, "winter": 5}, "flight": "제주항공 직항 <em>(2025년 6월 개설)</em>", "cost": "76~117만"}, {"id": "sendai", "name": "센다이", "sub": "아키우온천", "s": {"quiet": 4, "city": 5, "food": 5, "private": 4, "move": 5, "winter": 3}, "flight": "아시아나 <em>매일</em> + LCC 여러 편", "cost": "75~112만"}, {"id": "kanazawa", "name": "가나자와", "sub": "유와쿠온천", "s": {"quiet": 3, "city": 5, "food": 5, "private": 4, "move": 4, "winter": 5}, "flight": "대한항공 <em>매일</em> 1회 (고마쓰)", "cost": "89~136만"}, {"id": "yonago", "name": "요나고·마쓰에", "sub": "가이케온천", "s": {"quiet": 5, "city": 4, "food": 5, "private": 4, "move": 4, "winter": 4}, "flight": "에어서울 <em>매일</em> 1회 (12/23~3/28)", "cost": "89~138만"}, {"id": "zao", "name": "야마가타·자오", "sub": "자오온천", "s": {"quiet": 4, "city": 4, "food": 5, "private": 4, "move": 4, "winter": 5}, "flight": "아시아나 <em>매일</em> (센다이공항)", "cost": "85~134만"}, {"id": "aomori", "name": "아오모리", "sub": "아사무시온천", "s": {"quiet": 5, "city": 3, "food": 5, "private": 4, "move": 3, "winter": 5}, "flight": "대한항공 <em>주 3회</em>", "cost": "73~114만"}, {"id": "unzen", "name": "나가사키·운젠", "sub": "운젠온천", "s": {"quiet": 4, "city": 4, "food": 5, "private": 4, "move": 2, "winter": 3}, "flight": "대한항공 <em>주 3회</em> (화·목·토)", "cost": "103~157만"}];
 
   const $ = (id) => document.getElementById(id);
 
