@@ -1,0 +1,934 @@
+<title>겨울 온천 네 후보</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#EFF2F1;--surface:#FFFFFF;--sunk:#E4E9E7;
+    --ink:#17211F;--soft:#475754;--steam:#7C8F8C;--line:#D2DAD8;
+    --water:#2F5A56;--water-soft:#DCE7E5;
+    --accent:#B5632F;--accent-soft:#F2E2D6;
+    --display:"Gowun Batang","Nanum Myeongjo",Georgia,serif;
+    --body:"Noto Sans KR",system-ui,-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --ground:#121918;--surface:#1A2321;--sunk:#101716;
+    --ink:#E7EDEB;--soft:#A3B3B0;--steam:#839996;--line:#2C3937;
+    --water:#79B5AE;--water-soft:#1E302E;--accent:#D98A52;--accent-soft:#3A2A1E;
+  }}
+  :root[data-theme="dark"]{
+    --ground:#121918;--surface:#1A2321;--sunk:#101716;
+    --ink:#E7EDEB;--soft:#A3B3B0;--steam:#839996;--line:#2C3937;
+    --water:#79B5AE;--water-soft:#1E302E;--accent:#D98A52;--accent-soft:#3A2A1E;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:15px;
+       line-height:1.75;margin:0;padding-inline:20px;padding-block:0 64px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1020px;margin-inline:auto}
+  h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.25}
+  p{margin:0}
+  a{color:var(--water)}
+  img{max-width:100%;display:block}
+  [hidden]{display:none!important}
+
+  /* 도시 뷰마다 강조색을 갈아끼운다 */
+  .view[data-accent="sendai"]{--accent:#B5632F;--accent-soft:#F2E2D6}
+  .view[data-accent="hakodate"]{--accent:#2F6B8F;--accent-soft:#DCE8F0}
+  .view[data-accent="kanazawa"]{--accent:#9E3B4A;--accent-soft:#F2DEE1}
+  .view[data-accent="kurokawa"]{--accent:#3F6B4A;--accent-soft:#DDE9DF}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .view[data-accent="sendai"]{--accent:#D98A52;--accent-soft:#3A2A1E}
+    :root:not([data-theme="light"]) .view[data-accent="hakodate"]{--accent:#6FB0D4;--accent-soft:#182833}
+    :root:not([data-theme="light"]) .view[data-accent="kanazawa"]{--accent:#D4788A;--accent-soft:#33191E}
+    :root:not([data-theme="light"]) .view[data-accent="kurokawa"]{--accent:#7FB68C;--accent-soft:#1B2A1E}}
+  :root[data-theme="dark"] .view[data-accent="sendai"]{--accent:#D98A52;--accent-soft:#3A2A1E}
+  :root[data-theme="dark"] .view[data-accent="hakodate"]{--accent:#6FB0D4;--accent-soft:#182833}
+  :root[data-theme="dark"] .view[data-accent="kanazawa"]{--accent:#D4788A;--accent-soft:#33191E}
+  :root[data-theme="dark"] .view[data-accent="kurokawa"]{--accent:#7FB68C;--accent-soft:#1B2A1E}
+
+  /* 탭 */
+  .tabs{position:sticky;top:0;z-index:20;background:var(--ground);
+        border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;
+        padding-block:10px;margin-bottom:4px}
+  .tab{font-family:var(--body);font-size:13.5px;color:var(--soft);background:transparent;
+       border:1px solid transparent;border-radius:999px;padding:7px 15px;cursor:pointer;white-space:nowrap}
+  .tab:hover{color:var(--ink)}
+  .tab[aria-selected="true"]{background:var(--surface);border-color:var(--line);color:var(--ink);font-weight:500}
+  .tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .masthead{display:flex;flex-direction:column;gap:15px;padding-block:44px 26px}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--steam)}
+  h1{font-size:clamp(28px,5.6vw,44px);font-weight:700;letter-spacing:-.01em}
+  h1 span{display:block;font-size:.42em;color:var(--steam);font-weight:400;letter-spacing:.04em;margin-top:8px;font-family:var(--mono)}
+  .thesis,.lede{font-family:var(--display);font-size:clamp(17px,3.2vw,21px);color:var(--soft);
+        border-left:3px solid var(--accent);padding-left:16px;max-width:34em}
+  .terms{display:flex;flex-wrap:wrap;gap:8px}
+  .term{font-family:var(--mono);font-size:12px;background:var(--surface);border:1px solid var(--line);
+        border-radius:999px;padding:5px 12px;color:var(--soft)}
+  .term b{color:var(--ink);font-weight:500}
+
+  figure{margin:0}
+  figure img{border:1px solid var(--line)}
+  figcaption{font-size:12px;color:var(--steam);margin-top:7px;font-family:var(--mono)}
+
+  section{padding-block:38px}
+  .view > section + section{border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:13px;flex-wrap:wrap;margin-bottom:14px}
+  h2{font-size:clamp(20px,4vw,26px)}
+  .sec-note{color:var(--steam);font-size:13px;max-width:40em}
+
+  .matrix-scroll{overflow-x:auto}
+  table.matrix{border-collapse:collapse;width:100%;min-width:680px}
+  table.matrix th,table.matrix td{text-align:left;padding:12px;border-bottom:1px solid var(--line);vertical-align:middle}
+  table.matrix tbody tr:first-child th{font-family:var(--display);font-size:15px;font-weight:700;
+        border-bottom:2px solid var(--ink);white-space:nowrap}
+  table.matrix tbody tr:first-child th span{display:block;font-family:var(--mono);font-size:10px;
+        letter-spacing:.1em;text-transform:uppercase;color:var(--steam);font-weight:400;margin-top:3px}
+  table.matrix th[scope="row"]{font-family:var(--body);font-weight:500;font-size:14px;white-space:nowrap}
+  table.matrix th[scope="row"] small{display:block;color:var(--steam);font-size:11.5px;font-weight:400}
+  .bar{display:flex;gap:3px;align-items:center}
+  .bar i{width:13px;height:7px;border-radius:1px;background:var(--sunk);display:block}
+  .bar i.on{background:var(--water)}
+  .bar.weak i.on{background:#B5632F}
+
+  .cands{display:grid;gap:18px}
+  @media(min-width:820px){.cands{grid-template-columns:1fr 1fr}}
+  .cand{background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column;gap:13px;overflow:hidden}
+  .cand > :not(.cand-thumb){margin-inline:22px}
+  .cand > :first-child{margin-top:0}
+  .cand > :last-child{margin-bottom:24px}
+  .cand-thumb{margin:0;aspect-ratio:16/9;overflow:hidden;border-bottom:1px solid var(--line)}
+  .cand-thumb img{width:100%;height:100%;object-fit:cover;border:0}
+  .cand .cand-top{margin-top:20px}
+  .cand.lead{border-color:#B5632F}
+  .cand-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .cand h3{font-size:22px}
+  .cand h3 small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--steam);font-weight:400;margin-top:4px}
+  .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;padding:4px 9px;border-radius:3px;
+       white-space:nowrap;background:var(--water-soft);color:var(--water)}
+  .cand.lead .tag{background:#F2E2D6;color:#B5632F}
+  .pitch{font-family:var(--display);font-size:16.5px;color:var(--ink)}
+  dl.facts{margin:0;display:grid;grid-template-columns:auto 1fr;gap:7px 16px;font-size:13.5px}
+  dl.facts dt{color:var(--steam);font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding-top:3px}
+  dl.facts dd{margin:0}
+  .tradeoff{display:grid;gap:6px;border-top:1px dashed var(--line);padding-top:12px;font-size:13.5px}
+  .tradeoff div{display:grid;grid-template-columns:58px 1fr;gap:10px}
+  .tradeoff span:first-child{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;padding-top:3px}
+  .gain span:first-child{color:var(--water)}
+  .lose span:first-child{color:#B5632F}
+  .gotopage{margin-top:2px}
+  .gotopage button{font-family:var(--mono);font-size:12.5px;color:var(--water);background:none;border:0;
+                   padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+
+  .dropped{background:var(--sunk);border:1px solid var(--line);padding:22px 24px;display:grid;gap:14px}
+  .dropped .row{display:grid;gap:4px 16px;grid-template-columns:1fr}
+  @media(min-width:640px){.dropped .row{grid-template-columns:150px 1fr}}
+  .dropped b{font-family:var(--display);font-size:16px}
+  .dropped p{font-size:13.5px;color:var(--soft)}
+
+  .fit{display:grid;gap:10px}
+  .fit-row{display:grid;grid-template-columns:104px 1fr;gap:14px;align-items:start;
+           padding-bottom:10px;border-bottom:1px dashed var(--line)}
+  .fit-row:last-child{border-bottom:0;padding-bottom:0}
+  .fit-key{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);padding-top:4px}
+  .fit-val{font-size:14px}
+
+  .days{display:grid;gap:14px}
+  .day{background:var(--surface);border:1px solid var(--line);padding:20px 22px;display:grid;gap:12px}
+  .day-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .day-no{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--accent);
+          background:var(--accent-soft);padding:3px 9px;border-radius:3px}
+  .day h3{font-size:18px}
+  .day-stay{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--steam)}
+  .steps{display:grid;gap:9px}
+  .step{display:grid;grid-template-columns:62px 1fr;gap:13px;font-size:14px}
+  .step time{font-family:var(--mono);font-size:12px;color:var(--steam);padding-top:3px;font-variant-numeric:tabular-nums}
+  .move{font-family:var(--mono);font-size:11.5px;color:var(--accent)}
+
+  .stays{display:grid;gap:14px}
+  @media(min-width:760px){.stays{grid-template-columns:1fr 1fr}}
+  .stay{background:var(--surface);border:1px solid var(--line);padding:19px 21px;display:grid;gap:9px}
+  .stay h3{font-size:17px}
+  .stay h3 small{display:block;font-family:var(--mono);font-size:11px;color:var(--steam);font-weight:400;margin-top:3px}
+  .stay p{font-size:13.5px;color:var(--soft)}
+  .stay .price{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums;color:var(--ink)}
+
+  table.cost{border-collapse:collapse;width:100%;font-size:14px}
+  .tw{overflow-x:auto}
+  table.cost th,table.cost td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.cost tbody tr:first-child th{border-bottom:2px solid var(--ink);font-family:var(--display)}
+  table.cost .num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+  table.cost tfoot td{border-bottom:0;font-weight:700;border-top:2px solid var(--ink)}
+
+  .links{display:grid;gap:9px}
+  .link{display:grid;grid-template-columns:64px 1fr;gap:13px;font-size:14px;align-items:start}
+  .link .kind{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+              color:var(--steam);border:1px solid var(--line);border-radius:3px;padding:2px 0;text-align:center}
+  .note{background:var(--sunk);border:1px solid var(--line);padding:16px 18px;font-size:13.5px;color:var(--soft);margin-top:16px}
+  .note b{color:var(--ink)}
+
+  /* 투표 */
+  .vote{background:var(--surface);border:1px solid var(--line);padding:26px 24px}
+  .vote-grid{display:grid;gap:18px}
+  @media(min-width:760px){.vote-grid{grid-template-columns:1fr 300px;gap:34px}}
+  label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--steam);margin-bottom:6px}
+  input[type="text"]{width:100%;font-family:var(--body);font-size:14px;color:var(--ink);
+       background:var(--ground);border:1px solid var(--line);border-radius:3px;padding:9px 11px}
+  input[type="text"]:focus-visible,.pick:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .picks{display:grid;gap:7px;margin-bottom:16px}
+  .pick{display:flex;align-items:center;gap:10px;cursor:pointer;border:1px solid var(--line);
+        background:var(--ground);padding:10px 13px;border-radius:3px;font-size:14px}
+  .pick input{accent-color:#B5632F;margin:0}
+  .pick[data-on="1"]{border-color:#B5632F;background:#F2E2D6}
+  :root[data-theme="dark"] .pick[data-on="1"]{background:#3A2A1E;border-color:#D98A52}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pick[data-on="1"]{background:#3A2A1E;border-color:#D98A52}}
+  .pick .who{font-family:var(--mono);font-size:11px;color:var(--steam);margin-left:auto}
+  button.send{font-family:var(--body);font-size:14px;font-weight:500;cursor:pointer;background:var(--ink);
+        color:var(--ground);border:0;border-radius:3px;padding:11px 22px;margin-top:14px}
+  button.send:disabled{opacity:.45;cursor:default}
+  .tally{display:grid;gap:11px;align-content:start}
+  .tally-row{display:grid;gap:5px}
+  .tally-head{display:flex;justify-content:space-between;font-size:13px}
+  .tally-head b{font-weight:500}
+  .tally-head span{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--steam)}
+  .meter{height:6px;background:var(--sunk);border-radius:3px;overflow:hidden}
+  .meter i{display:block;height:100%;background:var(--water);border-radius:3px;transition:width .35s ease}
+  .voices{margin-top:16px;display:grid;gap:9px;border-top:1px solid var(--line);padding-top:14px}
+  .voice{font-size:13px}
+  .voice em{font-style:normal;color:var(--steam);font-family:var(--mono);font-size:11px}
+  .status{font-size:12.5px;color:var(--steam);margin-top:12px}
+
+  footer{border-top:1px solid var(--line);padding-top:20px;margin-top:30px;font-size:12px;color:var(--steam);display:grid;gap:6px}
+  footer a{color:var(--steam)}
+  /* 점수 */
+  .score{font-family:var(--mono);font-size:16px;font-weight:500;font-variant-numeric:tabular-nums}
+  .score.weak{color:#B5632F}
+  tr.total th,tr.total td{border-top:2px solid var(--ink);border-bottom:0;padding-top:14px}
+  tr.total .sum{font-family:var(--mono);font-size:19px;font-weight:500;font-variant-numeric:tabular-nums}
+  tr.total .sum small{font-size:11px;color:var(--steam);font-weight:400}
+
+  /* 컨텐츠 비교 */
+  table.content td{font-size:13.5px;line-height:1.6}
+  table.content tbody tr:first-child th{font-family:var(--display);font-size:15px;border-bottom:2px solid var(--ink)}
+  table.content th[scope="row"]{font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+        text-transform:uppercase;color:var(--steam);white-space:nowrap;vertical-align:top;padding-top:14px}
+
+  /* 지도 — 점을 좌표에 고정하고 라벨만 옆으로 뺀다 */
+  .mapwrap{position:relative;max-width:520px;margin-inline:auto}
+  .mapwrap img{width:100%;border:1px solid var(--line);background:#fff}
+  .pin{position:absolute;width:0;height:0}
+  .pin::before{content:"";position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;
+       background:#B5632F;border:2px solid #fff;box-shadow:0 0 0 1px #B5632F}
+  .pin span{position:absolute;left:11px;top:-10px;font-family:var(--mono);font-size:11px;font-weight:500;
+       background:rgba(255,255,255,.9);color:#17211F;padding:1px 5px;border-radius:3px;white-space:nowrap}
+  .pin.left span{left:auto;right:11px}
+  .pin.ref::before{left:-3px;top:-3px;width:6px;height:6px;background:#90A09D;box-shadow:0 0 0 1px #90A09D}
+  .pin.ref span{left:8px;top:-9px;background:rgba(255,255,255,.72);color:#5A6A67;font-weight:400}
+  .pin.ref.left span{left:auto;right:8px}
+
+  /* 일자별 사진 */
+  .day-photo{margin:0 -22px}
+  .day-photo img{width:100%;aspect-ratio:21/9;object-fit:cover;border:0;
+        border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .day-photo figcaption{margin:8px 22px 0}
+
+  /* 실내·야외 표시 — 겨울이라 바깥에 오래 서 있는 일정은 줄였다 */
+  .io{font-family:var(--mono);font-size:10px;letter-spacing:.04em;padding:1px 6px;border-radius:3px;
+      margin-left:6px;white-space:nowrap;vertical-align:2px}
+  .io.in{background:var(--water-soft);color:var(--water)}
+  .io.out{background:var(--accent-soft);color:var(--accent)}
+
+  /* 모바일 */
+  @media (max-width:560px){
+    body{font-size:14.5px;padding-inline:14px}
+    .tabs{margin-inline:-14px;padding-inline:14px}
+    .masthead{padding-block:30px 20px;gap:12px}
+    h1{font-size:27px}
+    .thesis,.lede{font-size:16px;padding-left:12px}
+    section{padding-block:28px}
+    .sec-head{gap:6px;margin-bottom:11px}
+    h2{font-size:19px}
+    .cand{gap:11px}
+    .cand > :not(.cand-thumb){margin-inline:16px}
+    .cand > :last-child{margin-bottom:18px}
+    .cand .cand-top{margin-top:16px}
+    .cand h3{font-size:19px}
+    dl.facts{grid-template-columns:1fr;gap:2px 0}
+    dl.facts dt{padding-top:7px}
+    .tradeoff div{grid-template-columns:1fr;gap:1px}
+    .day{padding:16px 16px}
+    .day-photo{margin:0 -16px}
+    .day-photo figcaption{margin:7px 16px 0}
+    .day-photo img{aspect-ratio:16/10}
+    .step{grid-template-columns:52px 1fr;gap:9px;font-size:13.5px}
+    .fit-row{grid-template-columns:1fr;gap:2px}
+    .fit-key{padding-top:0}
+    .stay{padding:16px}
+    .link{grid-template-columns:54px 1fr;gap:9px;font-size:13.5px}
+    table.matrix th,table.matrix td{padding:9px 8px}
+    .vote{padding:18px 16px}
+    .mapwrap{max-width:100%}
+    .pin span{font-size:10px;padding:0 4px}
+  }
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<div class="wrap">
+<nav class="tabs" role="tablist" aria-label="여행지">
+<button class="tab" type="button" role="tab" id="tab-compare" data-view="compare" aria-controls="view-compare" aria-selected="true">비교</button>
+<button class="tab" type="button" role="tab" id="tab-sendai" data-view="sendai" aria-controls="view-sendai" aria-selected="false">센다이</button>
+<button class="tab" type="button" role="tab" id="tab-hakodate" data-view="hakodate" aria-controls="view-hakodate" aria-selected="false">하코다테</button>
+<button class="tab" type="button" role="tab" id="tab-kanazawa" data-view="kanazawa" aria-controls="view-kanazawa" aria-selected="false">가나자와</button>
+<button class="tab" type="button" role="tab" id="tab-aomori" data-view="aomori" aria-controls="view-aomori" aria-selected="false">아오모리</button>
+<button class="tab" type="button" role="tab" id="tab-yonago" data-view="yonago" aria-controls="view-yonago" aria-selected="false">요나고</button>
+</nav>
+<section id="view-compare" class="view" role="tabpanel" aria-labelledby="tab-compare">
+<header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
+<h1>겨울 온천, 다섯 곳 중 하나</h1>
+<p class="thesis">조용하고, 도시도 볼 수 있고, 미식과 온천을 겸한다.</p>
+<p style="font-size:14px;color:var(--soft);max-width:40em">이안아, 12~1월에 3박 4일로 갈 겨울 온천 여행지를 다섯 곳으로 추렸어. 같은 기준으로 점수를 매겨봤고, 도시마다 탭을 눌러보면 일정·숙소·비용까지 볼 수 있어. <b>다 보고 맨 아래에서 한 곳만 골라줘.</b></p>
+<div class="terms"><span class="term"><b>프라이빗 온천</b> 필수</span><span class="term"><b>미식</b> 필수</span><span class="term"><b>이동</b> 한 구간 2시간 이내</span><span class="term"><b>여유로운 일정</b></span><span class="term"><b>사람 많은 곳</b> 제외</span><span class="term"><b>숙소 이동</b> 무관</span></div></header>
+<section><div class="sec-head"><h2>같은 자로 잰 결과</h2><p class="sec-note">다섯 칸이 만점. 판정 근거는 각 도시 탭의 수치에 있다.</p></div><div class="matrix-scroll"><table class="matrix"><tbody>
+<tr><th style="border-bottom:2px solid var(--ink)"></th>
+<th>센다이<span>아키우온천</span></th>
+<th>하코다테<span>유노카와온천</span></th>
+<th>가나자와<span>유와쿠온천</span></th>
+<th>아오모리<span>아사무시온천</span></th>
+<th>요나고·마쓰에<span>가이케온천</span></th>
+</tr>
+<tr><th scope="row">조용함<small>사람에 치이지 않는가</small></th>
+<td><span class="score">4</span></td>
+<td><span class="score">4</span></td>
+<td><span class="score weak">3</span></td>
+<td><span class="score">5</span></td>
+<td><span class="score">5</span></td>
+</tr>
+<tr><th scope="row">도시<small>볼거리가 있는 시내</small></th>
+<td><span class="score">5</span></td>
+<td><span class="score">4</span></td>
+<td><span class="score">5</span></td>
+<td><span class="score weak">3</span></td>
+<td><span class="score">4</span></td>
+</tr>
+<tr><th scope="row">미식<small>겨울 제철이 분명한가</small></th>
+<td><span class="score">5</span></td>
+<td><span class="score">5</span></td>
+<td><span class="score">5</span></td>
+<td><span class="score">5</span></td>
+<td><span class="score">5</span></td>
+</tr>
+<tr><th scope="row">프라이빗 온천<small>객실 전용탕</small></th>
+<td><span class="score">4</span></td>
+<td><span class="score">5</span></td>
+<td><span class="score">4</span></td>
+<td><span class="score">4</span></td>
+<td><span class="score">4</span></td>
+</tr>
+<tr><th scope="row">이동<small>한 구간 2시간 이내</small></th>
+<td><span class="score">5</span></td>
+<td><span class="score">5</span></td>
+<td><span class="score">4</span></td>
+<td><span class="score">5</span></td>
+<td><span class="score">5</span></td>
+</tr>
+<tr><th scope="row">겨울 풍경<small>눈이 오는가</small></th>
+<td><span class="score weak">3</span></td>
+<td><span class="score">5</span></td>
+<td><span class="score">5</span></td>
+<td><span class="score">5</span></td>
+<td><span class="score">4</span></td>
+</tr>
+<tr class="total"><th scope="row">합계</th>
+<td><span class="sum">26<small>/30</small></span></td>
+<td><span class="sum">28<small>/30</small></span></td>
+<td><span class="sum">26<small>/30</small></span></td>
+<td><span class="sum">27<small>/30</small></span></td>
+<td><span class="sum">27<small>/30</small></span></td>
+</tr>
+</tbody></table></div>
+<p class="sec-note" style="margin-top:14px">합계는 여섯 축을 같은 무게로 더한 값이다. 어느 축을 더 치느냐에 따라 순서는 바뀐다 — 이동이 최우선이면 하코다테, 도시가 최우선이면 센다이·가나자와, 조용함과 대게면 아오모리·요나고다.</p>
+</section>
+<section><div class="sec-head"><h2>어디에 있나</h2><p class="sec-note">회색 점은 위치를 가늠하기 위한 참고점(도쿄·오사카)이다.</p></div><div class="mapwrap"><img src="japan-map.png" alt="일본 지도 위 다섯 후보의 위치">
+<div class="pin left" style="left:63.4%;top:23.5%"><span>하코다테</span></div>
+<div class="pin left" style="left:63.4%;top:27.4%"><span>아오모리</span></div>
+<div class="pin left" style="left:63.8%;top:37.7%"><span>센다이</span></div>
+<div class="pin" style="left:49.6%;top:44.7%"><span>가나자와</span></div>
+<div class="pin" style="left:38.4%;top:49.3%"><span>요나고</span></div>
+<div class="pin ref left" style="left:59.7%;top:48.3%"><span>도쿄</span></div>
+<div class="pin ref" style="left:45.7%;top:52.3%"><span>오사카</span></div>
+</div></section>
+<section><div class="sec-head"><h2>후보 다섯</h2><p class="sec-note">각 카드의 마지막 두 줄이 핵심이다 — 무엇을 얻고 무엇을 포기하는가.</p></div><div class="cands">
+<article class="cand lead">
+<figure class="cand-thumb"><img src="pageant.jpg" alt="조젠지도리 광의 페이전트" loading="lazy"></figure>
+<div class="cand-top"><h3>센다이와 아키우온천<small>SENDAI · AKIU ONSEN</small></h3><span class="tag">균형형</span></div>
+<p class="pitch">도호쿠 최대 도시 옆에 천 년 된 온천. 여섯 축을 가장 고르게 만족한다.</p><dl class="facts">
+<dt>대표 관광지</dt><dd>마츠시마(일본 3경) · 즈이간지 · 즈이호덴</dd>
+<dt>대표 음식</dt><dd>굴(12~3월) · 규탄 · 센다이규</dd>
+<dt>이동</dt><dd>공항철도 25분 · 마츠시마 40분 · 아키우 50분</dd>
+<dt>총 비용</dt><dd>1인 약 72~106만원</dd>
+</dl><div class="tradeoff">
+<div class="gain"><span>얻는다</span><span>도시·바다·온천이 다 있고 모든 구간이 한 시간 안이다.</span></div>
+<div class="lose"><span>포기</span><span>눈. 도호쿠지만 적설이 적어 설경은 기대치를 낮춰야 한다.</span></div></div>
+<p class="gotopage"><button type="button" data-goto="sendai">일정·숙소·비용 보기 →</button></p>
+</article>
+<article class="cand">
+<figure class="cand-thumb"><img src="hakodate-night.jpg" alt="하코다테산에서 본 야경" loading="lazy"></figure>
+<div class="cand-top"><h3>하코다테와 유노카와온천<small>HAKODATE · YUNOKAWA ONSEN</small></h3><span class="tag">최소 이동형</span></div>
+<p class="pitch">공항에서 온천까지 버스 6분. 이동이 가장 짧고 겨울 해산물이 가장 세다.</p><dl class="facts">
+<dt>대표 관광지</dt><dd>하코다테산 야경 · 아침시장 · 모토마치 · 붉은벽돌 창고</dd>
+<dt>대표 음식</dt><dd>해산물덮밥 · 오징어회 · 대게 · 시오라멘</dd>
+<dt>이동</dt><dd>공항→온천 버스 6분 · 시내 전차 30분</dd>
+<dt>총 비용</dt><dd>1인 약 76~117만원</dd>
+</dl><div class="tradeoff">
+<div class="gain"><span>얻는다</span><span>짐을 한 번만 옮기고 온천에 3박. 눈도 확실히 온다.</span></div>
+<div class="lose"><span>포기</span><span>도시 규모는 센다이·가나자와보다 작다.</span></div></div>
+<p class="gotopage"><button type="button" data-goto="hakodate">일정·숙소·비용 보기 →</button></p>
+</article>
+<article class="cand">
+<figure class="cand-thumb"><img src="kanazawa-yukitsuri.jpg" alt="눈 덮인 겨울 겐로쿠엔" loading="lazy"></figure>
+<div class="cand-top"><h3>가나자와와 유와쿠온천<small>KANAZAWA · YUWAKU ONSEN</small></h3><span class="tag">도시 품격형</span></div>
+<p class="pitch">눈 덮인 겐로쿠엔과 겨울 대게. 도시의 격이 가장 높다.</p><dl class="facts">
+<dt>대표 관광지</dt><dd>겐로쿠엔(일본 3대 정원) · 히가시차야가이 · 21세기미술관</dd>
+<dt>대표 음식</dt><dd>즈와이가니(대게) · 노도구로 · 가나자와 오뎅</dd>
+<dt>이동</dt><dd>공항→시내 리무진 40분 · 유와쿠 25분</dd>
+<dt>총 비용</dt><dd>1인 약 87~131만원</dd>
+</dl><div class="tradeoff">
+<div class="gain"><span>얻는다</span><span>설경·도시·대게가 한 곳에. 온천도 시내에서 25분이다.</span></div>
+<div class="lose"><span>포기</span><span>겐로쿠엔·차야가이는 관광객이 많다. 비용도 가장 높다.</span></div></div>
+<p class="gotopage"><button type="button" data-goto="kanazawa">일정·숙소·비용 보기 →</button></p>
+</article>
+<article class="cand">
+<figure class="cand-thumb"><img src="asamushi.jpg" alt="무쓰만에 면한 아사무시 온천마을" loading="lazy"></figure>
+<div class="cand-top"><h3>아오모리와 아사무시온천<small>AOMORI · ASAMUSHI ONSEN</small></h3><span class="tag">설국형</span></div>
+<p class="pitch">눈이 가장 확실하고 겨울 해산물이 가장 세다. 그런데 조용하다.</p><dl class="facts">
+<dt>대표 관광지</dt><dd>네부타 박물관 · A-FACTORY · (선택) 핫코다 수빙</dd>
+<dt>대표 음식</dt><dd>노케동 · 오마 참치 · 겨울 대게 · 사과</dd>
+<dt>이동</dt><dd>공항→시내 35분 · 아사무시온천 철도 20분</dd>
+<dt>총 비용</dt><dd>1인 약 73~114만원</dd>
+</dl><div class="tradeoff">
+<div class="gain"><span>얻는다</span><span>설국의 겨울과 해산물, 그러면서 붐비지 않는다. 실내 볼거리도 많다.</span></div>
+<div class="lose"><span>포기</span><span>폭설로 열차·항공이 지연될 수 있다. 도시 규모는 작다.</span></div></div>
+<p class="gotopage"><button type="button" data-goto="aomori">일정·숙소·비용 보기 →</button></p>
+</article>
+<article class="cand">
+<figure class="cand-thumb"><img src="yonago-matsue.jpg" alt="눈 쌓인 마쓰에성 천수각" loading="lazy"></figure>
+<div class="cand-top"><h3>요나고와 마쓰에, 가이케온천<small>YONAGO · MATSUE · KAIKE ONSEN</small></h3><span class="tag">산인 미식형</span></div>
+<p class="pitch">공항에서 온천까지 택시 20분. 겨울 대게의 본고장에 눈 쌓인 국보 천수각.</p><dl class="facts">
+<dt>대표 관광지</dt><dd>마쓰에성(국보) · 호리카와 고타쓰 배 · 아다치미술관(일본 정원 1위) · 신지호 석양</dd>
+<dt>대표 음식</dt><dd>마쓰바가니(대게) · 이즈모 소바 · 시지미 조개국 · 노도구로</dd>
+<dt>이동</dt><dd>공항→가이케 택시 20분 · 요나고→마쓰에 JR 30분</dd>
+<dt>총 비용</dt><dd>1인 약 89~138만원</dd>
+</dl><div class="tradeoff">
+<div class="gain"><span>얻는다</span><span>한국인이 드문 조용한 온천과 대게. 전 객실 노천탕 료칸에 성곽도시까지 붙는다.</span></div>
+<div class="lose"><span>포기</span><span>도시가 작다. 직항이 하루 한 편이라 좌석이 빨리 찬다. 카이 이즈모를 넣으면 비용이 높다.</span></div></div>
+<p class="gotopage"><button type="button" data-goto="yonago">일정·숙소·비용 보기 →</button></p>
+</article>
+</div></section>
+<section><div class="sec-head"><h2>재봤지만 뺀 곳</h2><p class="sec-note">온천으로는 훌륭한데 이번 조건과 어긋난다.</p></div><div class="dropped">
+<div class="row"><b>마쓰야마·도고온천</b><p>일본에서 가장 오래된 온천이고 비용도 가장 낮다. 그런데 세토우치 기후라 눈이 거의 없어 겨울 풍경이 1점, 합계 <b>22/30</b>으로 기준선(25점) 아래였다. 대신 산인의 요나고·마쓰에를 넣었다.</p></div>
+<div class="row"><b>쿠로카와온천</b><p>온천과 조용함은 최고지만 점수가 20/30으로 가장 낮았다. 쿠로카와엔 도시가 없어 구마모토를 따로 붙여야 하고, 공항에서 규슈횡단버스로 약 2시간이라 이동도 길다.</p></div>
+<div class="row"><b>벳푸</b><p>온천 밀도와 가족탕 문화는 훌륭하다. 다만 간판인 지옥순례가 대표적인 관광 혼잡지라 “사람 많은 곳 제외”에 정면으로 걸린다.</p></div>
+<div class="row"><b>기노사키온센</b><p>겨울 대게와 온천마을 정취는 최고다. 그런데 오사카에서 특급 2시간 35분, 교토에서 2시간 21분이라 <b>한 구간 2시간</b>을 넘는다. 핵심 경험인 외탕 7곳 순례도 프라이빗 온천과 방향이 반대다.</p></div>
+<div class="row"><b>게로온센</b><p>일본 3대 명천이고 객실 노천탕 료칸도 있다. 나고야에서 특급 1시간 30분으로 이동 조건은 통과하지만, 도시를 붙이려면 나고야를 따로 넣어야 해 일정이 빡빡해진다.</p></div>
+</div></section>
+<section><div class="sec-head"><h2>이안의 선택</h2><p class="sec-note">한 곳을 고르고 이유를 한 줄 남겨줘. 마음이 바뀌면 언제든 다시 골라도 돼.</p></div><div class="vote"><div class="vote-grid"><div><div style="margin-bottom:16px"><label for="voter-name">누구</label><input id="voter-name" type="text" placeholder="이안 / 댄" autocomplete="off" maxlength="20"></div><label id="pick-label">어디로 갈까</label><div class="picks" role="radiogroup" aria-labelledby="pick-label" id="picks"></div><label for="voter-reason">한 줄 이유 <span style="text-transform:none;letter-spacing:0">(선택)</span></label><input id="voter-reason" type="text" placeholder="예: 눈 보고 싶어서" autocomplete="off" maxlength="60"><button class="send" id="send" disabled>이걸로 정하기</button><p class="status" id="status">불러오는 중…</p></div><div><div class="tally" id="tally"></div><div class="voices" id="voices" hidden></div></div></div></div></section>
+<footer><p>운항·요금·행사 일정은 2026년 9월 확인 기준입니다. <b>광의 페이전트 2026(41회) 일정은 아직 발표 전</b>이라 센다이를 12월로 정하면 항공권 전에 공식 발표를 확인해야 합니다.</p><p>사진은 Wikimedia Commons의 CC 라이선스 이미지이며, 출처는 각 도시 탭 하단에 있습니다.</p></footer>
+</section>
+<section id="view-sendai" class="view" data-accent="sendai" role="tabpanel" aria-labelledby="tab-sendai" hidden>
+<header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
+<h1>센다이와 아키우온천<span>SENDAI · AKIU ONSEN — 미야기현</span></h1>
+<p class="lede">도호쿠에서 가장 큰 도시 옆에 천 년 된 온천이 붙어 있다. 네 조건을 가장 고르게 만족하는 곳.</p></header>
+<figure><img src="pageant.jpg" alt="느티나무 가로수를 감싼 전구 조명" loading="lazy"><figcaption>조젠지도리 광의 페이전트 — 12월 한정, 느티나무 가로수 700m에 48만 구</figcaption></figure>
+<section><div class="sec-head"><h2>조건과 맞춰보기</h2><p class="sec-note">이동이 가장 짧고, 도시와 바다와 온천이 한 시간 안에 다 있다.</p></div><div class="fit">
+<div class="fit-row"><div class="fit-key">이동</div><div class="fit-val">공항철도 <b>25분</b>으로 시내, 마츠시마 <b>40분</b>, 아키우온천 <b>40~50분</b>. 모든 구간이 한 시간 안이다.</div></div>
+<div class="fit-row"><div class="fit-key">프라이빗</div><div class="fit-val">아키우에 객실 노천탕을 갖춘 여관이 여럿이다. 대욕장을 쓰지 않아도 된다.</div></div>
+<div class="fit-row"><div class="fit-key">미식</div><div class="fit-val">겨울 마츠시마 굴(12~3월 제철), 규탄의 발상지, 산리쿠 해산물, 센다이규.</div></div>
+<div class="fit-row"><div class="fit-key">도시</div><div class="fit-val">인구 100만의 도호쿠 최대 도시. 아케이드 상점가와 이자카야가 시내에 모여 있다.</div></div>
+<div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">관광도시가 아니라 생활 도시다. 12월 페이전트 기간만 붐빈다.</div></div>
+<div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">눈은 적은 편. 이동이 막힐 걱정은 낮지만 설경을 기대하면 아쉽다.</div></div>
+</div></section>
+<section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">하루에 큰 일정 하나씩. 셋째 날은 온천에서 통째로 쉰다.</p></div><div class="days">
+<article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>도착하고, 도시를 걷는다</h3><span class="day-stay">센다이 1박</span></div><div class="steps">
+<div class="step"><time>12:00</time><div>센다이공항 도착 → <span class="move">공항철도 25분</span> 센다이역</div></div>
+<div class="step"><time>13:00</time><div>점심 — 규탄. 역 안 「규탄도리」에 리큐·키스케·젠지로가 모여 있다</div></div>
+<div class="step"><time>15:00</time><div>호텔에 짐 풀고 센다이성터·즈이호덴. 순환버스 루플 1일권 630엔</div></div>
+<div class="step"><time>18:00</time><div>조젠지도리 산책. 12월이면 광의 페이전트(평일 19시·금토 18시 점등)</div></div>
+<div class="step"><time>19:30</time><div>저녁 — 이치반초 이자카야. 산리쿠 해산물과 니혼슈</div></div>
+</div>
+<figure class="day-photo"><img src="pageant.jpg" alt="조젠지도리 광의 페이전트" loading="lazy"><figcaption>조젠지도리 광의 페이전트</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 2</span><h3>마츠시마에서 낮부터 밤까지</h3><span class="day-stay">센다이 1박</span></div><div class="steps">
+<div class="step"><time>10:00</time><div>느긋하게 출발 → <span class="move">센세키선 40분</span> 마츠시마카이간</div></div>
+<div class="step"><time>11:00</time><div>즈이간지. 총문 오른쪽 절벽의 동굴 유적군을 놓치지 않는다</div></div>
+<div class="step"><time>12:30</time><div>점심 — 굴. 구운굴·굴밥·굴튀김이 골목마다 있다</div></div>
+<div class="step"><time>14:00</time><div>유람선 50분. 겨울은 16시 편이 휴항이라 15시가 막차</div></div>
+<div class="step"><time>16:30</time><div>마츠시마 하버라이트 — 11/29~3/1 매일 16:30~21:00, 1,300엔</div></div>
+<div class="step"><time>19:00</time><div>센다이 복귀</div></div>
+</div>
+<figure class="day-photo"><img src="matsushima.jpg" alt="마츠시마 만의 기암과 소나무" loading="lazy"><figcaption>마츠시마 만의 기암과 소나무</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 3</span><h3>온천에서 쉬는 날</h3><span class="day-stay">아키우온천 1박</span></div><div class="steps">
+<div class="step"><time>11:00</time><div>체크아웃 → <span class="move">버스 40~50분 · 940엔</span> 아키우온천</div></div>
+<div class="step"><time>12:00</time><div>라이라이쿄 협곡 산책. 「노조키바시」 정류장에서 바로, 온천가에서 걸어간다</div></div>
+<div class="step"><time>14:00</time><div>여관 체크인 → 객실 노천탕</div></div>
+<div class="step"><time>18:00</time><div>가이세키 저녁 — 산리쿠 해산물과 센다이규</div></div>
+<div class="step"><time>21:00</time><div>밤에 한 번 더 탕에</div></div>
+</div>
+<figure class="day-photo"><img src="akiu-onsen.jpg" alt="계곡을 따라 늘어선 아키우 온천가" loading="lazy"><figcaption>계곡을 따라 늘어선 아키우 온천가</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 4</span><h3>아침 온천 하나, 그리고 귀국</h3><span class="day-stay">—</span></div><div class="steps">
+<div class="step"><time>08:00</time><div>아침 온천 + 조식</div></div>
+<div class="step"><time>11:00</time><div>체크아웃 → <span class="move">버스 40~50분</span> 센다이역</div></div>
+<div class="step"><time>12:00</time><div>점심, 기념품 — 하기노츠키·즌다·사사카마보코</div></div>
+<div class="step"><time>15:00</time><div><span class="move">공항철도 25분</span> → 귀국</div></div>
+</div>
+<figure class="day-photo"><img src="zunda.jpg" alt="즌다모찌 — 풋콩을 으깬 소를 얹은 떡" loading="lazy"><figcaption>즌다모찌 — 풋콩을 으깬 소를 얹은 떡</figcaption></figure>
+</article>
+</div></section>
+<figure><img src="akiu-onsen.jpg" alt="계곡을 따라 늘어선 온천 여관" loading="lazy"><figcaption>아키우온천 — 센다이역에서 버스 40~50분. 계곡을 따라 여관이 늘어서 있다</figcaption></figure>
+<figure><img src="matsushima.jpg" alt="소나무가 자란 바위섬" loading="lazy"><figcaption>마츠시마 — 만에 소나무 섬 260여 개가 떠 있다. 센다이역에서 센세키선 40분</figcaption></figure>
+<figure><img src="zuihoden.jpg" alt="금박 장식을 두른 영묘의 문" loading="lazy"><figcaption>즈이호덴 네한몬 — 다테 마사무네 영묘로 들어가는 문</figcaption></figure>
+<section><div class="sec-head"><h2>추천 숙소</h2><p class="sec-note">셋째 날 하룻밤. 객실 노천탕(露天風呂付き客室)으로 검색한다.</p></div><div class="stays">
+<article class="stay"><h3>가가리비노유 료쿠스이테이<small>篝火の湯 緑水亭</small></h3><p>객실 노천탕 객실 「호시모노가타리(星物語)」가 있다. 아키우에서 이름이 알려진 곳이고 방 등급이 넓게 갈려 예산을 맞추기 쉽다.</p><p class="price">2인 29,200엔~ (방에 따라 28,600~110,000엔)</p></article>
+<article class="stay"><h3>아키우 객실 노천탕 여관 전반<small>秋保温泉 露天風呂付き客室</small></h3><p>아키우에는 객실 노천탕을 둔 여관이 여럿이다. 예약 사이트에서 「秋保温泉 露天風呂付き客室」로 목록을 한 번에 볼 수 있다.</p><p class="price">2인 25,882엔~ (1박 2식)</p></article>
+</div>
+<div class="note"><b>버스는 센다이역 서구 8번(미야기교통)·63번(다케야교통) 승강장</b>에서 탄다. 여관에 따라 송영 서비스가 있으니 예약할 때 확인하면 짐을 들고 버스를 탈 일이 없다.</div>
+</section>
+<section><div class="sec-head"><h2>총 가격대</h2><p class="sec-note">2인 동행 기준, 1인 금액. 12월 초·중순 기준이고 연말연시는 더 든다.</p></div><div class="tw"><table class="cost"><tbody><tr><th>항목</th><th class="num">1인 기준</th><th>메모</th></tr>
+<tr><td>항공</td><td class="num">25~40만원</td><td>아시아나 매일 + 진에어·에어서울·에어부산·피치. 2시간 20분</td></tr>
+<tr><td>숙박</td><td class="num">25~35만원</td><td>센다이 비즈니스호텔 2박 + 아키우 객실 노천탕 1박(1박 2식)</td></tr>
+<tr><td>교통</td><td class="num">4~6만원</td><td>공항철도·루플 1일권·센세키선·아키우 버스</td></tr>
+<tr><td>식비</td><td class="num">15~20만원</td><td>규탄·굴·이자카야. 셋째 날 저녁은 숙박비에 포함</td></tr>
+<tr><td>입장·체험</td><td class="num">3~5만원</td><td>즈이호덴·유람선·하버라이트</td></tr>
+</tbody><tfoot><tr><td>합계</td><td class="num">약 72~106만원</td><td>네 후보 중 가장 낮은 편</td></tr></tfoot></table></div></section>
+<section><div class="sec-head"><h2>한국어로 미리 보기</h2><p class="sec-note">한국어로 된 공식 가이드와 코스 정리.</p></div><div class="links">
+<div class="link"><span class="kind">공식</span><span><a href="https://kr.visitmiyagi.com/model_course/sendai-akiu-day-trip/">VISIT MIYAGI 한국어 — 아키우 온천·와이너리·공방 마을 코스</a></span></div>
+<div class="link"><span class="kind">공식</span><span><a href="https://discoversendai.travel/places/akiu-onsen/">Discover Sendai — 아키우온천 소개</a></span></div>
+<div class="link"><span class="kind">블로그</span><span><a href="https://www.tripstore.kr/blog/%EB%B6%80%EB%AA%A8%EB%8B%98-%EC%84%BC%EB%8B%A4%EC%9D%B4-%EC%97%AC%ED%96%89-%EC%BD%94%EC%8A%A4-3%EB%B0%954%EC%9D%BC-%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84-%ED%9E%90%EB%A7%81">트립스토어 — 센다이 3박 4일 코스</a></span></div>
+<div class="link"><span class="kind">숙소</span><span><a href="https://www.japanryokanguide.com/en/blog/best-ryokans-akiu">아키우 료칸 11선 (영문)</a></span></div>
+<div class="link"><span class="kind">공식</span><span><a href="https://sendaihikape.jp/overview/">광의 페이전트 — 2026년 일정은 발표 전</a></span></div>
+</div></section>
+<footer><p><b>광의 페이전트 2026(41회) 일정은 아직 발표 전이다.</b> 2025년은 12/5~12/28이었다. 12월로 정하면 항공권 전에 공식 발표를 확인한다.</p><p>사진 · <a href="https://commons.wikimedia.org/wiki/File:Sendai_Pageant_of_Starlight_2025b.jpg">광의 페이전트</a> CC BY-SA 4.0 · <a href="https://commons.wikimedia.org/wiki/File:211029_Akiu_Onsen_Sendai_Miyagi_pref_Japan01s3.jpg">아키우온천</a> CC BY-SA 4.0 — Wikimedia Commons</p></footer>
+</section>
+<section id="view-hakodate" class="view" data-accent="hakodate" role="tabpanel" aria-labelledby="tab-hakodate" hidden>
+<header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
+<h1>하코다테와 유노카와온천<span>HAKODATE · YUNOKAWA ONSEN — 홋카이도</span></h1>
+<p class="lede">공항에서 온천까지 버스로 6분. 네 후보 중 이동이 가장 짧고, 겨울 해산물이 가장 세다.</p></header>
+<figure><img src="hakodate-night.jpg" alt="산 위에서 내려다본 항구 도시의 야경" loading="lazy"><figcaption>하코다테산 야경 — 양쪽이 바다로 좁아지는 지형 때문에 도시가 빛의 띠로 보인다</figcaption></figure>
+<section><div class="sec-head"><h2>조건과 맞춰보기</h2><p class="sec-note">이동을 줄이는 것이 목적이라면 이 후보가 압도적이다.</p></div><div class="fit">
+<div class="fit-row"><div class="fit-key">이동</div><div class="fit-val">하코다테공항에서 유노카와온천까지 <b>버스 6분</b>. 시내는 노면전차로 20~30분이면 닿는다.</div></div>
+<div class="fit-row"><div class="fit-key">프라이빗</div><div class="fit-val">유노카와에 객실 노천탕을 둔 숙소가 많다. 한 곳은 그런 객실만 120실이다.</div></div>
+<div class="fit-row"><div class="fit-key">미식</div><div class="fit-val">아침시장의 오징어·해산물 덮밥, 겨울 대게, 시오라멘. 250여 점포가 역에서 도보 1분.</div></div>
+<div class="fit-row"><div class="fit-key">도시</div><div class="fit-val">모토마치의 서양식 건물 거리, 베이 에어리어, 고료카쿠. 도시가 작아 걸어 다닌다.</div></div>
+<div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">겨울은 비수기라 사람이 적다. 홋카이도 3대 온천마을이지만 번잡하지 않다.</div></div>
+<div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">눈이 확실히 온다. 12~3월은 눈에 반사된 야경이 더 밝다.</div></div>
+</div></section>
+<section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">숙소를 옮기지 않고 온천에 3박. 매일 같은 방으로 돌아온다.</p></div><div class="days">
+<article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>도착하자마자 온천</h3><span class="day-stay">유노카와온천 1박</span></div><div class="steps">
+<div class="step"><time>12:00</time><div>하코다테공항 도착 → <span class="move">버스 6분</span> 유노카와온천</div></div>
+<div class="step"><time>13:00</time><div>체크인, 객실 노천탕에서 한 번</div></div>
+<div class="step"><time>15:00</time><div><span class="move">노면전차 30분</span> 하코다테역·베이 에어리어 산책</div></div>
+<div class="step"><time>17:30</time><div>하코다테산 로프웨이 — 해 질 녘에 올라 야경까지 본다</div></div>
+<div class="step"><time>20:00</time><div>유노카와 복귀, 밤 온천</div></div>
+</div>
+<figure class="day-photo"><img src="hakodate-night.jpg" alt="하코다테산에서 본 야경" loading="lazy"><figcaption>하코다테산에서 본 야경</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 2</span><h3>아침시장과 모토마치</h3><span class="day-stay">유노카와온천 1박</span></div><div class="steps">
+<div class="step"><time>08:00</time><div><span class="move">전차 30분</span> 하코다테 아침시장. 해산물 덮밥으로 아침</div></div>
+<div class="step"><time>10:30</time><div>모토마치 언덕길 — 서양식 목조 건물과 하치만자카</div></div>
+<div class="step"><time>12:30</time><div>점심 — 시오라멘 또는 겨울 대게</div></div>
+<div class="step"><time>15:00</time><div>유노카와 복귀 → 온천, 낮잠</div></div>
+<div class="step"><time>18:30</time><div>저녁 — 여관 가이세키 또는 유노카와 이자카야</div></div>
+</div>
+<figure class="day-photo"><img src="hako-asaichi.jpg" alt="하코다테 아침시장 — 게·연어알·오징어" loading="lazy"><figcaption>하코다테 아침시장 — 게·연어알·오징어</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 3</span><h3>느리게 도는 하루</h3><span class="day-stay">유노카와온천 1박</span></div><div class="steps">
+<div class="step"><time>10:00</time><div>고료카쿠 — 별 모양 성터. 겨울엔 눈 덮인 해자가 선명하다</div></div>
+<div class="step"><time>13:00</time><div>점심 후 유노카와 족욕 「유메구리 부타이」 (연중무휴 9~21시)</div></div>
+<div class="step"><time>15:00</time><div>온천, 아무것도 하지 않는 시간</div></div>
+<div class="step"><time>18:30</time><div>저녁</div></div>
+</div>
+<figure class="day-photo"><img src="hako-yunokawa.jpg" alt="눈 덮인 유노카와 온천가와 쓰가루 해협" loading="lazy"><figcaption>눈 덮인 유노카와 온천가와 쓰가루 해협</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 4</span><h3>아침 온천 하나, 그리고 귀국</h3><span class="day-stay">—</span></div><div class="steps">
+<div class="step"><time>08:00</time><div>아침 온천 + 조식</div></div>
+<div class="step"><time>10:30</time><div>체크아웃, 기념품</div></div>
+<div class="step"><time>12:00</time><div><span class="move">버스 6분</span> 하코다테공항 → 귀국</div></div>
+</div>
+<figure class="day-photo"><img src="hako-bay.jpg" alt="가네모리 붉은벽돌 창고 — 겨울 베이 에어리어" loading="lazy"><figcaption>가네모리 붉은벽돌 창고 — 겨울 베이 에어리어</figcaption></figure>
+</article>
+</div></section>
+<figure><img src="hakodate-motomachi.jpg" alt="언덕길의 서양식 목조 건물" loading="lazy"><figcaption>모토마치 다이산자카 — 개항기 서양식 목조 건물이 언덕을 따라 남아 있다</figcaption></figure>
+<section><div class="sec-head"><h2>추천 숙소</h2><p class="sec-note">유노카와는 홋카이도 3대 온천마을이고, 나트륨·칼슘 염화물천이라 보온이 오래간다.</p></div><div class="stays">
+<article class="stay"><h3>나기사테이<small>湯の川温泉 渚亭</small></h3><p>객실 노천탕을 둔 객실이 120실이다. 하코다테공항에서 차로 5분, 하코다테역에서 15분. 선택지가 많아 예산·전망을 맞추기 쉽다.</p><p class="price">객실 등급에 따라 폭이 넓다</p></article>
+<article class="stay"><h3>다쿠보쿠테이<small>湯元 啄木亭</small></h3><p>최상층의 「공중 노천탕」에서 하코다테산과 시가지, 멀리 쓰가루 해협까지 보인다. 객실 노천탕 객실도 있다.</p><p class="price">객실 등급에 따라 폭이 넓다</p></article>
+</div>
+<div class="note"><b>공항 무료 송영을 운행하는 숙소가 있다.</b> 예약할 때 확인하면 버스조차 탈 일이 없다. 유노카와는 전차 정류장이 온천가 안에 있어 시내를 오가기도 쉽다.</div>
+</section>
+<section><div class="sec-head"><h2>총 가격대</h2><p class="sec-note">2인 동행 기준, 1인 금액. 온천 3박이라 숙박 비중이 크다.</p></div><div class="tw"><table class="cost"><tbody><tr><th>항목</th><th class="num">1인 기준</th><th>메모</th></tr>
+<tr><td>항공</td><td class="num">25~40만원</td><td>제주항공 직항 (2025년 6월 개설)</td></tr>
+<tr><td>숙박</td><td class="num">30~45만원</td><td>유노카와 객실 노천탕 3박(1박 2식 기준). 1박을 시내 호텔로 바꾸면 내려간다</td></tr>
+<tr><td>교통</td><td class="num">3~5만원</td><td>공항버스 6분, 노면전차 1일권. 네 후보 중 교통비가 가장 적다</td></tr>
+<tr><td>식비</td><td class="num">15~22만원</td><td>아침시장 해산물, 시오라멘, 대게</td></tr>
+<tr><td>입장·체험</td><td class="num">3~5만원</td><td>로프웨이·고료카쿠 타워</td></tr>
+</tbody><tfoot><tr><td>합계</td><td class="num">약 76~117만원</td><td>숙박 등급에 따라 폭이 가장 크다</td></tr></tfoot></table></div></section>
+<section><div class="sec-head"><h2>한국어로 미리 보기</h2><p class="sec-note">한국어 공식 가이드가 잘 되어 있는 편이다.</p></div><div class="links">
+<div class="link"><span class="kind">공식</span><span><a href="https://www.visit-hokkaido.jp/kr/spa/plan/detail_54.html">HOKKAIDO LOVE 한국어 — 하코다테 공항 IN/OUT 온천 모델 코스</a></span></div>
+<div class="link"><span class="kind">공식</span><span><a href="https://www.hakodate.travel/kr/more-about-hakodate/yunokawa/">하코다테 관광 공식 한국어 — 유노카와온천</a></span></div>
+<div class="link"><span class="kind">공식</span><span><a href="https://hakodate-yunokawa.jp/lan/kr.html">유노카와 온천여관 협동조합 한국어</a></span></div>
+<div class="link"><span class="kind">블로그</span><span><a href="https://www.tripstore.kr/blog/%ED%95%98%EC%BD%94%EB%8B%A4%ED%85%8C-%EC%97%AC%ED%96%89-%EC%BD%94%EC%8A%A4-%EB%AA%85%EC%86%8C">트립스토어 — 하코다테 코스·맛집·야경 정리</a></span></div>
+</div></section>
+<footer><p>오징어 어화(漁火)는 6~12월에 보이므로 12월 여행이면 볼 가능성이 있고 1월이면 없다.</p><p>사진 · <a href="https://commons.wikimedia.org/wiki/File:2018-01-07_The_million_dollar_night_view.jpg">하코다테 야경</a> Public domain · <a href="https://commons.wikimedia.org/wiki/File:Daisan-zaka_Slope_Hakodate_Hokkaido_Japan03n.jpg">모토마치</a> CC BY 2.5 — Wikimedia Commons</p></footer>
+</section>
+<section id="view-kanazawa" class="view" data-accent="kanazawa" role="tabpanel" aria-labelledby="tab-kanazawa" hidden>
+<header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
+<h1>가나자와와 유와쿠온천<span>KANAZAWA · YUWAKU ONSEN — 이시카와현</span></h1>
+<p class="lede">눈 덮인 겐로쿠엔과 겨울 대게. 도시의 격과 미식이 가장 세고, 설경도 가장 확실하다.</p></header>
+<figure><img src="kanazawa-yukitsuri.jpg" alt="눈이 두껍게 덮인 일본 정원" loading="lazy"><figcaption>겨울의 겐로쿠엔 — 소나무마다 우산 모양으로 밧줄을 매는 유키즈리가 이 도시의 겨울 상징이다</figcaption></figure>
+<section><div class="sec-head"><h2>조건과 맞춰보기</h2><p class="sec-note">도시와 미식을 가장 크게 얻는 대신, 이동이 조금 길고 사람이 조금 많다.</p></div><div class="fit">
+<div class="fit-row"><div class="fit-key">이동</div><div class="fit-val">고마쓰공항에서 시내까지 리무진버스, 시내에서 유와쿠온천까지 <b>차 20~25분</b>. 모두 한 시간 안이다.</div></div>
+<div class="fit-row"><div class="fit-key">프라이빗</div><div class="fit-val">유와쿠는 여관이 8곳뿐이고 객실 노천탕을 둔 곳은 그중 몇 곳이다. <b>일찍 잡아야 한다.</b></div></div>
+<div class="fit-row"><div class="fit-key">미식</div><div class="fit-val">겨울 즈와이가니(대게), 노도구로, 오뎅, 오미초시장. 네 후보 중 미식의 폭이 가장 넓다.</div></div>
+<div class="fit-row"><div class="fit-key">도시</div><div class="fit-val">겐로쿠엔, 히가시차야가이, 가나자와성, 21세기미술관. 도시 자체가 관광지다.</div></div>
+<div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">유와쿠는 조용하지만 <b>겐로쿠엔·차야가이는 관광객이 많다.</b> 이른 아침에 도는 편이 낫다.</div></div>
+<div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">호쿠리쿠라 눈이 많다. 겐로쿠엔 유키즈리 야간 라이트업은 1월 하순~2월.</div></div>
+</div></section>
+<section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">도시를 이틀 보고, 마지막 밤을 온천에서 보낸다.</p></div><div class="days">
+<article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>도착하고, 시장과 찻집 거리</h3><span class="day-stay">가나자와 1박</span></div><div class="steps">
+<div class="step"><time>12:30</time><div>고마쓰공항 도착 → <span class="move">리무진버스</span> 가나자와역</div></div>
+<div class="step"><time>14:00</time><div>호텔 체크인</div></div>
+<div class="step"><time>15:00</time><div>오미초시장 — 겨울 대게와 해산물이 쌓인다</div></div>
+<div class="step"><time>16:30</time><div>히가시차야가이 — 다도 찻집 거리. 해 질 녘 등이 켜지면 좋다</div></div>
+<div class="step"><time>19:00</time><div>저녁 — 가나자와 오뎅 또는 스시</div></div>
+</div>
+<figure class="day-photo"><img src="kana-omicho.jpg" alt="오미초시장 — 가나자와의 부엌" loading="lazy"><figcaption>오미초시장 — 가나자와의 부엌</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 2</span><h3>겐로쿠엔과 성</h3><span class="day-stay">가나자와 1박</span></div><div class="steps">
+<div class="step"><time>08:30</time><div>겐로쿠엔 — 이른 시간에 들어가면 사람이 적다. 눈 쌓인 유키즈리가 이때 가장 깨끗하다</div></div>
+<div class="step"><time>10:30</time><div>가나자와성 공원 — 겐로쿠엔 바로 옆이다</div></div>
+<div class="step"><time>12:30</time><div>점심 — 대게 정식 또는 노도구로</div></div>
+<div class="step"><time>14:30</time><div>21세기미술관 또는 나가마치 무사 저택 거리</div></div>
+<div class="step"><time>18:30</time><div>저녁, 시내 산책</div></div>
+</div>
+<figure class="day-photo"><img src="kanazawa-yukitsuri.jpg" alt="눈 덮인 겨울 겐로쿠엔" loading="lazy"><figcaption>눈 덮인 겨울 겐로쿠엔</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 3</span><h3>온천으로 들어간다</h3><span class="day-stay">유와쿠온천 1박</span></div><div class="steps">
+<div class="step"><time>11:00</time><div>체크아웃 → <span class="move">차 20~25분</span> 유와쿠온천 (여관 무료 송영 있음)</div></div>
+<div class="step"><time>13:00</time><div>체크인 → 객실 노천탕</div></div>
+<div class="step"><time>15:00</time><div>유와쿠 산책 — 개탕 1300년, 여관 8곳뿐인 조용한 온천가</div></div>
+<div class="step"><time>18:00</time><div>가이세키 저녁 — 겨울이면 대게가 올라온다</div></div>
+</div>
+<figure class="day-photo"><img src="yuwaku-yumeji.jpg" alt="유와쿠 온천가의 유메지관" loading="lazy"><figcaption>유와쿠 온천가의 유메지관</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 4</span><h3>아침 온천 하나, 그리고 귀국</h3><span class="day-stay">—</span></div><div class="steps">
+<div class="step"><time>08:00</time><div>아침 온천 + 조식</div></div>
+<div class="step"><time>11:00</time><div>체크아웃 → <span class="move">송영 20~25분</span> 가나자와역</div></div>
+<div class="step"><time>12:00</time><div>점심, 기념품 — 금박 공예·와가시</div></div>
+<div class="step"><time>14:30</time><div><span class="move">리무진버스</span> 고마쓰공항 → 귀국</div></div>
+</div>
+<figure class="day-photo"><img src="kanazawa-chaya.jpg" alt="히가시차야가이의 베나가라 격자" loading="lazy"><figcaption>히가시차야가이의 베나가라 격자</figcaption></figure>
+</article>
+</div></section>
+<figure><img src="kanazawa-chaya.jpg" alt="붉게 칠한 목조 2층 건물" loading="lazy"><figcaption>히가시차야가이 — 베나가라(붉은 칠) 격자의 찻집 건물이 거리째 남아 있다</figcaption></figure>
+<section><div class="sec-head"><h2>추천 숙소</h2><p class="sec-note">유와쿠는 가나자와역·겐로쿠엔에서 무료 송영을 운행하는 여관이 있다.</p></div><div class="stays">
+<article class="stay"><h3>유와쿠온천 객실 노천탕 여관<small>湯涌温泉 露天風呂付き客室</small></h3><p>온천가에 여관이 8곳뿐이고 객실 노천탕을 둔 곳은 그중 일부다. 전 10실 규모의 작은 여관에 객실 노천탕이 3실만 있는 식이라, <b>예약을 가장 먼저 잡아야 하는 후보다.</b></p><p class="price">2인 61,600엔~ (1인 30,800엔~)</p></article>
+<article class="stay"><h3>가나자와 시내 호텔<small>1·2일차</small></h3><p>가나자와역 또는 고린보·가타마치 주변. 역 주변이 공항버스와 가깝고, 고린보는 밤에 먹으러 다니기 좋다.</p><p class="price">2인 1박 10~18만원대</p></article>
+</div>
+<div class="note"><b>유와쿠는 겐로쿠엔에서 차로 20~25분이고 무료 송영이 있다.</b> 짐을 들고 버스를 갈아탈 일이 없어, 시내 이틀 + 온천 하룻밤 구성이 매끄럽다.</div>
+</section>
+<section><div class="sec-head"><h2>총 가격대</h2><p class="sec-note">2인 동행 기준, 1인 금액. 대게 값이 시세에 따라 크게 움직인다.</p></div><div class="tw"><table class="cost"><tbody><tr><th>항목</th><th class="num">1인 기준</th><th>메모</th></tr>
+<tr><td>항공</td><td class="num">25~40만원</td><td>대한항공 인천–고마쓰 매일, 1시간 45분</td></tr>
+<tr><td>숙박</td><td class="num">35~50만원</td><td>시내 호텔 2박 + 유와쿠 객실 노천탕 1박(1박 2식)</td></tr>
+<tr><td>교통</td><td class="num">4~6만원</td><td>리무진버스 왕복, 시내버스, 유와쿠 송영</td></tr>
+<tr><td>식비</td><td class="num">20~30만원</td><td>대게가 들어가면 한 끼에 크게 오른다</td></tr>
+<tr><td>입장·체험</td><td class="num">3~5만원</td><td>겐로쿠엔·가나자와성·21세기미술관</td></tr>
+</tbody><tfoot><tr><td>합계</td><td class="num">약 87~131만원</td><td>네 후보 중 가장 높다 — 대게와 유와쿠 숙박이 이유</td></tr></tfoot></table></div></section>
+<section><div class="sec-head"><h2>한국어로 미리 보기</h2><p class="sec-note">가나자와는 한국어 공식 사이트가 충실하다.</p></div><div class="links">
+<div class="link"><span class="kind">공식</span><span><a href="https://visitkanazawa.jp/kr/feature/detail_238.html">Visit Kanazawa 한국어 — 겨울 가나자와의 매력</a></span></div>
+<div class="link"><span class="kind">후기</span><span><a href="https://brunch.co.kr/@kimmovie21/10">브런치 — 겐로쿠엔과 가나자와성</a></span></div>
+<div class="link"><span class="kind">블로그</span><span><a href="https://www.tripstore.kr/blog/%EA%B0%80%EB%82%98%EC%9E%90%EC%99%80-%EA%B2%A8%EC%9A%B8-%EC%97%AC%ED%96%89-%EC%BD%94%EC%8A%A4-%EA%B2%BD%EB%B9%84-%EC%B4%9D%EC%A0%95%EB%A6%AC">트립스토어 — 가나자와 겨울 여행 코스·경비</a></span></div>
+<div class="link"><span class="kind">블로그</span><span><a href="https://kr.trip.com/hot/travel-itinerary/2%EB%B0%95+3%EC%9D%BC+%EA%B0%80%EB%82%98%EC%9E%90%EC%99%80+%EC%97%AC%ED%96%89+%EC%9D%BC%EC%A0%95.html">트립닷컴 — 가나자와 맛집·여행지·호텔 정리</a></span></div>
+</div></section>
+<footer><p><b>겐로쿠엔 유키즈리 야간 라이트업은 1월 하순~2월</b>이라 12월에 가면 이 장면은 없다. 눈이 많이 오는 날은 이동이 느려질 수 있다.</p><p>사진 · <a href="https://commons.wikimedia.org/wiki/File:Snow_in_Kanazawa_(20250222_~_Image_2).jpg">겨울 겐로쿠엔</a> CC0 · <a href="https://commons.wikimedia.org/wiki/File:Kanazawa_Teeviertel_Higashiyama_Chaya_06.jpg">히가시차야가이</a> CC BY-SA 4.0 — Wikimedia Commons</p></footer>
+</section>
+<section id="view-aomori" class="view" data-accent="aomori" role="tabpanel" aria-labelledby="tab-aomori" hidden>
+<header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
+<h1>아오모리와 아사무시온천<span>AOMORI · ASAMUSHI ONSEN — 아오모리현</span></h1>
+<p class="lede">눈이 가장 확실하고 겨울 해산물이 가장 세다. 그런데 공식 소개부터 “조용하고 혼잡하지 않은” 곳이다.</p></header>
+<figure><img src="aomori-winter.jpg" alt="눈과 얼음에 덮인 나무들" loading="lazy"><figcaption>핫코다의 수빙 — 로프웨이로 올라가 보는 겨울 아오모리의 상징</figcaption></figure>
+<section><div class="sec-head"><h2>조건과 맞춰보기</h2><p class="sec-note">눈·미식·조용함 셋이 동시에 높은 드문 조합이다.</p></div><div class="fit">
+<div class="fit-row"><div class="fit-key">이동</div><div class="fit-val">공항에서 시내까지 리무진 약 35분, 시내에서 아사무시온천까지 <b>아오이모리철도 20분</b>.</div></div>
+<div class="fit-row"><div class="fit-key">프라이빗</div><div class="fit-val">무쓰만을 바라보는 객실 노천탕 여관이 있다. 2인 <b>22,700엔~</b>부터 폭이 넓다.</div></div>
+<div class="fit-row"><div class="fit-key">미식</div><div class="fit-val">무쓰만 해산물, 오마 참치, 겨울 대게, 사과. 시장에서 덮밥을 직접 만들어 먹는 노케동이 명물.</div></div>
+<div class="fit-row"><div class="fit-key">도시</div><div class="fit-val">아오모리 시내에 네부타 박물관·A-FACTORY·미술관이 모여 있다. 규모는 작지만 실내 볼거리가 많다.</div></div>
+<div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">겨울 비수기에는 사람이 적다. 아사무시는 역 앞 족욕이 있는 작은 온천마을이다.</div></div>
+<div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">네 후보 중 눈이 가장 많다. 대신 폭설로 열차가 지연될 수 있다.</div></div>
+</div></section>
+<section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">추운 지역이라 실내 일정을 중심에 두고, 야외는 짧게 끊었다.</p></div><div class="days">
+<article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>도착하고 실내부터</h3><span class="day-stay">아오모리 1박</span></div><div class="steps">
+<div class="step"><time>13:00</time><div>아오모리공항 → <span class="move">리무진 약 35분</span> 시내</div></div>
+<div class="step"><time>14:30</time><div>점심 — 노케동(のっけ丼). 시장에서 좋아하는 해산물을 골라 밥에 얹는다 <span class="io in">실내</span></div></div>
+<div class="step"><time>16:00</time><div>네부타 박물관 와랏세 — 실물 네부타 산차를 통째로 전시한다 <span class="io in">실내</span></div></div>
+<div class="step"><time>18:30</time><div>저녁 — 무쓰만 해산물과 아오모리 사케</div></div>
+</div>
+<figure class="day-photo"><img src="aomori-nebuta.jpg" alt="네부타 박물관 와랏세 — 실물 네부타 산차를 통째로 전시한다" loading="lazy"><figcaption>네부타 박물관 와랏세 — 실물 네부타 산차를 통째로 전시한다</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 2</span><h3>온천으로 옮긴다</h3><span class="day-stay">아사무시온천 1박</span></div><div class="steps">
+<div class="step"><time>10:00</time><div>A-FACTORY — 사과 시드르 공방과 상점 <span class="io in">실내</span></div></div>
+<div class="step"><time>12:00</time><div><span class="move">아오이모리철도 20분</span> 아사무시온천</div></div>
+<div class="step"><time>13:30</time><div>여관 체크인 → 객실 노천탕에서 무쓰만</div></div>
+<div class="step"><time>15:00</time><div>역 앞 무료 족욕, 온천가 짧은 산책 <span class="io out">야외 20분</span></div></div>
+<div class="step"><time>18:00</time><div>가이세키 저녁</div></div>
+</div>
+<figure class="day-photo"><img src="asamushi.jpg" alt="아사무시온천 — 무쓰만에 면한 작은 온천마을" loading="lazy"><figcaption>아사무시온천 — 무쓰만에 면한 작은 온천마을</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 3</span><h3>아무것도 하지 않는 날</h3><span class="day-stay">아사무시온천 1박</span></div><div class="steps">
+<div class="step"><time>08:00</time><div>아침 온천 + 조식</div></div>
+<div class="step"><time>11:00</time><div>온천, 낮잠, 다시 온천 <span class="io in">실내</span></div></div>
+<div class="step"><time>15:00</time><div>(선택) 핫코다 로프웨이 수빙 — 왕복 3시간 이상, 체력이 남을 때만 <span class="io out">야외</span></div></div>
+<div class="step"><time>18:00</time><div>가이세키 저녁</div></div>
+</div>
+<figure class="day-photo"><img src="aomori-winter.jpg" alt="핫코다의 수빙 — 왕복 3시간 이상 걸리는 선택 일정" loading="lazy"><figcaption>핫코다의 수빙 — 왕복 3시간 이상 걸리는 선택 일정</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 4</span><h3>아침 온천 하나, 그리고 귀국</h3><span class="day-stay">—</span></div><div class="steps">
+<div class="step"><time>08:00</time><div>아침 온천 + 조식</div></div>
+<div class="step"><time>10:30</time><div><span class="move">철도 20분</span> 아오모리역, 기념품 — 사과 과자·젠자이</div></div>
+<div class="step"><time>13:00</time><div><span class="move">리무진 35분</span> 공항 → 귀국</div></div>
+</div>
+<figure class="day-photo"><img src="aomori-bay.jpg" alt="A-FACTORY — 아오모리역 옆 사과 시드르 공방" loading="lazy"><figcaption>A-FACTORY — 아오모리역 옆 사과 시드르 공방</figcaption></figure>
+</article>
+</div></section>
+<section><div class="sec-head"><h2>추천 숙소</h2><p class="sec-note">아사무시는 무쓰만에 면해 있어 바다를 보는 탕이 많다.</p></div><div class="stays">
+<article class="stay"><h3>난부야 가이센카쿠<small>南部屋・海扇閣</small></h3><p>전 객실에서 무쓰만이 보이고, 저녁에 <b>쓰가루 샤미센 라이브</b>가 있다. 아사무시에서 가장 알려진 곳.</p><p class="price">2인 22,700~71,100엔대</p></article>
+<article class="stay"><h3>아사무시 객실 노천탕 여관<small>浅虫温泉 露天風呂付き客室</small></h3><p>2024년 12월 리뉴얼한 곳을 비롯해 전망 노천탕을 갖춘 여관이 있다. 예약 사이트에서 「浅虫温泉 露天風呂付き客室」로 본다.</p><p class="price">1박 2식 1만 엔대부터 있다</p></article>
+</div>
+<div class="note"><b>아사무시온천역에서 도보 1~9분</b> 거리에 여관이 모여 있다. 역 앞에 무료 족욕이 있어 도착하자마자 몸을 녹일 수 있다.</div>
+</section>
+<section><div class="sec-head"><h2>총 가격대</h2><p class="sec-note">2인 동행 기준, 1인 금액. 한국 여행기들이 잡는 3박 4일 예산과 비슷하다.</p></div><div class="tw"><table class="cost"><tbody><tr><th>항목</th><th class="num">1인 기준</th><th>메모</th></tr>
+<tr><td>항공</td><td class="num">28~45만원</td><td>인천 직항 약 2시간 30분</td></tr>
+<tr><td>숙박</td><td class="num">25~40만원</td><td>시내 1박 + 아사무시 객실 노천탕 2박(1박 2식)</td></tr>
+<tr><td>교통</td><td class="num">4~6만원</td><td>리무진 왕복, 아오이모리철도</td></tr>
+<tr><td>식비</td><td class="num">13~18만원</td><td>이틀 저녁·아침이 숙박에 포함된다</td></tr>
+<tr><td>입장·체험</td><td class="num">3~5만원</td><td>네부타 박물관, (선택) 핫코다 로프웨이</td></tr>
+</tbody><tfoot><tr><td>합계</td><td class="num">약 73~114만원</td><td>한국 여행기들의 3박 4일 80~100만원대와 겹친다</td></tr></tfoot></table></div></section>
+<section><div class="sec-head"><h2>한국어로 미리 보기</h2><p class="sec-note">아오모리는 한국어 공식 가이드가 잘 되어 있다.</p></div><div class="links">
+<div class="link"><span class="kind">공식</span><span><a href="https://aomori-tourism.com/kr/itineraries/detail_51.html">Amazing AOMORI 한국어 — 겨울 여행 추천 코스(수빙·난로열차)</a></span></div>
+<div class="link"><span class="kind">공식</span><span><a href="https://aomori-tourism.com/kr/itineraries/detail_120.html">Amazing AOMORI 한국어 — 겨울 원더랜드 2일 코스</a></span></div>
+<div class="link"><span class="kind">공식</span><span><a href="https://www.asamushi.com/access/">아사무시온천 공식 — 숙소·교통</a></span></div>
+<div class="link"><span class="kind">블로그</span><span><a href="https://www.tripstore.kr/blog/%EA%B2%A8%EC%9A%B8-%EC%95%84%EC%98%A4%EB%AA%A8%EB%A6%AC-%EC%97%AC%ED%96%89-%ED%95%84%EC%88%98-%EC%BD%94%EC%8A%A4-%EA%B0%80%EC%9D%B4%EB%93%9C">트립스토어 — 겨울 아오모리 여행지 BEST 5</a></span></div>
+<div class="link"><span class="kind">블로그</span><span><a href="https://www.tripstore.kr/blog/%EC%95%84%EC%98%A4%EB%AA%A8%EB%A6%AC-%EC%97%AC%ED%96%89-%EC%BD%94%EC%8A%A4-%EA%B2%BD%EB%B9%84-%EA%B0%80%EC%9D%B4%EB%93%9C">트립스토어 — 아오모리 여행 코스·경비 총정리</a></span></div>
+</div></section>
+<footer><p>폭설이 잦은 지역이라 <b>열차·항공 지연 여유</b>를 두는 편이 좋다. 핫코다 수빙은 왕복 3시간 이상 걸리는 야외 일정이라 선택으로 뒀다.</p><p>사진 · <a href="https://commons.wikimedia.org/wiki/Category:Aomori_in_winter">핫코다 수빙</a> · <a href="https://commons.wikimedia.org/wiki/Category:Asamushi_Onsen">아사무시온천</a> CC BY 4.0 · <a href="https://commons.wikimedia.org/wiki/Category:Aomori_Bay_Bridge">A-FACTORY</a> CC BY-SA 4.0 — Wikimedia Commons</p></footer>
+</section>
+<section id="view-yonago" class="view" data-accent="yonago" role="tabpanel" aria-labelledby="tab-yonago" hidden>
+<header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
+<h1>요나고와 마쓰에, 가이케온천<span>YONAGO · MATSUE · KAIKE ONSEN — 돗토리·시마네현</span></h1>
+<p class="lede">공항에서 온천까지 택시 20분. 바다에서 솟는 온천에 겨울 대게, 그리고 눈 쌓인 국보 천수각.</p></header>
+<figure><img src="yonago-matsue.jpg" alt="눈 덮인 검은 목조 천수각" loading="lazy"><figcaption>눈 쌓인 마쓰에성 천수각 — 현존하는 12천수 중 하나이고 국보다</figcaption></figure>
+<section><div class="sec-head"><h2>조건과 맞춰보기</h2><p class="sec-note">여섯 축 중 조용함·미식·이동이 가장 세다. 도시는 대도시가 아니라 성곽도시다.</p></div><div class="fit">
+<div class="fit-row"><div class="fit-key">이동</div><div class="fit-val">에어서울 인천–요나고 직항 <b>1시간 25분</b>, 인천 13:20 출발. 요나고 기타로공항에서 가이케온천까지 <b>택시 약 20분</b>. 요나고역에서 마쓰에까지 JR 약 30분.</div></div>
+<div class="fit-row"><div class="fit-key">프라이빗</div><div class="fit-val">가이케의 <b>가이케 쇼게츠</b>·<b>가이케 유게쓰</b>에 객실 노천탕이 있고, 타마쓰쿠리온천의 <b>호시노 리조트 카이 이즈모</b>는 전 객실이 노천탕이다.</div></div>
+<div class="fit-row"><div class="fit-key">미식</div><div class="fit-val"><b>마쓰바가니(대게) 11월 6일 해금~3월 20일.</b> 옆 항구 사카이미나토는 게 수확량이 일본에서 가장 많다. 이즈모 소바(와리고), 신지호 시지미 조개국, 노도구로.</div></div>
+<div class="fit-row"><div class="fit-key">도시</div><div class="fit-val">마쓰에 — 국보 마쓰에성, 해자를 도는 유람선(겨울엔 고타쓰 배), 신지호 석양. 요나고 — 기타로 캐릭터의 사카이미나토가 옆이다.</div></div>
+<div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">인천 직항이 하루 한 편뿐이라 한국인 관광객이 적다. 마쓰에는 인구 20만의 성곽도시라 붐비지 않는다.</div></div>
+<div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">산인은 눈이 온다. 마쓰에성과 아다치 정원의 설경은 운이 따라야 하지만 12~1월엔 한두 번은 본다. 다이센 설산이 가이케 해변에서 바다 너머로 보인다.</div></div>
+</div></section>
+<section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">가이케 2박 + 타마쓰쿠리 1박. 이동은 서쪽으로 한 방향이고, 가장 긴 구간이 1시간 10분이다.</p></div><div class="days">
+<article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>바다 온천에서 시작</h3><span class="day-stay">가이케온천 1박</span></div><div class="steps">
+<div class="step"><time>13:20</time><div>인천 → <span class="move">에어서울 1시간 25분</span> 요나고 기타로공항 14:45</div></div>
+<div class="step"><time>15:10</time><div><span class="move">택시 약 20분</span> 가이케온천 체크인 → 객실 노천탕</div></div>
+<div class="step"><time>16:30</time><div>온천가 해변 산책 — 바다 너머로 다이센이 보인다 <span class="io out">야외 짧게</span></div></div>
+<div class="step"><time>18:30</time><div>저녁 — 료칸 가이세키. 겨울엔 마쓰바가니 코스 <span class="io in">실내</span></div></div>
+</div>
+<figure class="day-photo"><img src="yonago-kaike.jpg" alt="가이케 해안의 저녁 — 온천가가 이 백사장에 붙어 있다" loading="lazy"><figcaption>가이케 해안의 저녁 — 온천가가 이 백사장에 붙어 있다</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 2</span><h3>일본 제일의 정원을 유리창 너머로</h3><span class="day-stay">가이케온천 1박</span></div><div class="steps">
+<div class="step"><time>09:00</time><div>아침 온천 + 조식</div></div>
+<div class="step"><time>10:00</time><div><span class="move">택시 20분</span> 요나고역 → <span class="move">JR 10분</span> 야스기역 → <span class="move">무료 셔틀 20분</span></div></div>
+<div class="step"><time>11:00</time><div>아다치미술관 — 20년 넘게 일본 정원 1위. 정원은 실내에서 유리창 너머로 본다 <span class="io in">실내</span></div></div>
+<div class="step"><time>13:00</time><div>점심 — 정원이 보이는 미술관 안 식당, 또는 요나고역 근처</div></div>
+<div class="step"><time>15:00</time><div>가이케 복귀 → 온천, 낮잠. 선택: 사카이미나토 수산물직판센터(택시 25분)에서 게 구경</div></div>
+<div class="step"><time>18:30</time><div>저녁 — 료칸, 또는 요나고 시내 이자카야(택시 15분)</div></div>
+</div>
+<figure class="day-photo"><img src="yonago-adachi.jpg" alt="눈 내린 아다치미술관 정원 — 실내에서 유리창 너머로 본다" loading="lazy"><figcaption>눈 내린 아다치미술관 정원 — 실내에서 유리창 너머로 본다</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 3</span><h3>성곽도시와 고타쓰 배</h3><span class="day-stay">타마쓰쿠리온천 1박</span></div><div class="steps">
+<div class="step"><time>09:30</time><div>체크아웃 → <span class="move">택시 20분</span> 요나고역 → <span class="move">JR 약 30분</span> 마쓰에역. 짐은 코인로커</div></div>
+<div class="step"><time>10:45</time><div>마쓰에성 — 국보 천수각, 내부까지 오른다 <span class="io in">실내</span></div></div>
+<div class="step"><time>12:00</time><div>호리카와 유람선 — 겨울엔 <b>고타쓰를 넣은 배</b>(12/1~3/31)로 해자를 50분 돈다 <span class="io in">고타쓰 아래</span></div></div>
+<div class="step"><time>13:30</time><div>점심 — 이즈모 소바(와리고). 성 아래 소바집이 모여 있다</div></div>
+<div class="step"><time>14:30</time><div>짐 찾고 <span class="move">JR 10분 + 택시 5분</span> 타마쓰쿠리온천 체크인 → 객실 노천탕</div></div>
+<div class="step"><time>18:30</time><div>저녁 — 가이세키. 카이 이즈모는 저녁에 이와미 카구라 공연이 있다 <span class="io in">실내</span></div></div>
+</div>
+<figure class="day-photo"><img src="yonago-horikawa.jpg" alt="마쓰에성 해자를 도는 호리카와 유람선 — 겨울엔 고타쓰를 넣고 탄다" loading="lazy"><figcaption>마쓰에성 해자를 도는 호리카와 유람선 — 겨울엔 고타쓰를 넣고 탄다</figcaption></figure>
+</article>
+<article class="day"><div class="day-head"><span class="day-no">DAY 4</span><h3>아침 온천 하나, 그리고 귀국</h3><span class="day-stay">—</span></div><div class="steps">
+<div class="step"><time>08:30</time><div>아침 온천 + 조식</div></div>
+<div class="step"><time>10:00</time><div>타마유강 산책 — 온천가를 따라 흐르는 강, 족탕 <span class="io out">야외 짧게</span></div></div>
+<div class="step"><time>11:30</time><div>체크아웃 → <span class="move">JR 약 40분</span> 요나고역 → <span class="move">JR 사카이선 20분</span> 요나고공항역</div></div>
+<div class="step"><time>13:30</time><div>공항 도착 — 오후 편 귀국, 인천 17:40 도착</div></div>
+</div>
+<figure class="day-photo"><img src="yonago-tamatsukuri.jpg" alt="타마쓰쿠리온천 타마유강의 족탕 — 온천가가 강을 따라 이어진다" loading="lazy"><figcaption>타마쓰쿠리온천 타마유강의 족탕 — 온천가가 강을 따라 이어진다</figcaption></figure>
+</article>
+</div></section>
+<figure><img src="yonago-kani.jpg" alt="게 다리가 든 나베" loading="lazy"><figcaption>카니스키 — 겨울 산인의 저녁. 마쓰바가니는 11월 6일에 해금된다</figcaption></figure>
+<section><div class="sec-head"><h2>추천 숙소</h2><p class="sec-note">바다 온천 2박, 강가 온천 1박. 둘 다 객실 노천탕이 있다.</p></div><div class="stays">
+<article class="stay"><h3>호시노 리조트 카이 이즈모<small>星野リゾート 界 出雲</small></h3><p>타마쓰쿠리온천 타마유강가. <b>전 객실 노천탕</b>, 저녁 가이세키와 이와미 카구라 공연. 2022년에 새로 연 곳이라 시설이 새것이다.</p><p class="price">1박 2식 1인 4만엔 전후부터, 게 시즌은 더 높다</p></article>
+<article class="stay"><h3>가이케 쇼게츠<small>皆生松月</small></h3><p>가이케 해변 바로 앞, 19실. <b>노천 온천 객실 3실 + 노천 스파 객실 9실</b>, 무료 대절탕 4개. 27m 높이 노천탕에서 일본해를 본다.</p><p class="price">1박 2식 1인 2.5~4만엔, 게 코스는 별도</p></article>
+<article class="stay"><h3>가이케 유게쓰<small>皆生游月</small></h3><p>쇼게츠의 자매관. <b>노천탕 딸린 객실</b>이 있고 해변 산책로가 바로 앞이다. 쇼게츠가 차면 이쪽.</p><p class="price">1박 2식 1인 2~3.5만엔</p></article>
+</div>
+<div class="note">가이케에서 아다치미술관으로 가던 무료 셔틀은 2016년에 없어졌다. <b>요나고역 → JR 야스기역 10분 → 야스기역 무료 셔틀 20분</b>(20~30분 간격)이 정석이다. 셔틀에 큰 캐리어는 못 싣는다.</div>
+</section>
+<section><div class="sec-head"><h2>총 가격대</h2><p class="sec-note">2인 동행 기준, 1인 금액. 카이 이즈모를 넣으면 다섯 후보 중 위쪽이고, 가이케 3박이면 70만원대부터다.</p></div><div class="tw"><table class="cost"><tbody><tr><th>항목</th><th class="num">1인 기준</th><th>메모</th></tr>
+<tr><td>항공</td><td class="num">25~40만원</td><td>에어서울 직항 1시간 25분. 하루 한 편이라 좌석이 빨리 찬다</td></tr>
+<tr><td>숙박</td><td class="num">45~70만원</td><td>가이케 객실 노천탕 2박 + 카이 이즈모 1박(1박 2식)</td></tr>
+<tr><td>교통</td><td class="num">4~6만원</td><td>공항 택시, JR 요나고–마쓰에–타마쓰쿠리, 야스기 셔틀은 무료</td></tr>
+<tr><td>식비</td><td class="num">10~15만원</td><td>저녁·아침이 숙박에 포함, 점심·소바·게 추가</td></tr>
+<tr><td>입장·체험</td><td class="num">5~7만원</td><td>아다치미술관 2,500엔, 마쓰에성 680엔, 고타쓰 배 1,600엔</td></tr>
+</tbody><tfoot><tr><td>합계</td><td class="num">약 89~138만원</td><td>카이 이즈모를 빼면 가나자와보다 낮다</td></tr></tfoot></table></div></section>
+<section><div class="sec-head"><h2>한국어로 미리 보기</h2><p class="sec-note">한국인 후기가 다른 후보보다 적다. 직항이 하루 한 편이라 그렇고, 그래서 조용하다.</p></div><div class="links">
+<div class="link"><span class="kind">후기</span><span><a href="https://brunch.co.kr/@bonfire/304">브런치 — 고즈넉하게, 일본 소도시 요나고 여행</a></span></div>
+<div class="link"><span class="kind">유튜브</span><span><a href="https://www.youtube.com/shorts/zBZxQ-CYJ1Q">에어서울 요나고 직항으로 돗토리·마쓰에 3박 4일 (쇼츠)</a></span></div>
+<div class="link"><span class="kind">블로그</span><span><a href="https://www.tripstore.kr/blog/%EC%9D%BC%EB%B3%B8-%EC%86%8C%EB%8F%84%EC%8B%9C-%EC%97%AC%ED%96%89-%EC%9A%94%EB%82%98%EA%B3%A0-%EC%97%AC%ED%96%89-%EB%82%A0%EC%94%A8-%EA%B4%80%EA%B4%91%EC%A7%80-%EC%B6%94%EC%B2%9C">트립스토어 — 요나고 여행 정보 총정리: 날씨·옷차림·관광지</a></span></div>
+<div class="link"><span class="kind">료칸</span><span><a href="https://private-hotspring.com/ryokan/umiiro-yunoyado-shogetsu_kaike_tottori_chugoku.html">가이케 쇼게츠 — 객실 노천탕 료칸 소개(한국어)</a></span></div>
+<div class="link"><span class="kind">공식</span><span><a href="https://www.matsue-horikawameguri.jp/language/kr/">호리카와 유람선 — 한국어 안내</a></span></div>
+<div class="link"><span class="kind">공식</span><span><a href="https://www.adachi-museum.or.jp/en/shuttle-bus">아다치미술관 — 무료 셔틀버스</a></span></div>
+<div class="link"><span class="kind">공식</span><span><a href="https://flyairseoul.com/CW/ko/differentTravel_yonago.do">에어서울 — 요나고 취항지 소개</a></span></div>
+</div></section>
+<footer><p><b>에어서울 요나고편은 하루 한 편</b>(인천 13:20 출발, 귀국편 인천 17:40 도착)이라 좌석을 먼저 잡아야 한다. 고타쓰 배는 12/1~3/31, 마쓰바가니는 11/6~3/20.</p><p>사진 · <a href="https://commons.wikimedia.org/wiki/File:Matsue_Castle_Keep_Tower_20170126-1.jpg">마쓰에성</a> CC BY-SA 4.0 Suicasmo · <a href="https://commons.wikimedia.org/wiki/File:Kaike_onsen04n4592.jpg">가이케 해안</a> CC BY 2.5 663highland · <a href="https://commons.wikimedia.org/wiki/File:The_gardens_of_the_Adachi_Museum_of_Art_20170127.jpg">아다치미술관 정원</a> CC BY-SA 4.0 Suicasmo · <a href="https://commons.wikimedia.org/wiki/File:Matsue_Horikawa_Pleasure_Boat_ac.jpg">호리카와 유람선</a> CC BY-SA 4.0 Asturio Cantabrio · <a href="https://commons.wikimedia.org/wiki/File:140426_Tamatsukuri_Onsen_Matsue_Shimane_pref_Japan01n.jpg">타마쓰쿠리온천</a> CC BY 2.5 663highland · <a href="https://commons.wikimedia.org/wiki/File:%E3%81%8B%E3%81%AB%E3%81%99%E3%81%8D%EF%BC%88%E3%82%AB%E3%83%8B%E9%8D%8B%EF%BC%89.jpg">카니스키</a> CC0 — Wikimedia Commons</p></footer>
+</section>
+</div>
+<script>
+  const OPTIONS = [{"id": "sendai", "name": "센다이 + 아키우온천", "tag": "균형형"}, {"id": "hakodate", "name": "하코다테 + 유노카와", "tag": "최소 이동형"}, {"id": "kanazawa", "name": "가나자와 + 유와쿠", "tag": "도시 품격형"}, {"id": "aomori", "name": "아오모리 + 아사무시", "tag": "설국형"}, {"id": "yonago", "name": "요나고·마쓰에 + 가이케", "tag": "산인 미식형"}];
+  const VIEWS = ["compare", "sendai", "hakodate", "kanazawa", "aomori", "yonago"];
+
+  const $ = (id) => document.getElementById(id);
+
+  /* ---------- 탭 전환 ---------- */
+  function show(name, push) {
+    if (!VIEWS.includes(name)) name = "compare";
+    VIEWS.forEach((v) => {
+      const el = $("view-" + v), tab = $("tab-" + v);
+      if (el) el.hidden = v !== name;
+      if (tab) tab.setAttribute("aria-selected", String(v === name));
+    });
+    if (push && location.hash !== "#" + name) history.replaceState(null, "", "#" + name);
+    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+  }
+  document.querySelectorAll(".tab").forEach((t) =>
+    t.addEventListener("click", () => show(t.dataset.view, true)));
+  document.querySelectorAll("[data-goto]").forEach((b) =>
+    b.addEventListener("click", () => show(b.dataset.goto, true)));
+  window.addEventListener("hashchange", () => show(location.hash.slice(1), false));
+  show(location.hash.slice(1) || "compare", false);
+
+  /* ---------- 투표 ---------- */
+  const picksEl = $("picks"), tallyEl = $("tally"), voicesEl = $("voices");
+  const nameEl = $("voter-name"), reasonEl = $("voter-reason"), sendEl = $("send"), statusEl = $("status");
+  let chosen = null, db = null, votes = [];
+
+  let voterId;
+  try {
+    voterId = localStorage.getItem("onsen-voter");
+    if (!voterId) { voterId = "v" + Math.random().toString(36).slice(2, 10); localStorage.setItem("onsen-voter", voterId); }
+    const saved = localStorage.getItem("onsen-name");
+    if (saved) nameEl.value = saved;
+  } catch (e) { voterId = "v" + Math.random().toString(36).slice(2, 10); }
+
+  OPTIONS.forEach((o) => {
+    const el = document.createElement("label");
+    el.className = "pick"; el.dataset.on = "0";
+    el.innerHTML = '<input type="radio" name="choice" value="' + o.id + '" id="pick-' + o.id + '">' +
+      "<span>" + o.name + "</span>" + '<span class="who" data-who="' + o.id + '"></span>';
+    el.querySelector("input").addEventListener("change", () => {
+      chosen = o.id;
+      [...picksEl.children].forEach((c) => (c.dataset.on = "0"));
+      el.dataset.on = "1";
+      syncSend();
+    });
+    picksEl.appendChild(el);
+  });
+
+  nameEl.addEventListener("input", syncSend);
+  function syncSend() { sendEl.disabled = !(chosen && nameEl.value.trim() && db); }
+  function esc(s) { return String(s).replace(/[<>&"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;" }[c])); }
+
+  function render() {
+    const counts = Object.fromEntries(OPTIONS.map((o) => [o.id, 0]));
+    votes.forEach((v) => { if (counts[v.choice] !== undefined) counts[v.choice]++; });
+    const total = votes.length;
+    tallyEl.innerHTML = "";
+    OPTIONS.forEach((o) => {
+      const n = counts[o.id], pct = total ? Math.round((n / total) * 100) : 0;
+      const row = document.createElement("div");
+      row.className = "tally-row";
+      row.innerHTML = '<div class="tally-head"><b>' + o.name + "</b><span>" + n +
+        (total ? " · " + pct + "%" : "") + '</span></div><div class="meter"><i style="width:' +
+        (total ? pct : 0) + '%"></i></div>';
+      tallyEl.appendChild(row);
+      const chip = picksEl.querySelector('[data-who="' + o.id + '"]');
+      if (chip) chip.textContent = votes.filter((v) => v.choice === o.id).map((v) => v.name).join(", ");
+    });
+    const withReason = votes.filter((v) => v.reason);
+    voicesEl.hidden = withReason.length === 0;
+    voicesEl.innerHTML = withReason.map((v) => {
+      const o = OPTIONS.find((x) => x.id === v.choice);
+      return '<p class="voice"><b>' + esc(v.name) + "</b> <em>" + (o ? o.name : "") + "</em><br>" + esc(v.reason) + "</p>";
+    }).join("");
+  }
+  render();
+
+  (async () => {
+    db = await (window.claude?.use ? window.claude.use("db") : Promise.resolve(null));
+    if (!db) {
+      // 저장소가 없는 화면(정적 호스팅 등) — 고른 내용을 복사해 보내는 방식으로 대신한다
+      statusEl.textContent = "고른 다음 아래 버튼을 누르면 문장이 복사돼. 그대로 보내주면 돼.";
+      sendEl.textContent = "고른 내용 복사하기";
+      const sync0 = () => { sendEl.disabled = !(chosen && nameEl.value.trim()); };
+      nameEl.addEventListener("input", sync0);
+      picksEl.addEventListener("change", sync0);
+      sync0();
+      sendEl.addEventListener("click", async () => {
+        const o = OPTIONS.find((x) => x.id === chosen);
+        const text = nameEl.value.trim() + "의 선택: " + (o ? o.name : "") +
+          (reasonEl.value.trim() ? " — " + reasonEl.value.trim() : "");
+        try {
+          await navigator.clipboard.writeText(text);
+          statusEl.textContent = "복사했어 → " + text;
+        } catch (e) {
+          statusEl.textContent = text;
+        }
+      });
+      return;
+    }
+    statusEl.textContent = "투표는 바로 서로에게 보입니다.";
+    syncSend();
+    db.collection("votes").onSnapshot((snap) => {
+      votes = snap.docs.map((d) => d.data()).filter((d) => d && d.choice);
+      render();
+      const mine = votes.find((v) => v.id === voterId);
+      if (mine && !chosen) {
+        chosen = mine.choice;
+        const input = document.getElementById("pick-" + mine.choice);
+        if (input) { input.checked = true; input.closest(".pick").dataset.on = "1"; }
+        if (!nameEl.value) nameEl.value = mine.name || "";
+        if (!reasonEl.value) reasonEl.value = mine.reason || "";
+        syncSend();
+      }
+    });
+    sendEl.addEventListener("click", async () => {
+      if (!chosen || !nameEl.value.trim()) return;
+      sendEl.disabled = true;
+      const payload = { id: voterId, name: nameEl.value.trim().slice(0, 20), choice: chosen,
+                        reason: reasonEl.value.trim().slice(0, 60), ts: Date.now() };
+      try { localStorage.setItem("onsen-name", payload.name); } catch (e) {}
+      try {
+        await db.doc("votes/" + voterId).set(payload);
+        statusEl.textContent = "투표했습니다. 마음이 바뀌면 다시 고르면 됩니다.";
+      } catch (e) {
+        statusEl.textContent = "저장하지 못했습니다. 잠시 뒤 다시 눌러 주세요.";
+      }
+      syncSend();
+    });
+  })();
+</script>
