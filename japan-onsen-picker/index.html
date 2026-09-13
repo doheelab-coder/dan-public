@@ -272,6 +272,26 @@
   }
 
   @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+  /* 가중치 조절 */
+  .weights{background:var(--sunk);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:16px}
+  .weights .wh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+  .weights .wh b{font-family:var(--display);font-size:15px}
+  .weights .wh button{font-family:var(--body);font-size:12px;color:var(--water);background:none;
+       border:1px solid var(--line);border-radius:999px;padding:3px 11px;cursor:pointer}
+  .wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px 20px}
+  @media (max-width:720px){.wgrid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.wgrid{grid-template-columns:1fr}}
+  .wrow{display:flex;align-items:center;gap:9px}
+  .wrow label{font-size:13px;color:var(--soft);white-space:nowrap;min-width:62px;flex:0 0 auto}
+  .wrow input[type=range]{flex:1;min-width:56px;accent-color:var(--water)}
+  .wrow .wv{font-family:var(--mono);font-size:11px;color:var(--steam);min-width:26px;text-align:right}
+  .wrow[data-off="1"] label,.wrow[data-off="1"] .wv{opacity:.4}
+  .passed{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--soft);
+       background:var(--water-soft);border-radius:8px;padding:10px 13px;margin-bottom:16px}
+  .passed b{color:var(--ink);font-weight:500}
+  table.matrix td.flight{font-size:12px;line-height:1.5;color:var(--soft);white-space:normal}
+  table.matrix td.flight em{font-style:normal;color:var(--accent);font-weight:500}
 </style>
 <div class="wrap">
 <nav class="tabs" role="tablist" aria-label="여행지">
@@ -288,65 +308,18 @@
 <p class="thesis">조용하고, 도시도 볼 수 있고, 미식과 온천을 겸한다.</p>
 <p style="font-size:14px;color:var(--soft);max-width:40em">이안아, 12~1월에 3박 4일로 갈 겨울 온천 여행지를 다섯 곳으로 추렸어. 같은 기준으로 점수를 매겨봤고, 도시마다 탭을 눌러보면 일정·숙소·비용까지 볼 수 있어. <b>다 보고 맨 아래에서 한 곳만 골라줘.</b></p>
 <div class="terms"><span class="term"><b>프라이빗 온천</b> 필수</span><span class="term"><b>미식</b> 필수</span><span class="term"><b>이동</b> 한 구간 2시간 이내</span><span class="term"><b>여유로운 일정</b></span><span class="term"><b>사람 많은 곳</b> 제외</span><span class="term"><b>숙소 이동</b> 무관</span></div></header>
-<section><div class="sec-head"><h2>같은 자로 잰 결과</h2><p class="sec-note">다섯 칸이 만점. 판정 근거는 각 도시 탭의 수치에 있다.</p></div><div class="matrix-scroll"><table class="matrix"><tbody>
-<tr><th style="border-bottom:2px solid var(--ink)"></th>
-<th>센다이<span>아키우온천</span></th>
-<th>하코다테<span>유노카와온천</span></th>
-<th>가나자와<span>유와쿠온천</span></th>
-<th>아오모리<span>아사무시온천</span></th>
-<th>요나고·마쓰에<span>가이케온천</span></th>
-</tr>
-<tr><th scope="row">조용함<small>사람에 치이지 않는가</small></th>
-<td><span class="score">4</span></td>
-<td><span class="score">4</span></td>
-<td><span class="score weak">3</span></td>
-<td><span class="score">5</span></td>
-<td><span class="score">5</span></td>
-</tr>
-<tr><th scope="row">도시<small>볼거리가 있는 시내</small></th>
-<td><span class="score">5</span></td>
-<td><span class="score">4</span></td>
-<td><span class="score">5</span></td>
-<td><span class="score weak">3</span></td>
-<td><span class="score">4</span></td>
-</tr>
-<tr><th scope="row">미식<small>겨울 제철이 분명한가</small></th>
-<td><span class="score">5</span></td>
-<td><span class="score">5</span></td>
-<td><span class="score">5</span></td>
-<td><span class="score">5</span></td>
-<td><span class="score">5</span></td>
-</tr>
-<tr><th scope="row">프라이빗 온천<small>객실 전용탕</small></th>
-<td><span class="score">4</span></td>
-<td><span class="score">5</span></td>
-<td><span class="score">4</span></td>
-<td><span class="score">4</span></td>
-<td><span class="score">4</span></td>
-</tr>
-<tr><th scope="row">이동<small>한 구간 2시간 이내</small></th>
-<td><span class="score">5</span></td>
-<td><span class="score">5</span></td>
-<td><span class="score">4</span></td>
-<td><span class="score">5</span></td>
-<td><span class="score">5</span></td>
-</tr>
-<tr><th scope="row">겨울 풍경<small>눈이 오는가</small></th>
-<td><span class="score weak">3</span></td>
-<td><span class="score">5</span></td>
-<td><span class="score">5</span></td>
-<td><span class="score">5</span></td>
-<td><span class="score">4</span></td>
-</tr>
-<tr class="total"><th scope="row">합계</th>
-<td><span class="sum">26<small>/30</small></span></td>
-<td><span class="sum">28<small>/30</small></span></td>
-<td><span class="sum">26<small>/30</small></span></td>
-<td><span class="sum">27<small>/30</small></span></td>
-<td><span class="sum">27<small>/30</small></span></td>
-</tr>
-</tbody></table></div>
-<p class="sec-note" style="margin-top:14px">합계는 여섯 축을 같은 무게로 더한 값이다. 어느 축을 더 치느냐에 따라 순서는 바뀐다 — 이동이 최우선이면 하코다테, 도시가 최우선이면 센다이·가나자와, 조용함과 대게면 아오모리·요나고다.</p>
+<section><div class="sec-head"><h2>같은 자로 잰 결과</h2><p class="sec-note">다섯 칸이 만점. 아래 손잡이로 무엇을 더 칠지 직접 바꿔볼 수 있다.</p></div>
+
+<div class="passed"><span>✓</span><div><b>미식은 다섯 곳 다 만점이라 표에서 뺐다.</b> 굴·대게·참치·노도구로 — 어디를 골라도 겨울 제철은 확실하다. 모두가 같은 점수인 항목은 순위를 가르지 못하므로 점수가 아니라 통과 조건으로 둔다.</div></div>
+
+<div class="weights">
+  <div class="wh"><b>무엇을 더 치나</b><button id="w-reset" type="button">고르게 되돌리기</button></div>
+  <div class="wgrid" id="wgrid"></div>
+</div>
+
+<div class="matrix-scroll"><table class="matrix"><tbody id="matrix-body"></tbody></table></div>
+<p class="sec-note" style="margin-top:14px">손잡이를 0으로 내리면 그 축은 합계에서 빠진다. 고르게 둔 기본값에서는 <b>하코다테</b>가 앞서고, 조용함을 올리면 아오모리·요나고가, 도시를 올리면 센다이·가나자와가 올라온다.</p>
+<p class="sec-note" style="margin-top:8px">이동 점수는 <b>현지 이동 시간뿐 아니라 인천발 직항의 운항 요일</b>까지 반영한 값이다. 주 3회 노선은 3박 4일 일정에서 출발·귀국 요일이 강제된다. 비용은 1인 기준 범위의 중앙값으로 매겼다.</p>
 </section>
 <section><div class="sec-head"><h2>어디에 있나</h2><p class="sec-note">회색 점은 위치를 가늠하기 위한 참고점(도쿄·오사카)이다.</p></div><div class="mapwrap"><img src="japan-map.png" alt="일본 지도 위 다섯 후보의 위치">
 <div class="pin left" style="left:63.4%;top:23.5%"><span>하코다테</span></div>
@@ -500,7 +473,7 @@
 <tr><td>교통</td><td class="num">4~6만원</td><td>공항철도·루플 1일권·센세키선·아키우 버스</td></tr>
 <tr><td>식비</td><td class="num">15~20만원</td><td>규탄·굴·이자카야. 셋째 날 저녁은 숙박비에 포함</td></tr>
 <tr><td>입장·체험</td><td class="num">3~5만원</td><td>즈이호덴·유람선·하버라이트</td></tr>
-</tbody><tfoot><tr><td>합계</td><td class="num">약 72~106만원</td><td>네 후보 중 가장 낮은 편</td></tr></tfoot></table></div></section>
+</tbody><tfoot><tr><td>합계</td><td class="num">약 72~106만원</td><td>다섯 후보 중 가장 낮다</td></tr></tfoot></table></div></section>
 <section><div class="sec-head"><h2>한국어로 미리 보기</h2><p class="sec-note">한국어로 된 공식 가이드와 코스 정리.</p></div><div class="links">
 <div class="link"><span class="kind">공식</span><span><a href="https://kr.visitmiyagi.com/model_course/sendai-akiu-day-trip/">VISIT MIYAGI 한국어 — 아키우 온천·와이너리·공방 마을 코스</a></span></div>
 <div class="link"><span class="kind">공식</span><span><a href="https://discoversendai.travel/places/akiu-onsen/">Discover Sendai — 아키우온천 소개</a></span></div>
@@ -513,7 +486,7 @@
 <section id="view-hakodate" class="view" data-accent="hakodate" role="tabpanel" aria-labelledby="tab-hakodate" hidden>
 <header class="masthead"><div class="eyebrow">3박 4일 · 12~1월 · 2인</div>
 <h1>하코다테와 유노카와온천<span>HAKODATE · YUNOKAWA ONSEN — 홋카이도</span></h1>
-<p class="lede">공항에서 온천까지 버스로 6분. 네 후보 중 이동이 가장 짧고, 겨울 해산물이 가장 세다.</p></header>
+<p class="lede">공항에서 온천까지 버스로 6분. 다섯 후보 중 이동이 가장 짧고, 겨울 해산물이 가장 세다.</p></header>
 <figure><img src="hakodate-night.jpg" alt="산 위에서 내려다본 항구 도시의 야경" loading="lazy"><figcaption>하코다테산 야경 — 양쪽이 바다로 좁아지는 지형 때문에 도시가 빛의 띠로 보인다</figcaption></figure>
 <section><div class="sec-head"><h2>조건과 맞춰보기</h2><p class="sec-note">이동을 줄이는 것이 목적이라면 이 후보가 압도적이다.</p></div><div class="fit">
 <div class="fit-row"><div class="fit-key">이동</div><div class="fit-val">하코다테공항에서 유노카와온천까지 <b>버스 6분</b>. 시내는 노면전차로 20~30분이면 닿는다.</div></div>
@@ -568,7 +541,7 @@
 <section><div class="sec-head"><h2>총 가격대</h2><p class="sec-note">2인 동행 기준, 1인 금액. 온천 3박이라 숙박 비중이 크다.</p></div><div class="tw"><table class="cost"><tbody><tr><th>항목</th><th class="num">1인 기준</th><th>메모</th></tr>
 <tr><td>항공</td><td class="num">25~40만원</td><td>제주항공 직항 (2025년 6월 개설)</td></tr>
 <tr><td>숙박</td><td class="num">30~45만원</td><td>유노카와 객실 노천탕 3박(1박 2식 기준). 1박을 시내 호텔로 바꾸면 내려간다</td></tr>
-<tr><td>교통</td><td class="num">3~5만원</td><td>공항버스 6분, 노면전차 1일권. 네 후보 중 교통비가 가장 적다</td></tr>
+<tr><td>교통</td><td class="num">3~5만원</td><td>공항버스 6분, 노면전차 1일권. 다섯 후보 중 교통비가 가장 적다</td></tr>
 <tr><td>식비</td><td class="num">15~22만원</td><td>아침시장 해산물, 시오라멘, 대게</td></tr>
 <tr><td>입장·체험</td><td class="num">3~5만원</td><td>로프웨이·고료카쿠 타워</td></tr>
 </tbody><tfoot><tr><td>합계</td><td class="num">약 76~117만원</td><td>숙박 등급에 따라 폭이 가장 크다</td></tr></tfoot></table></div></section>
@@ -588,7 +561,7 @@
 <section><div class="sec-head"><h2>조건과 맞춰보기</h2><p class="sec-note">도시와 미식을 가장 크게 얻는 대신, 이동이 조금 길고 사람이 조금 많다.</p></div><div class="fit">
 <div class="fit-row"><div class="fit-key">이동</div><div class="fit-val">고마쓰공항에서 시내까지 리무진버스, 시내에서 유와쿠온천까지 <b>차 20~25분</b>. 모두 한 시간 안이다.</div></div>
 <div class="fit-row"><div class="fit-key">프라이빗</div><div class="fit-val">유와쿠는 여관이 8곳뿐이고 객실 노천탕을 둔 곳은 그중 몇 곳이다. <b>일찍 잡아야 한다.</b></div></div>
-<div class="fit-row"><div class="fit-key">미식</div><div class="fit-val">겨울 즈와이가니(대게), 노도구로, 오뎅, 오미초시장. 네 후보 중 미식의 폭이 가장 넓다.</div></div>
+<div class="fit-row"><div class="fit-key">미식</div><div class="fit-val">겨울 즈와이가니(대게), 노도구로, 오뎅, 오미초시장. 다섯 후보 중 미식의 폭이 가장 넓다.</div></div>
 <div class="fit-row"><div class="fit-key">도시</div><div class="fit-val">겐로쿠엔, 히가시차야가이, 가나자와성, 21세기미술관. 도시 자체가 관광지다.</div></div>
 <div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">유와쿠는 조용하지만 <b>겐로쿠엔·차야가이는 관광객이 많다.</b> 이른 아침에 도는 편이 낫다.</div></div>
 <div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">호쿠리쿠라 눈이 많다. 겐로쿠엔 유키즈리 야간 라이트업은 1월 하순~2월.</div></div>
@@ -642,7 +615,7 @@
 <tr><td>교통</td><td class="num">4~6만원</td><td>리무진버스 왕복, 시내버스, 유와쿠 송영</td></tr>
 <tr><td>식비</td><td class="num">20~30만원</td><td>대게가 들어가면 한 끼에 크게 오른다</td></tr>
 <tr><td>입장·체험</td><td class="num">3~5만원</td><td>겐로쿠엔·가나자와성·21세기미술관</td></tr>
-</tbody><tfoot><tr><td>합계</td><td class="num">약 87~131만원</td><td>네 후보 중 가장 높다 — 대게와 유와쿠 숙박이 이유</td></tr></tfoot></table></div></section>
+</tbody><tfoot><tr><td>합계</td><td class="num">약 87~131만원</td><td>다섯 후보 중 가장 높다 — 대게와 유와쿠 숙박이 이유</td></tr></tfoot></table></div></section>
 <section><div class="sec-head"><h2>한국어로 미리 보기</h2><p class="sec-note">가나자와는 한국어 공식 사이트가 충실하다.</p></div><div class="links">
 <div class="link"><span class="kind">공식</span><span><a href="https://visitkanazawa.jp/kr/feature/detail_238.html">Visit Kanazawa 한국어 — 겨울 가나자와의 매력</a></span></div>
 <div class="link"><span class="kind">후기</span><span><a href="https://brunch.co.kr/@kimmovie21/10">브런치 — 겐로쿠엔과 가나자와성</a></span></div>
@@ -662,7 +635,7 @@
 <div class="fit-row"><div class="fit-key">미식</div><div class="fit-val">무쓰만 해산물, 오마 참치, 겨울 대게, 사과. 시장에서 덮밥을 직접 만들어 먹는 노케동이 명물.</div></div>
 <div class="fit-row"><div class="fit-key">도시</div><div class="fit-val">아오모리 시내에 네부타 박물관·A-FACTORY·미술관이 모여 있다. 규모는 작지만 실내 볼거리가 많다.</div></div>
 <div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">겨울 비수기에는 사람이 적다. 아사무시는 역 앞 족욕이 있는 작은 온천마을이다.</div></div>
-<div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">네 후보 중 눈이 가장 많다. 대신 폭설로 열차가 지연될 수 있다.</div></div>
+<div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">다섯 후보 중 눈이 가장 많다. 대신 폭설로 열차가 지연될 수 있다.</div></div>
 </div></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">추운 지역이라 실내 일정을 중심에 두고, 야외는 짧게 끊었다.</p></div><div class="days">
 <article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>도착하고 실내부터</h3><span class="day-stay">아오모리 1박</span></div><div class="steps">
@@ -803,6 +776,97 @@
   const VIEWS = ["compare", "sendai", "hakodate", "kanazawa", "aomori", "yonago"];
 
   const $ = (id) => document.getElementById(id);
+
+  /* ---------- 비교표 + 가중치 ---------- */
+  const AXES = [
+    { key: "quiet",   name: "조용함",       note: "사람에 치이지 않는가" },
+    { key: "city",    name: "도시",         note: "볼거리가 있는 시내" },
+    { key: "private", name: "프라이빗 온천", note: "객실 전용탕" },
+    { key: "move",    name: "이동",         note: "현지 이동 + 직항 요일" },
+    { key: "winter",  name: "겨울 풍경",     note: "눈이 오는가" },
+    { key: "cost",    name: "비용",         note: "쌀수록 높다" },
+  ];
+  const CITIES = [
+    { id: "sendai", name: "센다이", sub: "아키우온천",
+      s: { quiet: 4, city: 5, private: 4, move: 5, winter: 3, cost: 5 },
+      flight: '아시아나 <em>매일</em> 1회', cost: "72~106만" },
+    { id: "hakodate", name: "하코다테", sub: "유노카와온천",
+      s: { quiet: 4, city: 4, private: 5, move: 5, winter: 5, cost: 4 },
+      flight: '제주·아시아나·JAL <em>복수 운항</em>', cost: "76~117만" },
+    { id: "kanazawa", name: "가나자와", sub: "유와쿠온천",
+      s: { quiet: 3, city: 5, private: 4, move: 3, winter: 5, cost: 3 },
+      flight: '대한항공(고마쓰) <em>요일 확인 필요</em>', cost: "87~131만" },
+    { id: "aomori", name: "아오모리", sub: "아사무시온천",
+      s: { quiet: 5, city: 3, private: 4, move: 3, winter: 5, cost: 4 },
+      flight: '대한항공 <em>주 3회</em>', cost: "73~114만" },
+    { id: "yonago", name: "요나고·마쓰에", sub: "가이케온천",
+      s: { quiet: 5, city: 4, private: 4, move: 4, winter: 4, cost: 2 },
+      flight: '에어서울 <em>주 5회</em> (월·금 없음)', cost: "89~138만" },
+  ];
+  const weights = Object.fromEntries(AXES.map((a) => [a.key, 1]));
+
+  function drawMatrix() {
+    const body = $("matrix-body");
+    if (!body) return;
+    const totals = CITIES.map((c) =>
+      AXES.reduce((sum, a) => sum + c.s[a.key] * weights[a.key], 0));
+    const max = AXES.reduce((sum, a) => sum + 5 * weights[a.key], 0);
+    const best = Math.max(...totals);
+
+    let html = '<tr><th style="border-bottom:2px solid var(--ink)"></th>' +
+      CITIES.map((c) => "<th>" + c.name + "<span>" + c.sub + "</span></th>").join("") + "</tr>";
+
+    AXES.forEach((a) => {
+      const off = weights[a.key] === 0;
+      const label = weights[a.key] === 1 ? "" :
+        ' <small style="display:inline;color:var(--accent)">×' + weights[a.key] + "</small>";
+      html += '<tr' + (off ? ' style="opacity:.38"' : "") + '><th scope="row">' + a.name + label +
+        "<small>" + a.note + "</small></th>" +
+        CITIES.map((c) => {
+          const v = c.s[a.key];
+          return '<td><span class="score' + (v <= 3 ? " weak" : "") + '">' + v + "</span></td>";
+        }).join("") + "</tr>";
+    });
+
+    html += '<tr><th scope="row">인천발 직항<small>3박 4일 일정을 좌우한다</small></th>' +
+      CITIES.map((c) => '<td class="flight">' + c.flight + "</td>").join("") + "</tr>";
+    html += '<tr><th scope="row">1인 비용<small>3박 4일 · 2인 기준</small></th>' +
+      CITIES.map((c) => '<td class="flight">' + c.cost + "원</td>").join("") + "</tr>";
+
+    html += '<tr class="total"><th scope="row">합계</th>' +
+      totals.map((t) => "<td>" + (t === best && max > 0 ? "<b>" + t + "/" + max + "</b>" : t + "/" + max) + "</td>").join("") + "</tr>";
+    body.innerHTML = html;
+  }
+
+  function drawWeights() {
+    const grid = $("wgrid");
+    if (!grid) return;
+    grid.innerHTML = "";
+    AXES.forEach((a) => {
+      const row = document.createElement("div");
+      row.className = "wrow";
+      row.dataset.off = weights[a.key] === 0 ? "1" : "0";
+      row.innerHTML = '<label for="w-' + a.key + '">' + a.name + "</label>" +
+        '<input type="range" id="w-' + a.key + '" min="0" max="3" step="1" value="' + weights[a.key] +
+        '" aria-label="' + a.name + ' 가중치"><span class="wv">×' + weights[a.key] + "</span>";
+      const input = row.querySelector("input");
+      input.addEventListener("input", () => {
+        weights[a.key] = Number(input.value);
+        row.dataset.off = weights[a.key] === 0 ? "1" : "0";
+        row.querySelector(".wv").textContent = "×" + weights[a.key];
+        drawMatrix();
+      });
+      grid.appendChild(row);
+    });
+  }
+  drawWeights();
+  drawMatrix();
+  $("w-reset")?.addEventListener("click", () => {
+    AXES.forEach((a) => (weights[a.key] = 1));
+    drawWeights();
+    drawMatrix();
+  });
+
 
   /* ---------- 탭 전환 ---------- */
   function show(name, push) {
