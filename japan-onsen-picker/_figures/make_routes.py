@@ -21,7 +21,7 @@ plt.rcParams["axes.unicode_minus"] = False
 DISPLAY = "Nanum Myeongjo"   # 페이지 제목 서체(--display)와 맞춘다
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, "..")
+OUT = os.path.join(HERE, "out")
 
 THEMES = {
     "light": dict(sea="#D3E2DF", land="#F7F4EF", edge="#B9C8C5",
@@ -47,9 +47,9 @@ ROUTES = {
             ("마츠시마", 38.3697, 141.0603, "spot"),
             ("아키우온천", 38.2361, 140.7183, "stay"),
         ],
-        "legs": [(0, 1, "공항철도 25분"), (1, 2, "JR 40분"), (2, 3, "버스 50분")],
-        "stays": {1: "1·2박", 3: "3박"},
-        "note": "시내 2박 → 아키우온천 1박. 모든 구간이 한 시간 안이다.",
+        "legs": [(0, 1, "공항철도 25분"), (1, 2, "JR 40분"), (2, 3, "JR 40분 + 버스 50분")],
+        "stays": {1: "1박", 3: "2·3박"},
+        "note": "시내 1박 → 아키우온천 2박. 모든 구간이 한 시간 안이다.",
     },
     "hakodate": {
         "title": "하코다테 · 유노카와온천",
@@ -76,8 +76,8 @@ ROUTES = {
             ("유와쿠온천", 36.4783, 136.7500, "stay"),
         ],
         "legs": [(0, 1, "리무진 40분"), (1, 2, "차 25분 (송영)")],
-        "stays": {1: "1·2박", 2: "3박"},
-        "note": "시내 2박 → 유와쿠온천 1박. 여관 무료 송영이 있다.",
+        "stays": {1: "1박", 2: "2·3박"},
+        "note": "시내 1박 → 유와쿠온천 2박. 여관 무료 송영이 있다.",
     },
     "aomori": {
         "title": "아오모리 · 아사무시온천",
@@ -217,11 +217,8 @@ def draw(key, cfg, prefs, theme="light"):
         else:
             mag = math.hypot(vx, vy)
             ux, uy = (0.0, -1.0) if mag < 1e-9 else (-vx / mag, -vy / mag)
-        dy = (y1 - y0) * (0.098 if "\n" in name else 0.086)
+        dy = (y1 - y0) * (0.090 if "\n" in name else 0.077)
         dx = dy / kx
-        if abs(ux) > 0.7:
-            # 옆으로 놓을 때는 간격을 세로 기준으로 잡으면 노드를 비껴가지 못한다
-            dx *= 2.1
         ax.text(lon + ux * dx, lat + uy * dy, name, fontsize=11,
                 color=C["ink"], weight="bold" if kind != "spot" else "normal",
                 ha="center", va="center", zorder=8,
