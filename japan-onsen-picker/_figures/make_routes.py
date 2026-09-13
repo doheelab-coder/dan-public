@@ -16,18 +16,24 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch
 
-FONT = "Pretendard"
-plt.rcParams["font.family"] = FONT
+plt.rcParams["font.family"] = "Pretendard"
 plt.rcParams["axes.unicode_minus"] = False
+DISPLAY = "Nanum Myeongjo"   # 페이지 제목 서체(--display)와 맞춘다
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..")
 
-SEA = "#DCE7E5"
-LAND = "#F4F1EC"
-LAND_EDGE = "#CBD4D2"
-INK = "#17211F"
-SOFT = "#5B6B68"
+THEMES = {
+    "light": dict(sea="#D3E2DF", land="#F7F4EF", edge="#B9C8C5",
+                  ink="#17211F", soft="#6B7B78", label="#FFFFFF", bg="#FFFFFF"),
+    "dark":  dict(sea="#0E1615", land="#2A3734", edge="#47574F",
+                  ink="#E7EDEB", soft="#93A5A2", label="#1A2321", bg="#121918"),
+}
+# 도시 강조색 — 라이트 / 다크
+ACCENTS = {
+    "#B5632F": "#D98A52", "#2F6B8F": "#6FB0D4", "#9E3B4A": "#D4788A",
+    "#3F6B4A": "#7FB68C", "#6B5B8F": "#A79BC9",
+}
 
 # 지점: (이름, 위도, 경도, 종류)  종류 — air 공항 · stay 숙박 · spot 관광
 ROUTES = {
@@ -125,7 +131,9 @@ def load_prefs(path):
     return out
 
 
-def draw(key, cfg, prefs):
+def draw(key, cfg, prefs, theme="light"):
+    C = THEMES[theme]
+    accent = cfg["accent"] if theme == "light" else ACCENTS[cfg["accent"]]
     pts = cfg["points"]
     lats = [p[1] for p in pts]
     lons = [p[2] for p in pts]
@@ -133,47 +141,53 @@ def draw(key, cfg, prefs):
     if "zoom" in cfg:
         y0, y1, x0, x1 = cfg["zoom"]
     else:
-        pad_y = max((max(lats) - min(lats)) * 0.55, 0.10)
-        pad_x = max((max(lons) - min(lons)) * 0.45, 0.13)
+        # 여백은 동선을 담을 만큼만 — 넓으면 빈 땅만 보인다
+        pad_y = max((max(lats) - min(lats)) * 0.34, 0.075)
+        pad_x = max((max(lons) - min(lons)) * 0.26, 0.10)
         y0, y1 = min(lats) - pad_y, max(lats) + pad_y
         x0, x1 = min(lons) - pad_x, max(lons) + pad_x
 
     # 경도 1도는 위도에 따라 짧아진다 — 화면 비율을 실제 거리에 맞춘다
     kx = math.cos(math.radians((y0 + y1) / 2))
     w, h = (x1 - x0) * kx, (y1 - y0)
-    fig_w = 7.2
+    fig_w = 7.4
     fig, ax = plt.subplots(figsize=(fig_w, fig_w * h / w))
-    fig.patch.set_facecolor("white")
-    ax.set_facecolor(SEA)
+    fig.patch.set_facecolor(C["bg"])
+    ax.set_facecolor(C["sea"])
 
     for name in cfg["prefs"]:
         for ring in prefs.get(name, []):
-            ax.fill(*zip(*ring), facecolor=LAND, edgecolor=LAND_EDGE, linewidth=0.7, zorder=1)
+            ax.fill(*zip(*ring), facecolor=C["land"], edgecolor=C["edge"],
+                    linewidth=0.8, zorder=1)
 
-    accent = cfg["accent"]
     for a, b, label in cfg["legs"]:
         (_, ya, xa), (_, yb, xb) = pts[a][:3], pts[b][:3]
-        ax.add_patch(FancyArrowPatch(
-            (xa, ya), (xb, yb), arrowstyle="-|>", mutation_scale=15,
-            linewidth=2.0, color=accent, alpha=.85, zorder=4,
-            connectionstyle="arc3,rad=0.14", shrinkA=13, shrinkB=15))
-        # arc3 곡선의 제어점 → 2차 베지어 t=0.5 지점이 실제 곡선 중앙이다
+        style = dict(connectionstyle="arc3,rad=0.14", shrinkA=14, shrinkB=16)
+        # 같은 곡선을 굵고 연하게 한 번 깔아 선에 두께감을 준다
+        ax.add_patch(FancyArrowPatch((xa, ya), (xb, yb), arrowstyle="-",
+                     linewidth=5.5, color=accent, alpha=.16, zorder=3, **style))
+        ax.add_patch(FancyArrowPatch((xa, ya), (xb, yb), arrowstyle="-|>",
+                     mutation_scale=16, linewidth=2.2, color=accent, alpha=.95,
+                     zorder=4, **style))
         rad = 0.14
         cx = (xa + xb) / 2 + rad * (yb - ya)
         cy = (ya + yb) / 2 - rad * (xb - xa) * kx * kx
         mx, my = (xa + 2 * cx + xb) / 4, (ya + 2 * cy + yb) / 4
         ax.text(mx, my, label, fontsize=9.5, color=accent, weight="bold",
                 ha="center", va="center", zorder=6,
-                bbox=dict(boxstyle="round,pad=0.30", fc="white", ec=accent, lw=0.8, alpha=.97))
+                bbox=dict(boxstyle="round,pad=0.34", fc=C["label"], ec="none"))
 
     for i, p in enumerate(pts):
         name, lat, lon = p[0], p[1], p[2]
         kind = p[3] if len(p) > 3 else "spot"
         marker, size = MARK[kind]
-        ax.scatter([lon], [lat], s=size, marker=marker, color="white",
-                   edgecolors=accent, linewidths=2.3, zorder=7)
+        ax.scatter([lon], [lat], s=size + 110, marker=marker, color=accent,
+                   alpha=.16, linewidths=0, zorder=6)
+        ax.scatter([lon], [lat], s=size, marker=marker, color=C["label"],
+                   edgecolors=accent, linewidths=2.4, zorder=7)
         ax.text(lon, lat, str(i + 1), fontsize=9.5, weight="bold", color=accent,
                 ha="center", va="center", zorder=8)
+
         # 라벨은 그 지점에 붙은 화살표들의 반대편에 둔다 — 안 그러면 화살표가 글자를 관통한다
         forced = p[4] if len(p) > 4 else None
         vx = vy = 0.0
@@ -190,55 +204,48 @@ def draw(key, cfg, prefs):
         else:
             mag = math.hypot(vx, vy)
             ux, uy = (0.0, -1.0) if mag < 1e-9 else (-vx / mag, -vy / mag)
-        dy = (y1 - y0) * (0.082 if "\n" in name else 0.068)
+        dy = (y1 - y0) * (0.090 if "\n" in name else 0.077)
         dx = dy / kx
-        ax.text(lon + ux * dx, lat + uy * dy, name,
-                fontsize=10.5, color=INK, weight="bold" if kind != "spot" else "normal",
+        ax.text(lon + ux * dx, lat + uy * dy, name, fontsize=11,
+                color=C["ink"], weight="bold" if kind != "spot" else "normal",
                 ha="center", va="center", zorder=8,
-                bbox=dict(boxstyle="round,pad=0.30", fc="white", ec="none", alpha=.92))
+                bbox=dict(boxstyle="round,pad=0.34", fc=C["label"], ec="none", alpha=.94))
+
         nights = cfg.get("stays", {}).get(i)
         if nights:
-            lines = name.count("\n") + 1
             # 배지는 라벨과 같은 x에 두고 수직으로 한 줄만 옮긴다.
-            # 가로로 밀면 라벨 글자를 덮고, 노드 쪽으로 당기면 번호를 덮는다.
+            lines = name.count("\n") + 1
             step = (y1 - y0) * 0.045 * lines
             vdir = 1.0 if uy > 0.3 else -1.0
-            ax.text(lon + ux * dx, lat + uy * dy + vdir * step,
-                    nights, fontsize=9, color="white", weight="bold",
+            ax.text(lon + ux * dx, lat + uy * dy + vdir * step, nights,
+                    fontsize=9, color=C["bg"], weight="bold",
                     ha="center", va="center", zorder=9,
-                    bbox=dict(boxstyle="round,pad=0.32", fc=accent, ec="none"))
+                    bbox=dict(boxstyle="round,pad=0.34", fc=accent, ec="none"))
 
     ax.set_xlim(x0, x1)
     ax.set_ylim(y0, y1)
     ax.set_aspect(1 / kx)
     ax.set_xticks([])
     ax.set_yticks([])
-    for s in ax.spines.values():
-        s.set_edgecolor(LAND_EDGE)
+    for sp in ax.spines.values():
+        sp.set_visible(False)
 
-    ax.set_title(cfg["title"], fontsize=14.5, weight="bold", color=INK, pad=11, loc="left")
-    fig.text(0.011, 0.017, cfg["note"], fontsize=10, color=SOFT)
+    ax.set_title(cfg["title"], fontsize=15, color=C["ink"], pad=12, loc="left",
+                 fontfamily=DISPLAY)
+    fig.text(0.012, 0.016, cfg["note"], fontsize=10, color=C["soft"])
 
-    # 축척 — 지도에서 거리를 가늠할 수 있게
+    # 축척 — 거리를 가늠할 수 있게, 눈에 띄지 않게
     km_deg = 111.32 * kx
     bar_km = 10 if (x1 - x0) * km_deg < 90 else 20
-    bx, by = x0 + (x1 - x0) * 0.055, y0 + (y1 - y0) * 0.055
-    ax.plot([bx, bx + bar_km / km_deg], [by, by], color=SOFT, lw=2.4, zorder=9)
-    ax.text(bx + bar_km / km_deg / 2, by + (y1 - y0) * 0.016, f"{bar_km}km",
-            fontsize=8.5, color=SOFT, ha="center", zorder=9)
+    bx, by = x0 + (x1 - x0) * 0.045, y0 + (y1 - y0) * 0.048
+    ax.plot([bx, bx + bar_km / km_deg], [by, by], color=C["soft"], lw=1.8,
+            alpha=.65, zorder=9, solid_capstyle="butt")
+    ax.text(bx + bar_km / km_deg / 2, by + (y1 - y0) * 0.018, f"{bar_km}km",
+            fontsize=8, color=C["soft"], alpha=.8, ha="center", zorder=9)
 
-    ax.scatter([], [], s=90, marker="s", color="white", edgecolors=accent,
-               linewidths=2.0, label="공항")
-    ax.scatter([], [], s=90, marker="o", color="white", edgecolors=accent,
-               linewidths=2.0, label="묵는 곳")
-    ax.scatter([], [], s=55, marker="o", color="white", edgecolors=accent,
-               linewidths=1.6, label="들르는 곳")
-    leg = ax.legend(loc="upper right", fontsize=9, frameon=True, framealpha=.95,
-                    facecolor="white", edgecolor=LAND_EDGE, borderpad=.6, labelspacing=.55)
-    leg.set_zorder(10)
-
-    path = os.path.join(OUT, f"route-{key}.png")
-    fig.savefig(path, dpi=155, bbox_inches="tight", facecolor="white")
+    suffix = "" if theme == "light" else "-dark"
+    path = os.path.join(OUT, f"route-{key}{suffix}.png")
+    fig.savefig(path, dpi=155, bbox_inches="tight", facecolor=C["bg"])
     plt.close(fig)
     return path
 
@@ -246,7 +253,8 @@ def draw(key, cfg, prefs):
 def main():
     prefs = load_prefs(os.path.join(HERE, "japan.geojson"))
     for key, cfg in ROUTES.items():
-        print("생성:", draw(key, cfg, prefs))
+        for theme in ("light", "dark"):
+            print("생성:", os.path.basename(draw(key, cfg, prefs, theme)))
 
 
 if __name__ == "__main__":
