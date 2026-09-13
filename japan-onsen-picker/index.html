@@ -339,13 +339,11 @@
 <p class="thesis">조용하고, 도시도 볼 수 있고, 미식과 온천을 겸한다.</p>
 <p style="font-size:15px;color:var(--soft);max-width:40em">이안아, 12~1월에 3박 4일로 갈 겨울 온천 여행지를 다섯 곳으로 추렸어. 같은 기준으로 점수를 매겨봤고, 도시마다 탭을 눌러보면 일정·숙소·비용까지 볼 수 있어. <b>다 보고 맨 아래에서 한 곳만 골라줘.</b></p>
 <div class="terms"><span class="term"><b>프라이빗 온천</b> 필수</span><span class="term"><b>미식</b> 필수</span><span class="term"><b>이동</b> 한 구간 2시간 이내</span><span class="term"><b>여유로운 일정</b></span><span class="term"><b>사람 많은 곳</b> 제외</span><span class="term"><b>숙소 이동</b> 무관</span></div></header>
-<section><div class="sec-head"><h2>같은 자로 잰 결과</h2><p class="sec-note">다섯 칸이 만점. 아래 손잡이로 무엇을 더 칠지 직접 바꿔볼 수 있다.</p></div>
-<div class="passed"><span>✓</span><div><b>미식은 다섯 곳 다 만점이라 표에서 뺐다.</b> 굴·대게·참치·노도구로 — 어디를 골라도 겨울 제철은 확실하다. 모두가 같은 점수인 항목은 순위를 가르지 못하므로 점수가 아니라 통과 조건으로 둔다. <b>비용도 점수에 넣지 않고</b> 표 아래에 정보로만 둔다.</div></div>
-<div class="weights"><div class="wh"><b>무엇을 더 치나</b><button id="w-reset" type="button">고르게 되돌리기</button></div><div class="wgrid" id="wgrid"></div></div>
+<section><div class="sec-head"><h2>같은 자로 잰 결과</h2><p class="sec-note">다섯 칸이 만점. 판정 근거는 각 도시 탭의 수치에 있다.</p></div>
 <div class="matrix-scroll"><table class="matrix"><tbody id="matrix-body"></tbody></table></div>
 <div class="scores-m" id="scores-m"></div>
-<p class="sc-legend"><b>조용함</b> 사람에 치이지 않는가 · <b>도시</b> 볼거리가 있는 시내 · <b>프라이빗 온천</b> 객실 전용탕 · <b>이동</b> 현지 이동 + 직항 요일 · <b>겨울 풍경</b> 눈이 오는가</p>
-<p class="sec-note" style="margin-top:14px">손잡이를 0으로 내리면 그 축은 합계에서 빠진다. 고르게 둔 기본값에서는 <b>하코다테</b>가 앞서고, 조용함을 올리면 아오모리·요나고가, 도시를 올리면 센다이·가나자와가 올라온다.</p>
+<p class="sc-legend"><b>조용함</b> 사람에 치이지 않는가 · <b>도시</b> 볼거리가 있는 시내 · <b>미식</b> 겨울 제철이 분명한가 · <b>프라이빗 온천</b> 객실 전용탕 · <b>이동</b> 현지 이동 + 직항 요일 · <b>겨울 풍경</b> 눈이 오는가</p>
+<p class="sec-note" style="margin-top:14px">합계는 여섯 축을 같은 무게로 더한 값이다. 미식은 다섯 곳 다 만점이라 순위를 가르지 않고, 비용은 점수에 넣지 않고 표 아래에 정보로만 둔다. 어느 축을 더 치느냐에 따라 순서는 바뀐다 — 이동이 최우선이면 하코다테, 도시가 최우선이면 센다이·가나자와, 조용함과 대게면 아오모리·요나고다.</p>
 <p class="sec-note" style="margin-top:8px">이동 점수는 <b>현지 이동 시간뿐 아니라 인천발 직항의 운항 요일</b>까지 반영한 값이다. 주 3회 노선은 3박 4일 일정에서 출발·귀국 요일이 강제된다.</p>
 </section>
 <section><div class="sec-head"><h2>어디에 있나</h2><p class="sec-note">회색 점은 위치를 가늠하기 위한 참고점(도쿄·오사카)이다.</p></div><div class="mapwrap"><img src="japan-map.png" alt="일본 지도 위 다섯 후보의 위치">
@@ -427,7 +425,7 @@
 <section><div class="sec-head"><h2>재봤지만 뺀 곳</h2><p class="sec-note">이름은 알려져 있지만 이번 조건과 어긋난다. 점수 대신 사유만 적었다.</p></div><div class="dropped">
 <div class="row"><b>마쓰야마·도고온천</b><p>일본에서 가장 오래된 온천이고 비용도 가장 낮다. 그런데 세토우치 기후라 눈이 거의 없어 겨울 풍경이 1점이라 다섯 후보에 들지 못했다. 대신 산인의 요나고·마쓰에를 넣었다.</p></div>
 <div class="row"><b>쿠로카와온천</b><p>온천과 조용함은 최고지만 도시와 이동이 약하다. 쿠로카와엔 도시가 없어 구마모토를 따로 붙여야 하고, 공항에서 규슈횡단버스로 약 2시간이라 이동도 길다.</p></div>
-<div class="row"><b>후쿠오카</b><p>도시와 미식은 다섯 후보 어디에도 밀리지 않고 직항도 가장 많다. 그런데 <b>제대로 된 온천이 시내에 없다.</b> 유후인은 특급 2시간 10분, 벳푸는 소닉 2시간 20분으로 둘 다 「한 구간 2시간」을 넘는다 — 기노사키와 같은 사유다. 시내에서 한 시간 안인 후츠카이치온천이 있지만 객실 노천탕과 겨울 미식을 함께 채우기엔 규모가 작다. 규슈 북부라 눈도 거의 오지 않아 겨울 풍경이 1점, 한국인에게 가장 익숙한 도시라 조용함도 낮다. 다섯 후보 중 어느 곳보다 조건에서 멀다.</p></div>
+<div class="row"><b>후쿠오카</b><p>도시·미식·직항은 다섯 후보 어디에도 밀리지 않는다. 온천도 우레시노(신칸센 1시간 10분, 일본 3대 미인탕, 객실 노천탕 료칸 여럿)가 「한 구간 2시간」 안에 있어 이동 조건은 걸리지 않는다. 걸리는 건 하나다 — <b>규슈 북부라 눈이 거의 오지 않는다.</b> 겨울 온천이 목적인데 설경이 없어, 도고온천과 같은 사유로 뺐다.</p></div>
 <div class="row"><b>벳푸</b><p>온천 밀도와 가족탕 문화는 훌륭하다. 다만 간판인 지옥순례가 대표적인 관광 혼잡지라 “사람 많은 곳 제외”에 정면으로 걸린다.</p></div>
 <div class="row"><b>기노사키온센</b><p>겨울 대게와 온천마을 정취는 최고다. 그런데 오사카에서 특급 2시간 35분, 교토에서 2시간 21분이라 <b>한 구간 2시간</b>을 넘는다. 핵심 경험인 외탕 7곳 순례도 프라이빗 온천과 방향이 반대다.</p></div>
 <div class="row"><b>게로온센</b><p>일본 3대 명천이고 객실 노천탕 료칸도 있다. 나고야에서 특급 1시간 30분으로 이동 조건은 통과하지만, 도시를 붙이려면 나고야를 따로 넣어야 해 일정이 빡빡해진다.</p></div>
@@ -782,8 +780,8 @@
 <script>
   const OPTIONS = [{"id": "sendai", "name": "센다이 + 아키우온천", "tag": "균형형"}, {"id": "hakodate", "name": "하코다테 + 유노카와", "tag": "최소 이동형"}, {"id": "kanazawa", "name": "가나자와 + 유와쿠", "tag": "도시 품격형"}, {"id": "aomori", "name": "아오모리 + 아사무시", "tag": "설국형"}, {"id": "yonago", "name": "요나고·마쓰에 + 가이케", "tag": "산인 미식형"}];
   const VIEWS = ["compare", "sendai", "hakodate", "kanazawa", "aomori", "yonago"];
-  const AXES = [{"key": "quiet", "name": "조용함", "note": "사람에 치이지 않는가", "short": "조용함"}, {"key": "city", "name": "도시", "note": "볼거리가 있는 시내", "short": "도시"}, {"key": "private", "name": "프라이빗 온천", "note": "객실 전용탕", "short": "전용탕"}, {"key": "move", "name": "이동", "note": "현지 이동 + 직항 요일", "short": "이동"}, {"key": "winter", "name": "겨울 풍경", "note": "눈이 오는가", "short": "겨울"}];
-  const SCORES = [{"id": "sendai", "name": "센다이", "sub": "아키우온천", "s": {"quiet": 4, "city": 5, "private": 4, "move": 5, "winter": 3}, "flight": "아시아나 <em>매일</em> + LCC 여러 편", "cost": "75~112만"}, {"id": "hakodate", "name": "하코다테", "sub": "유노카와온천", "s": {"quiet": 4, "city": 4, "private": 5, "move": 5, "winter": 5}, "flight": "제주항공 직항 <em>(2025년 6월 개설)</em>", "cost": "76~117만"}, {"id": "kanazawa", "name": "가나자와", "sub": "유와쿠온천", "s": {"quiet": 3, "city": 5, "private": 4, "move": 4, "winter": 5}, "flight": "대한항공 <em>매일</em> 1회 (고마쓰)", "cost": "89~136만"}, {"id": "aomori", "name": "아오모리", "sub": "아사무시온천", "s": {"quiet": 5, "city": 3, "private": 4, "move": 3, "winter": 5}, "flight": "대한항공 <em>주 3회</em>", "cost": "73~114만"}, {"id": "yonago", "name": "요나고·마쓰에", "sub": "가이케온천", "s": {"quiet": 5, "city": 4, "private": 4, "move": 4, "winter": 4}, "flight": "에어서울 <em>매일</em> 1회 (12/23~3/28)", "cost": "89~138만"}];
+  const AXES = [{"key": "quiet", "name": "조용함", "note": "사람에 치이지 않는가", "short": "조용함"}, {"key": "city", "name": "도시", "note": "볼거리가 있는 시내", "short": "도시"}, {"key": "food", "name": "미식", "note": "겨울 제철이 분명한가", "short": "미식"}, {"key": "private", "name": "프라이빗 온천", "note": "객실 전용탕", "short": "전용탕"}, {"key": "move", "name": "이동", "note": "현지 이동 + 직항 요일", "short": "이동"}, {"key": "winter", "name": "겨울 풍경", "note": "눈이 오는가", "short": "겨울"}];
+  const SCORES = [{"id": "sendai", "name": "센다이", "sub": "아키우온천", "s": {"quiet": 4, "city": 5, "food": 5, "private": 4, "move": 5, "winter": 3}, "flight": "아시아나 <em>매일</em> + LCC 여러 편", "cost": "75~112만"}, {"id": "hakodate", "name": "하코다테", "sub": "유노카와온천", "s": {"quiet": 4, "city": 4, "food": 5, "private": 5, "move": 5, "winter": 5}, "flight": "제주항공 직항 <em>(2025년 6월 개설)</em>", "cost": "76~117만"}, {"id": "kanazawa", "name": "가나자와", "sub": "유와쿠온천", "s": {"quiet": 3, "city": 5, "food": 5, "private": 4, "move": 4, "winter": 5}, "flight": "대한항공 <em>매일</em> 1회 (고마쓰)", "cost": "89~136만"}, {"id": "aomori", "name": "아오모리", "sub": "아사무시온천", "s": {"quiet": 5, "city": 3, "food": 5, "private": 4, "move": 3, "winter": 5}, "flight": "대한항공 <em>주 3회</em>", "cost": "73~114만"}, {"id": "yonago", "name": "요나고·마쓰에", "sub": "가이케온천", "s": {"quiet": 5, "city": 4, "food": 5, "private": 4, "move": 4, "winter": 4}, "flight": "에어서울 <em>매일</em> 1회 (12/23~3/28)", "cost": "89~138만"}];
 
   const $ = (id) => document.getElementById(id);
 
@@ -840,9 +838,7 @@
       grid.appendChild(row);
     });
   }
-  drawWeights();
   drawMatrix();
-  $("w-reset")?.addEventListener("click", () => { AXES.forEach((a) => (weights[a.key] = 1)); drawWeights(); drawMatrix(); });
 
   /* ---------- 탭 전환 ---------- */
   function show(name, push) {
