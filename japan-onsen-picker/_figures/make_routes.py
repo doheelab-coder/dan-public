@@ -149,8 +149,21 @@ def draw(key, cfg, prefs, theme="light"):
 
     # 경도 1도는 위도에 따라 짧아진다 — 화면 비율을 실제 거리에 맞춘다
     kx = math.cos(math.radians((y0 + y1) / 2))
+
+    # 도시마다 비율이 달라 탭을 넘길 때 높이가 튀었다. 3:2로 맞추되
+    # 잘라내지 않고 모자란 쪽만 넓힌다 — 동선은 그대로 두고 여백만 는다.
+    ratio = 1.5
     w, h = (x1 - x0) * kx, (y1 - y0)
-    fig_w = 7.4
+    if w / h < ratio:
+        need = h * ratio / kx
+        cx = (x0 + x1) / 2
+        x0, x1 = cx - need / 2, cx + need / 2
+    else:
+        need = w / ratio
+        cy = (y0 + y1) / 2
+        y0, y1 = cy - need / 2, cy + need / 2
+    w, h = (x1 - x0) * kx, (y1 - y0)
+    fig_w = 7.8
     fig, ax = plt.subplots(figsize=(fig_w, fig_w * h / w))
     fig.patch.set_facecolor(C["bg"])
     ax.set_facecolor(C["sea"])
