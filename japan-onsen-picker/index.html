@@ -36,15 +36,18 @@
   .view[data-accent="sendai"]{--accent:#B5632F;--accent-soft:#F2E2D6}
   .view[data-accent="hakodate"]{--accent:#2F6B8F;--accent-soft:#DCE8F0}
   .view[data-accent="kanazawa"]{--accent:#9E3B4A;--accent-soft:#F2DEE1}
-  .view[data-accent="kurokawa"]{--accent:#3F6B4A;--accent-soft:#DDE9DF}
+  .view[data-accent="aomori"]{--accent:#3F6B4A;--accent-soft:#DDE9DF}
+  .view[data-accent="yonago"]{--accent:#6B5B8F;--accent-soft:#E4E0EC}
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .view[data-accent="sendai"]{--accent:#D98A52;--accent-soft:#3A2A1E}
     :root:not([data-theme="light"]) .view[data-accent="hakodate"]{--accent:#6FB0D4;--accent-soft:#182833}
     :root:not([data-theme="light"]) .view[data-accent="kanazawa"]{--accent:#D4788A;--accent-soft:#33191E}
-    :root:not([data-theme="light"]) .view[data-accent="kurokawa"]{--accent:#7FB68C;--accent-soft:#1B2A1E}}
+    :root:not([data-theme="light"]) .view[data-accent="aomori"]{--accent:#7FB68C;--accent-soft:#1B2A1E}
+    :root:not([data-theme="light"]) .view[data-accent="yonago"]{--accent:#A79BC9;--accent-soft:#23202E}}
   :root[data-theme="dark"] .view[data-accent="sendai"]{--accent:#D98A52;--accent-soft:#3A2A1E}
   :root[data-theme="dark"] .view[data-accent="hakodate"]{--accent:#6FB0D4;--accent-soft:#182833}
   :root[data-theme="dark"] .view[data-accent="kanazawa"]{--accent:#D4788A;--accent-soft:#33191E}
-  :root[data-theme="dark"] .view[data-accent="kurokawa"]{--accent:#7FB68C;--accent-soft:#1B2A1E}
+  :root[data-theme="dark"] .view[data-accent="aomori"]{--accent:#7FB68C;--accent-soft:#1B2A1E}
+  :root[data-theme="dark"] .view[data-accent="yonago"]{--accent:#A79BC9;--accent-soft:#23202E}
 
   /* 탭 */
   .tabs{position:sticky;top:0;z-index:20;background:var(--ground);
@@ -420,6 +423,7 @@
 <div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">관광도시가 아니라 생활 도시다. 12월 페이전트 기간만 붐빈다.</div></div>
 <div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">눈은 적은 편. 이동이 막힐 걱정은 낮지만 설경을 기대하면 아쉽다.</div></div>
 </div></section>
+<section><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><img src="route-sendai.png" alt="sendai 3박 4일 동선 지도" loading="lazy"><figcaption>센다이공항에서 시내 25분, 마츠시마 40분, 아키우온천 50분. 세 방향이 모두 한 시간 안이다.</figcaption></figure></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">하루에 큰 일정 하나씩. 셋째 날은 온천에서 통째로 쉰다.</p></div><div class="days">
 <article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>도착하고, 도시를 걷는다</h3><span class="day-stay">센다이 1박</span></div><div class="steps">
 <div class="step"><time>12:00</time><div>센다이공항 도착 → <span class="move">공항철도 25분</span> 센다이역</div></div>
@@ -496,6 +500,7 @@
 <div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">겨울은 비수기라 사람이 적다. 홋카이도 3대 온천마을이지만 번잡하지 않다.</div></div>
 <div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">눈이 확실히 온다. 12~3월은 눈에 반사된 야경이 더 밝다.</div></div>
 </div></section>
+<section><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><img src="route-hakodate.png" alt="hakodate 3박 4일 동선 지도" loading="lazy"><figcaption>공항에서 온천까지 버스 6분. 짐을 한 번만 옮기고 시내는 전차로 오간다.</figcaption></figure></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">숙소를 옮기지 않고 온천에 3박. 매일 같은 방으로 돌아온다.</p></div><div class="days">
 <article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>도착하자마자 온천</h3><span class="day-stay">유노카와온천 1박</span></div><div class="steps">
 <div class="step"><time>12:00</time><div>하코다테공항 도착 → <span class="move">버스 6분</span> 유노카와온천</div></div>
@@ -566,6 +571,7 @@
 <div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">유와쿠는 조용하지만 <b>겐로쿠엔·차야가이는 관광객이 많다.</b> 이른 아침에 도는 편이 낫다.</div></div>
 <div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">호쿠리쿠라 눈이 많다. 겐로쿠엔 유키즈리 야간 라이트업은 1월 하순~2월.</div></div>
 </div></section>
+<section><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><img src="route-kanazawa.png" alt="kanazawa 3박 4일 동선 지도" loading="lazy"><figcaption>고마쓰공항에서 시내 40분. 유와쿠온천은 시내에서 차로 25분이고 여관 송영이 있다.</figcaption></figure></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">도시를 이틀 보고, 마지막 밤을 온천에서 보낸다.</p></div><div class="days">
 <article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>도착하고, 시장과 찻집 거리</h3><span class="day-stay">가나자와 1박</span></div><div class="steps">
 <div class="step"><time>12:30</time><div>고마쓰공항 도착 → <span class="move">리무진버스</span> 가나자와역</div></div>
@@ -637,6 +643,7 @@
 <div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">겨울 비수기에는 사람이 적다. 아사무시는 역 앞 족욕이 있는 작은 온천마을이다.</div></div>
 <div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">다섯 후보 중 눈이 가장 많다. 대신 폭설로 열차가 지연될 수 있다.</div></div>
 </div></section>
+<section><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><img src="route-aomori.png" alt="aomori 3박 4일 동선 지도" loading="lazy"><figcaption>공항에서 시내 35분, 아사무시온천까지 철도 20분. 한 방향으로 곧게 간다.</figcaption></figure></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">추운 지역이라 실내 일정을 중심에 두고, 야외는 짧게 끊었다.</p></div><div class="days">
 <article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>도착하고 실내부터</h3><span class="day-stay">아오모리 1박</span></div><div class="steps">
 <div class="step"><time>13:00</time><div>아오모리공항 → <span class="move">리무진 약 35분</span> 시내</div></div>
@@ -706,6 +713,7 @@
 <div class="fit-row"><div class="fit-key">조용함</div><div class="fit-val">인천 직항이 하루 한 편뿐이라 한국인 관광객이 적다. 마쓰에는 인구 20만의 성곽도시라 붐비지 않는다.</div></div>
 <div class="fit-row"><div class="fit-key">겨울</div><div class="fit-val">산인은 눈이 온다. 마쓰에성과 아다치 정원의 설경은 운이 따라야 하지만 12~1월엔 한두 번은 본다. 다이센 설산이 가이케 해변에서 바다 너머로 보인다.</div></div>
 </div></section>
+<section><div class="sec-head"><h2>동선</h2><p class="sec-note">숫자는 도는 순서다. 지도는 실제 위경도라 거리감이 그대로다.</p></div><figure><img src="route-yonago.png" alt="yonago 3박 4일 동선 지도" loading="lazy"><figcaption>공항에서 가이케온천 택시 20분. 마쓰에·아다치미술관이 서쪽으로 이어진다.</figcaption></figure></section>
 <section><div class="sec-head"><h2>3박 4일 일정</h2><p class="sec-note">가이케 2박 + 타마쓰쿠리 1박. 이동은 서쪽으로 한 방향이고, 가장 긴 구간이 1시간 10분이다.</p></div><div class="days">
 <article class="day"><div class="day-head"><span class="day-no">DAY 1</span><h3>바다 온천에서 시작</h3><span class="day-stay">가이케온천 1박</span></div><div class="steps">
 <div class="step"><time>13:20</time><div>인천 → <span class="move">에어서울 1시간 25분</span> 요나고 기타로공항 14:45</div></div>
@@ -794,8 +802,8 @@
       s: { quiet: 4, city: 4, private: 5, move: 5, winter: 5, cost: 4 },
       flight: '제주·아시아나·JAL <em>복수 운항</em>', cost: "76~117만" },
     { id: "kanazawa", name: "가나자와", sub: "유와쿠온천",
-      s: { quiet: 3, city: 5, private: 4, move: 3, winter: 5, cost: 3 },
-      flight: '대한항공(고마쓰) <em>요일 확인 필요</em>', cost: "87~131만" },
+      s: { quiet: 3, city: 5, private: 4, move: 4, winter: 5, cost: 3 },
+      flight: '대한항공 <em>매일</em> 1회 (고마쓰)', cost: "87~131만" },
     { id: "aomori", name: "아오모리", sub: "아사무시온천",
       s: { quiet: 5, city: 3, private: 4, move: 3, winter: 5, cost: 4 },
       flight: '대한항공 <em>주 3회</em>', cost: "73~114만" },
