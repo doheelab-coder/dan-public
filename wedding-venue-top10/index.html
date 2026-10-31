@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>강남·판교 예식장 Top 10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+:root{
+  /* 지도 범례와 같은 색: 1~3위 적갈색, 4~10위 남색, 저장했던 곳 보라. 순위표 → 홀 카드 순서로 읽는다 */
+  --ground:#F3F4F6;--surface:#FFFFFF;--sunk:#E6E8EC;--ink:#1C2230;--soft:#556070;--line:#D9DEE5;
+  --top:#9C3B2E;--top-soft:#F4E3E0;--mid:#2B4F8A;--mid-soft:#E1E8F4;--saved:#5B3FA0;--saved-soft:#ECE6F6;
+  --good:#2F6B4F;--bad:#A0522D;
+  --display:"Gowun Batang","Nanum Myeongjo",Georgia,serif;--body:"Noto Sans KR",system-ui,-apple-system,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#14171D;--surface:#1C2028;--sunk:#262B35;--ink:#E8EBF0;--soft:#AEB6C2;--line:#323845;
+  --top:#E08A7C;--top-soft:#3A2420;--mid:#8FB0E6;--mid-soft:#1E2A3D;--saved:#B9A2EE;--saved-soft:#2A2340;--good:#7CC3A0;--bad:#E2A07A;color-scheme:dark}}
+:root[data-theme="dark"]{--ground:#14171D;--surface:#1C2028;--sunk:#262B35;--ink:#E8EBF0;--soft:#AEB6C2;--line:#323845;
+  --top:#E08A7C;--top-soft:#3A2420;--mid:#8FB0E6;--mid-soft:#1E2A3D;--saved:#B9A2EE;--saved-soft:#2A2340;--good:#7CC3A0;--bad:#E2A07A;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;padding:0 20px 64px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.25}
+p{margin:0} a{color:var(--mid)} a:focus-visible,summary:focus-visible{outline:2px solid var(--mid);outline-offset:2px}
+img{max-width:100%;display:block}
+.masthead{display:flex;flex-direction:column;gap:14px;padding:44px 0 24px}
+.eyebrow{font-size:12px;letter-spacing:.06em;color:var(--soft)}
+h1{font-size:clamp(28px,5.4vw,42px)}
+.lede{font-family:var(--display);font-size:clamp(17px,3vw,20px);color:var(--soft);border-left:3px solid var(--top);padding-left:16px;max-width:36em}
+.terms{display:flex;flex-wrap:wrap;gap:8px}
+.term{font-size:13px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--soft)}
+.term b{color:var(--ink);font-weight:500}
+section{padding:36px 0;border-top:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+h2{font-size:clamp(20px,3.6vw,25px)} .sec-note{color:var(--soft);font-size:14px;max-width:44em}
+figure{margin:0} figcaption{font-size:12.5px;color:var(--soft);margin-top:6px}
+.map img{border:1px solid var(--line);background:#fff}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:720px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:middle;font-size:15px}
+thead th{font-size:13px;color:var(--soft);font-weight:500;border-bottom:2px solid var(--ink)}
+tbody th small{display:block;color:var(--soft);font-size:12.5px;font-weight:400}
+tbody th a{color:var(--ink);text-decoration:none;font-weight:700} tbody th a:hover{text-decoration:underline}
+td.num{white-space:nowrap}
+tr.top td:first-child{color:var(--top);font-weight:700} tr.mid td:first-child{color:var(--mid);font-weight:700} tr.saved td:first-child{color:var(--saved);font-weight:700}
+.total{display:flex;align-items:center;gap:8px;min-width:150px}
+.tbar{flex:1;height:8px;background:var(--sunk);border-radius:4px;overflow:hidden} .tbar span{display:block;height:100%;background:var(--mid)}
+tr.top .tbar span{background:var(--top)} tr.saved .tbar span{background:var(--saved)}
+.cands{display:grid;gap:18px} @media(min-width:860px){.cands{grid-template-columns:1fr 1fr}}
+.cand{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--mid);display:flex;flex-direction:column;gap:14px;padding-bottom:22px;overflow:hidden}
+.cand.top{border-top-color:var(--top)} .cand.saved{border-top-color:var(--saved)}
+.cand > :not(.cand-thumb){margin:0 22px}
+.cand-thumb{margin:0} .cand-thumb img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.cand-thumb figcaption{margin:6px 22px 0}
+.cand-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.cand h3{font-size:23px}
+.tag{font-size:13px;font-weight:700;padding:4px 10px;border-radius:4px;background:var(--mid-soft);color:var(--mid);white-space:nowrap}
+.cand.top .tag{background:var(--top-soft);color:var(--top)} .cand.saved .tag{background:var(--saved-soft);color:var(--saved)}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0}
+.facts div{background:var(--ground);padding:10px 12px;border-radius:6px}
+.facts dt{font-size:12px;color:var(--soft)} .facts dd{margin:2px 0 0;font-weight:700;font-variant-numeric:tabular-nums}
+.facts dd small{display:block;font-weight:400;font-size:11.5px;color:var(--soft);line-height:1.4}
+@media(max-width:480px){.facts{grid-template-columns:1fr}}
+.summary{font-size:15.5px}
+.themes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.themes ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.themes li{font-size:13.5px;padding:4px 10px;border-radius:4px;line-height:1.45}
+.themes li.good{background:color-mix(in srgb,var(--good) 12%,transparent);color:var(--good)}
+.themes li.bad{background:color-mix(in srgb,var(--bad) 12%,transparent);color:var(--bad)}
+.themes li.good::before{content:"좋음 · ";font-weight:700} .themes li.bad::before{content:"아쉬움 · ";font-weight:700}
+@media(max-width:480px){.themes{grid-template-columns:1fr}}
+.rating,.adnote{font-size:13px;color:var(--soft)}
+.caution,.reserve{font-size:14.5px} .caution b,.reserve b{display:inline-block;min-width:4.5em;color:var(--soft);font-weight:500}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.links a{font-size:13.5px;text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--ink);background:var(--ground)}
+.links a:hover{border-color:var(--mid);color:var(--mid)}
+details summary{cursor:pointer;font-size:13.5px;color:var(--soft)}
+.breakdown{list-style:none;padding:0;margin:10px 0 6px;display:grid;grid-template-columns:1fr 1fr;gap:6px 16px}
+.breakdown li{display:flex;justify-content:space-between;align-items:center;font-size:13px}
+.bar{display:flex;gap:3px} .bar i{width:12px;height:7px;border-radius:1px;background:var(--sunk);display:block} .bar i.on{background:var(--mid)}
+.cand.top .bar i.on{background:var(--top)} .cand.saved .bar i.on{background:var(--saved)}
+.how td,.how th{font-size:14px}
+ul.notes{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px;color:var(--soft);font-size:14.5px;max-width:52em}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style></head>
+<body><div class="wrap">
+<header class="masthead">
+<p class="eyebrow">하객 200명 이하 · 비수기 예식 · 2026년 10월 31일 기준</p>
+<h1>강남·판교 예식장 Top 10</h1>
+<p class="lede">투어는 메리스에이프럴, 아모르하우스, 오드힐하우스부터 가면 돼요. 셋 다 최소 보증이 100명 안팎이고, 앞의 두 곳은 200명 정가가 1,700만 원 이하예요. 네이버 지도에 저장해 뒀던 W스퀘어컨벤션은 5위예요.</p>
+<div class="terms" aria-label="가중치"><span class="term"><b>가격</b> 25</span><span class="term"><b>위치</b> 20</span><span class="term"><b>평점</b> 15</span><span class="term"><b>후기 수</b> 15</span><span class="term"><b>최소 보증</b> 10</span><span class="term"><b>비수기 할인</b> 10</span><span class="term"><b>음식</b> 5</span><span class="term">합계 100점</span></div>
+</header>
+<section class="map"><figure><a href="venue_map.png"><img src="venue_map.png" alt="강남·서초와 판교에 있는 예식장 10곳과 가까운 지하철역 지도"></a><figcaption>번호는 순위예요. 가까운 역은 굵게, 지하철 노선은 노선 색으로 표시했어요. 지도를 누르면 크게 볼 수 있어요.</figcaption></figure></section>
+<section><div class="sec-head"><h2>순위</h2><p class="sec-note">홀 이름을 누르면 아래 카드로 가요. 정가는 할인 전 값이에요. 평점은 후기를 읽고 매긴 점수와 카카오맵·네이버 별점을 반씩 섞은 값이에요. 별점은 10명 이상 매긴 것만, 매긴 사람 수만큼 가중했어요. 예: W스퀘어 (3.3 + 4.18) ÷ 2 = 3.7</p></div>
+<div class="scroll"><table><thead><tr><th>순위</th><th>홀</th><th>가까운 역</th><th>200명 정가</th><th>최소 보증</th><th>평점</th><th>후기 수</th><th>총점</th></tr></thead><tbody>
+<tr class="top"><td class="num">1</td><th scope="row"><a href="#v02">메리스에이프럴</a><small>강남구 역삼동</small></th>
+<td>신논현역 406m</td><td class="num">1,700만</td><td class="num">60~150명</td><td class="num">4.5</td><td class="num">933</td>
+<td><div class="total"><span class="tbar"><span style="width:83.0%"></span></span><b>83</b></div></td></tr><tr class="top"><td class="num">2</td><th scope="row"><a href="#v01">아모르하우스</a><small>강남구 역삼동</small></th>
+<td>역삼역 485m</td><td class="num">1,600만</td><td class="num">100명</td><td class="num">4.2</td><td class="num">19</td>
+<td><div class="total"><span class="tbar"><span style="width:73.0%"></span></span><b>73</b></div></td></tr><tr class="top"><td class="num">3</td><th scope="row"><a href="#v04">오드힐하우스</a><small>서초구 방배동</small></th>
+<td>방배역 301m</td><td class="num">3,100만</td><td class="num">100명</td><td class="num">4.4</td><td class="num">143</td>
+<td><div class="total"><span class="tbar"><span style="width:64.0%"></span></span><b>64</b></div></td></tr><tr class="mid"><td class="num">4</td><th scope="row"><a href="#v03">엘블레스</a><small>서초구 양재동</small></th>
+<td>양재역 149m</td><td class="num">3,000만</td><td class="num">200명</td><td class="num">3.4</td><td class="num">100</td>
+<td><div class="total"><span class="tbar"><span style="width:63.0%"></span></span><b>63</b></div></td></tr><tr class="saved"><td class="num">5</td><th scope="row"><a href="#v07">W스퀘어컨벤션 ★</a><small>성남시 분당구 판교</small></th>
+<td>판교역 669m</td><td class="num">2,180만</td><td class="num">150명</td><td class="num">3.7</td><td class="num">366</td>
+<td><div class="total"><span class="tbar"><span style="width:62.0%"></span></span><b>62</b></div></td></tr><tr class="mid"><td class="num">6</td><th scope="row"><a href="#v05">아르베</a><small>강남구 역삼동</small></th>
+<td>선정릉역 447m</td><td class="num">2,730만</td><td class="num">200명</td><td class="num">4.2</td><td class="num">261</td>
+<td><div class="total"><span class="tbar"><span style="width:59.0%"></span></span><b>59</b></div></td></tr><tr class="mid"><td class="num">7</td><th scope="row"><a href="#v06">아펠가모 선릉</a><small>강남구 대치동</small></th>
+<td>선릉역 266m</td><td class="num">3,000만</td><td class="num">200명</td><td class="num">3.2</td><td class="num">92</td>
+<td><div class="total"><span class="tbar"><span style="width:57.0%"></span></span><b>57</b></div></td></tr><tr class="mid"><td class="num">8</td><th scope="row"><a href="#v10">토브헤세드</a><small>강남구 신사동</small></th>
+<td>학동역 545m</td><td class="num">2,200만</td><td class="num">180명</td><td class="num">2.6</td><td class="num">82</td>
+<td><div class="total"><span class="tbar"><span style="width:54.0%"></span></span><b>54</b></div></td></tr><tr class="mid"><td class="num">9</td><th scope="row"><a href="#v12">브라이드밸리</a><small>강남구 역삼동</small></th>
+<td>양재역 336m</td><td class="num">2,912만</td><td class="num">250명</td><td class="num">3.9</td><td class="num">58</td>
+<td><div class="total"><span class="tbar"><span style="width:54.0%"></span></span><b>54</b></div></td></tr><tr class="mid"><td class="num">10</td><th scope="row"><a href="#v08">엘타워</a><small>서초구 양재동</small></th>
+<td>양재역 218m</td><td class="num">4,145만</td><td class="num">230명</td><td class="num">3.4</td><td class="num">189</td>
+<td><div class="total"><span class="tbar"><span style="width:52.0%"></span></span><b>52</b></div></td></tr>
+</tbody></table></div></section>
+<section><div class="sec-head"><h2>홀별 정리</h2><p class="sec-note">후기 요약은 카카오맵 리뷰, 웨딩킹 카페 후기, 블로그를 읽고 쓴 것이에요.</p></div>
+<div class="cands"><article class="cand top" id="v02">
+<figure class="cand-thumb"><img src="v02_1.jpg" alt="메리스에이프럴 예식홀 내부" loading="lazy"><figcaption>사진: 네이버 플레이스 업체 사진</figcaption></figure>
+<div class="cand-top"><div><p class="eyebrow">강남구 역삼동 · 하우스웨딩</p><h3>메리스에이프럴</h3></div><span class="tag">1위 · 83점</span></div>
+<dl class="facts"><div><dt>200명 정가</dt><dd>1,700만<small>대관 300만 + 식대 7만 × 200명</small></dd></div><div><dt>가까운 역</dt><dd>신논현역 406m<small>직선거리</small></dd></div><div><dt>최소 보증</dt><dd>60~150명<small>후기 기준</small></dd></div></dl>
+<p class="summary">생화 장식과 꽃향기, 셔틀·발렛, 3시간 30분 단독 대관을 칭찬하는 후기가 대부분이에요. 다만 후기 이벤트로 쓴 비슷한 문구의 글이 많고 하객이 쓴 후기는 없어요. 계약 전에 시식할 수 없다는 점과 역에서 오는 마지막 골목이 오르막이라는 점을 일부 부부가 아쉬워했어요.</p>
+<div class="themes"><ul><li class="good">생화 장식과 꽃향기가 좋다</li><li class="good">3시간 반 단독 대관이 여유</li><li class="good">셔틀·발렛으로 오기 편하다</li></ul><ul><li class="bad">역에서 오르막 경사가 있다</li><li class="bad">계약 전 시식이 안 된다</li><li class="bad">ATM이 없다</li></ul></div>
+<p class="rating">후기를 읽고 매긴 점수 4.1 · 카카오맵 4.9 (532명) · 네이버 4.94 (4명)</p>
+<p class="caution"><b>확인할 것</b> 계약 전에는 시식할 수 없어요. 메뉴 구성을 직접 확인하고, 하객에게 셔틀 타는 곳과 발렛 이용법을 미리 알려 주세요. 연회장은 지하에 있고 크지 않아요.</p>
+<p class="reserve"><b>예약</b> 네이버 예약으로 상담 예약하거나 전화 0507-1407-3676. 해외 거주자는 줌 상담·카톡 문의 가능</p>
+<nav class="links" aria-label="메리스에이프럴 링크"><a href="https://map.naver.com/p/entry/place/34333025">네이버 지도</a><a href="https://place.map.kakao.com/27452121">카카오맵</a><a href="https://www.marysapril.co.kr">홈페이지</a><a href="https://m.booking.naver.com/booking/13/bizes/245025">네이버 예약</a><a href="https://cafe.naver.com/llchyll/2596320">웨딩킹 후기</a></nav>
+<details><summary>항목별 점수</summary><ul class="breakdown"><li><span>가격</span><span class="bar" role="img" aria-label="5점 중 5점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>위치</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li><li><span>평점</span><span class="bar" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li><li><span>후기 수</span><span class="bar" role="img" aria-label="5점 중 5점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>최소 보증</span><span class="bar" role="img" aria-label="5점 중 5점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>비수기 할인</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li><li><span>음식</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li></ul><p class="adnote">홍보 글: 후기 이벤트로 쓴 비슷한 문구의 글이 카카오 60건 중 약 22건이에요. 하객이 쓴 카카오 후기는 없어요.</p></details>
+</article><article class="cand top" id="v01">
+<figure class="cand-thumb"><img src="v01_0.jpg" alt="아모르하우스 예식홀 내부" loading="lazy"><figcaption>사진: 네이버 플레이스 업체 사진</figcaption></figure>
+<div class="cand-top"><div><p class="eyebrow">강남구 역삼동 · 하우스웨딩</p><h3>아모르하우스</h3></div><span class="tag">2위 · 73점</span></div>
+<dl class="facts"><div><dt>200명 정가</dt><dd>1,600만<small>대관 200만 + 식대 6.75만 × 200명 + 디렉팅 50만</small></dd></div><div><dt>가까운 역</dt><dd>역삼역 485m<small>직선거리</small></dd></div><div><dt>최소 보증</dt><dd>100명<small>후기 기준</small></dd></div></dl>
+<p class="summary">부부 후기는 음식이 맛있고 꽃장식과 파티 같은 하우스웨딩 분위기가 좋다는 평이 많아요. 다만 신부대기실과 화장실이 좁고, 반야외라 비나 더위의 영향을 받는다는 지적이 있어요. 하객 1명은 오르막길과 좁은 공간을 혹평했어요.</p>
+<div class="themes"><ul><li class="good">음식이 맛있다</li><li class="good">하우스웨딩 분위기가 예쁘다</li><li class="good">진행이 꼼꼼하고 친절하다</li></ul><ul><li class="bad">대기실·화장실이 좁다</li><li class="bad">반야외라 비·더위 영향</li><li class="bad">주차장이 언덕 위에 있다</li></ul></div>
+<p class="rating">후기를 읽고 매긴 점수 4.2 · 카카오맵 3.4 (9명)</p>
+<p class="caution"><b>확인할 것</b> 하객 100~150명 규모에 맞는 곳이에요. 신부대기실·화장실 크기, 비 오는 날과 더운 날 대비책, 친구 하객의 식사 순서를 상담 때 확인하세요.</p>
+<p class="reserve"><b>예약</b> 전화 02-562-6936 또는 카카오톡 채널(아모르하우스)로 방문 상담 예약. 네이버 예약 없음</p>
+<nav class="links" aria-label="아모르하우스 링크"><a href="https://map.naver.com/p/entry/place/31298333">네이버 지도</a><a href="https://place.map.kakao.com/21301941">카카오맵</a><a href="http://www.amorehouse.co.kr">홈페이지</a><a href="https://cafe.naver.com/llchyll/2528264">웨딩킹 후기</a></nav>
+<details><summary>항목별 점수</summary><ul class="breakdown"><li><span>가격</span><span class="bar" role="img" aria-label="5점 중 5점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>위치</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li><li><span>평점</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li><li><span>후기 수</span><span class="bar" role="img" aria-label="5점 중 1점"><i class="on"></i><i></i><i></i><i></i><i></i></span></li><li><span>최소 보증</span><span class="bar" role="img" aria-label="5점 중 5점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>비수기 할인</span><span class="bar" role="img" aria-label="5점 중 5점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>음식</span><span class="bar" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li></ul><p class="adnote">홍보 글: 카페 8건 중 2건은 업체 링크·후기 혜택이 들어간 글, 블로그 4건은 홍보성</p></details>
+</article><article class="cand top" id="v04">
+<figure class="cand-thumb"><img src="v04_h0.jpg" alt="오드힐하우스 예식홀 내부" loading="lazy"><figcaption>사진: 오드힐하우스 홈페이지</figcaption></figure>
+<div class="cand-top"><div><p class="eyebrow">서초구 방배동 · 단독홀</p><h3>오드힐하우스</h3></div><span class="tag">3위 · 64점</span></div>
+<dl class="facts"><div><dt>200명 정가</dt><dd>3,100만<small>대관 1,200만 + 식대 9.5만 × 200명</small></dd></div><div><dt>가까운 역</dt><dd>방배역 301m<small>직선거리</small></dd></div><div><dt>최소 보증</dt><dd>100명<small>후기 기준</small></dd></div></dl>
+<p class="summary">2026년 3월에 문을 연 새 단독홀이에요. 방배역에서 걸어서 5분 거리이고 주차가 넉넉하며, 2시간 간격 단독 예식과 밝은 화이트톤 홀을 칭찬하는 후기가 많아요. 다만 대부분 조감도만 보고 계약한 사람들이 쓴 글이라 실제 본식 후기는 아직 적어요.</p>
+<div class="themes"><ul><li class="good">화이트톤 홀이 밝고 깔끔</li><li class="good">방배역 가깝고 주차 편하다</li><li class="good">단독홀·2시간 간격이 여유</li></ul><ul><li class="bad">홀이 작고 버진로드 짧다</li><li class="bad">의자에 등받이가 없다</li><li class="bad">층이 나뉜 연회장 동선</li></ul></div>
+<p class="rating">후기를 읽고 매긴 점수 4.0 · 카카오맵 4.8 (25명)</p>
+<p class="caution"><b>확인할 것</b> 본식 후기가 적어요. 등받이 없는 의자, 층이 나뉜 연회장 동선(엘리베이터), 하객 식사시간을 투어 때 확인하세요.</p>
+<p class="reserve"><b>예약</b> 네이버 예약으로 상담 예약(주말 상담, 전화 확인 후 확정) 또는 전화 0507-1410-5038</p>
+<nav class="links" aria-label="오드힐하우스 링크"><a href="https://map.naver.com/p/entry/place/2011790787">네이버 지도</a><a href="https://place.map.kakao.com/831689556">카카오맵</a><a href="https://odehillhouse.com">홈페이지</a><a href="https://m.booking.naver.com/booking/6/bizes/1477100/search">네이버 예약</a><a href="https://cafe.naver.com/llchyll/2646500">웨딩킹 후기</a></nav>
+<details><summary>항목별 점수</summary><ul class="breakdown"><li><span>가격</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li><li><span>위치</span><span class="bar" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li><li><span>평점</span><span class="bar" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li><li><span>후기 수</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li><li><span>최소 보증</span><span class="bar" role="img" aria-label="5점 중 5점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>비수기 할인</span><span class="bar" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li><li><span>음식</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li></ul><p class="adnote">홍보 글: 글·댓글 작성 시 50만원 추가 할인 조건이 있어 카페 후기 상당수가 혜택 연계로 보임</p></details>
+</article><article class="cand mid" id="v03">
+<figure class="cand-thumb"><img src="v03_0.jpg" alt="엘블레스 예식홀 내부" loading="lazy"><figcaption>사진: 네이버 플레이스 업체 사진</figcaption></figure>
+<div class="cand-top"><div><p class="eyebrow">서초구 양재동 · 엘타워 지하 단독홀</p><h3>엘블레스</h3></div><span class="tag">4위 · 63점</span></div>
+<dl class="facts"><div><dt>200명 정가</dt><dd>3,000만<small>대관 1,000만 + 식대 10만 × 200명</small></dd></div><div><dt>가까운 역</dt><dd>양재역 149m<small>직선거리</small></dd></div><div><dt>최소 보증</dt><dd>200명<small>후기 기준</small></dd></div></dl>
+<p class="summary">계약하거나 시식한 부부들은 밥블레스라 불리는 뷔페, 양재역 직결 교통, 단독홀을 이유로 골라요. 반면 하객 후기에서는 피로연 시간이 짧아 식사 중에 나가라고 재촉받았다는 불만이 가장 많아요(카카오 30건 중 9건).</p>
+<div class="themes"><ul><li class="good">뷔페 음식이 맛있다</li><li class="good">양재역 직결·주차 넉넉</li><li class="good">단독홀이라 붐비지 않는다</li></ul><ul><li class="bad">하객 식사시간이 짧다</li><li class="bad">홀·지하 공간이 좁다</li><li class="bad">음식이 별로였다</li></ul></div>
+<p class="rating">후기를 읽고 매긴 점수 3.5 · 카카오맵 3.2 (30명)</p>
+<p class="caution"><b>확인할 것</b> 피로연장 이용시간을 꼭 확인하세요. 사진 촬영 뒤 들어간 하객은 30~40분밖에 먹지 못했다는 불만이 많아요(2023~2024년 후기 기준).</p>
+<p class="reserve"><b>예약</b> 전화 02-526-0300 또는 카카오톡 채널(엘블레스)로 상담 예약. 네이버 예약 없음, 홈페이지 elbless.com</p>
+<nav class="links" aria-label="엘블레스 링크"><a href="https://map.naver.com/p/entry/place/37688101">네이버 지도</a><a href="https://place.map.kakao.com/607282159">카카오맵</a><a href="https://elbless.com/">홈페이지</a><a href="https://cafe.naver.com/llchyll/2528181">웨딩킹 후기</a></nav>
+<details><summary>항목별 점수</summary><ul class="breakdown"><li><span>가격</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li><li><span>위치</span><span class="bar" role="img" aria-label="5점 중 5점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>평점</span><span class="bar" role="img" aria-label="5점 중 1점"><i class="on"></i><i></i><i></i><i></i><i></i></span></li><li><span>후기 수</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li><li><span>최소 보증</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li><li><span>비수기 할인</span><span class="bar" role="img" aria-label="5점 중 5점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>음식</span><span class="bar" role="img" aria-label="5점 중 5점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li></ul><p class="adnote">홍보 글: 블로그 4건 중 2건은 업체·추천 포인트 글. 카페 글 다수는 견적공유 불가 계약 직후 후기</p></details>
+</article><article class="cand saved" id="v07">
+<figure class="cand-thumb"><img src="v07_0.jpg" alt="W스퀘어컨벤션 예식홀 내부" loading="lazy"><figcaption>사진: 네이버 플레이스 업체 사진</figcaption></figure>
+<div class="cand-top"><div><p class="eyebrow">성남시 분당구 판교 · 채플홀·그레이스홀</p><h3>W스퀘어컨벤션 ★</h3></div><span class="tag">5위 · 62점</span></div>
+<dl class="facts"><div><dt>200명 정가</dt><dd>2,180만<small>대관 700만 + 식대 6.9만 × 200명 + 지정 스냅 100만</small></dd></div><div><dt>가까운 역</dt><dd>판교역 669m<small>직선거리</small></dd></div><div><dt>최소 보증</dt><dd>150명<small>후기 기준</small></dd></div></dl>
+<p class="summary">직접 다녀온 블로그 후기는 층고 높은 채플홀과 넓은 연회장을 좋게 봐요. 하지만 투어한 커플 2명은 본식스냅 별도 비용, 낡은 건물, 좁은 로비, 역에서 먼 거리 때문에 계약하지 않았어요. 2023년까지의 카카오 하객 후기에는 음식이 별로라는 평이 많아요.</p>
+<div class="themes"><ul><li class="good">뷔페와 연회장이 좋다</li><li class="good">채플홀이 예쁘고 층고 높다</li><li class="good">주차가 넉넉하고 무료다</li></ul><ul><li class="bad">음식이 맛없다</li><li class="bad">로비가 좁고 동선 불편</li><li class="bad">엘리베이터·직원 응대 불편</li></ul></div>
+<p class="rating">후기를 읽고 매긴 점수 3.3 · 카카오맵 2.9 (14명) · 네이버 4.36 (101명)</p>
+<p class="caution"><b>확인할 것</b> 본식스냅 약 100만원이 따로 붙는지, 로비와 입장 대기 공간, 비 올 때 야외 공간을 못 쓰는 점을 계약 전에 확인하세요</p>
+<p class="reserve"><b>예약</b> 전화 031-703-0116, 카카오톡 채널 채팅, 홈페이지 w-square.kr. 판교역 1번 출구에서 셔틀 운행</p>
+<nav class="links" aria-label="W스퀘어컨벤션 링크"><a href="https://map.naver.com/p/entry/place/36301790">네이버 지도</a><a href="https://place.map.kakao.com/26903392">카카오맵</a><a href="http://www.w-square.co.kr/">홈페이지</a></nav>
+<details><summary>항목별 점수</summary><ul class="breakdown"><li><span>가격</span><span class="bar" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li><li><span>위치</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li><li><span>평점</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li><li><span>후기 수</span><span class="bar" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li><li><span>최소 보증</span><span class="bar" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li><li><span>비수기 할인</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li><li><span>음식</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li></ul><p class="adnote">홍보 글: 카페 후기 없음. 블로그 5건 중 2건은 웨딩 카페 포인트를 받은 글</p></details>
+</article><article class="cand mid" id="v05">
+<figure class="cand-thumb"><img src="v05_0.jpg" alt="아르베 예식홀 내부" loading="lazy"><figcaption>사진: 네이버 플레이스 업체 사진</figcaption></figure>
+<div class="cand-top"><div><p class="eyebrow">강남구 역삼동 · 단독홀</p><h3>아르베</h3></div><span class="tag">6위 · 59점</span></div>
+<dl class="facts"><div><dt>200명 정가</dt><dd>2,730만<small>대관 950만 + 식대 8.9만 × 200명</small></dd></div><div><dt>가까운 역</dt><dd>선정릉역 447m<small>직선거리</small></dd></div><div><dt>최소 보증</dt><dd>200명<small>후기 기준</small></dd></div></dl>
+<p class="summary">하객과 계약 커플 대부분이 뷔페 음식의 종류와 맛, 생화로 꾸민 밝은 단독홀을 칭찬해요. 다만 홀이 150석 정도로 작고 지하라 답답하다는 말과 외부 주차장을 써야 한다는 불만이 있어요.</p>
+<div class="themes"><ul><li class="good">뷔페가 다양하고 맛있다</li><li class="good">생화 장식 홀이 예쁘다</li><li class="good">단독홀이라 여유롭다</li></ul><ul><li class="bad">홀이 작고 층고가 낮다</li><li class="bad">외부 주차장이라 불편</li><li class="bad">음식이 별로였다</li></ul></div>
+<p class="rating">후기를 읽고 매긴 점수 3.9 · 카카오맵 4.6 (107명)</p>
+<p class="caution"><b>확인할 것</b> 보증인원은 200명인데 좌석은 150석 정도라 하객 수부터 따져 보세요</p>
+<p class="reserve"><b>예약</b> 전화 02-564-7031 또는 홈페이지·인스타로 상담 예약. 네이버 예약 없음, 월요일 휴무</p>
+<nav class="links" aria-label="아르베 링크"><a href="https://map.naver.com/p/entry/place/1681062430">네이버 지도</a><a href="https://place.map.kakao.com/191889847">카카오맵</a><a href="https://www.arvewedding.kr">홈페이지</a><a href="https://cafe.naver.com/llchyll/2641494">웨딩킹 후기</a></nav>
+<details><summary>항목별 점수</summary><ul class="breakdown"><li><span>가격</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li><li><span>위치</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li><li><span>평점</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li><li><span>후기 수</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li><li><span>최소 보증</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li><li><span>비수기 할인</span><span class="bar" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li><li><span>음식</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li></ul><p class="adnote">홍보 글: 카카오 5점 후기 다수가 홍보 문구 같고, 1점 후기 2건이 후기 조작을 지적</p></details>
+</article><article class="cand mid" id="v06">
+<figure class="cand-thumb"><img src="v06_1.jpg" alt="아펠가모 선릉 예식홀 내부" loading="lazy"><figcaption>사진: 네이버 플레이스 업체 사진</figcaption></figure>
+<div class="cand-top"><div><p class="eyebrow">강남구 대치동 · 단독홀</p><h3>아펠가모 선릉</h3></div><span class="tag">7위 · 57점</span></div>
+<dl class="facts"><div><dt>200명 정가</dt><dd>3,000만<small>대관 1,000만 + 식대 10만 × 200명</small></dd></div><div><dt>가까운 역</dt><dd>선릉역 266m<small>직선거리</small></dd></div><div><dt>최소 보증</dt><dd>200명<small>후기 기준</small></dd></div></dl>
+<p class="summary">계약 커플은 선릉역 3분 거리, 한 층에 모인 동선, 넉넉한 주차, 정찰제 가격을 좋게 봐요. 하객 후기는 2024년까지는 &#x27;밥펠가모&#x27;라며 음식 칭찬이 많았지만, 2026년 후기 4건은 모두 음식 종류가 적고 맛이 별로이며 직원이 불친절하다는 내용이에요.</p>
+<div class="themes"><ul><li class="good">음식이 맛있다</li><li class="good">주차 공간이 넉넉하다</li><li class="good">선릉역에서 가깝다</li></ul><ul><li class="bad">음식이 기대 이하다</li><li class="bad">주차 진입로가 좁고 가파름</li><li class="bad">직원 불친절, 공장식 운영</li></ul></div>
+<p class="rating">후기를 읽고 매긴 점수 3.2 · 카카오맵 3.2 (48명)</p>
+<p class="caution"><b>확인할 것</b> 최근 하객 평이 나빠졌으니 주말 예식 시간에 투어해서 뷔페 구성과 식사 자리를 직접 보세요</p>
+<p class="reserve"><b>예약</b> 전화 02-2183-0230, 홈페이지, 카카오톡 채널 @아펠가모선릉. 상담 보증금 5만원, 당일 계약 혜택은 오후 5시까지</p>
+<nav class="links" aria-label="아펠가모 선릉 링크"><a href="https://map.naver.com/p/entry/place/868917441">네이버 지도</a><a href="https://place.map.kakao.com/189758970">카카오맵</a><a href="http://www.apelgamo.com">홈페이지</a><a href="https://cafe.naver.com/llchyll/2569048">웨딩킹 후기</a></nav>
+<details><summary>항목별 점수</summary><ul class="breakdown"><li><span>가격</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li><li><span>위치</span><span class="bar" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li><li><span>평점</span><span class="bar" role="img" aria-label="5점 중 1점"><i class="on"></i><i></i><i></i><i></i><i></i></span></li><li><span>후기 수</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li><li><span>최소 보증</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li><li><span>비수기 할인</span><span class="bar" role="img" aria-label="5점 중 5점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>음식</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li></ul><p class="adnote">홍보 글: 카카오·카페 후기에 협찬 표시는 없음. 카카오 블로그 글은 홍보성이 섞임</p></details>
+</article><article class="cand mid" id="v10">
+<figure class="cand-thumb"><img src="v10_1.jpg" alt="토브헤세드 예식홀 내부" loading="lazy"><figcaption>사진: 네이버 플레이스 업체 사진</figcaption></figure>
+<div class="cand-top"><div><p class="eyebrow">강남구 신사동 · 하우스웨딩</p><h3>토브헤세드</h3></div><span class="tag">8위 · 54점</span></div>
+<dl class="facts"><div><dt>200명 정가</dt><dd>2,200만<small>대관 600만 + 식대 8만 × 200명</small></dd></div><div><dt>가까운 역</dt><dd>학동역 545m<small>직선거리</small></dd></div><div><dt>최소 보증</dt><dd>180명<small>후기 기준</small></dd></div></dl>
+<p class="summary">정원 같은 하우스웨딩 홀과 꽃장식이 예뻐 사진이 잘 나온다는 평이 많아요. 하지만 하객 쪽에서는 공간이 좁아 붐비고, 1층 뷔페와 2층 좌석을 계단으로 오가야 하며 전용 주차장이 없어 불편하다는 불만이 많아요.</p>
+<div class="themes"><ul><li class="good">홀이 예쁘고 사진이 잘 나옴</li><li class="good">음식이 맛있다</li><li class="good">직원이 친절하다</li></ul><ul><li class="bad">좁고 붐벼 하객 배려 없음</li><li class="bad">주차·교통이 불편</li><li class="bad">음식 질 낮음·배탈</li></ul></div>
+<p class="rating">후기를 읽고 매긴 점수 2.5 · 카카오맵 2.7 (48명)</p>
+<p class="caution"><b>확인할 것</b> 100명만 넘어도 붐빈다는 하객 평이 있어요. 1층 뷔페와 2층 좌석 사이 계단 동선, 주차 사정을 투어 때 확인하세요.</p>
+<p class="reserve"><b>예약</b> 네이버 예약 booking.naver.com/booking/13/bizes/1726621, 전화 0507-1447-2446, tovhesed.com</p>
+<nav class="links" aria-label="토브헤세드 링크"><a href="https://map.naver.com/p/entry/place/1750816468">네이버 지도</a><a href="https://place.map.kakao.com/1298988185">카카오맵</a><a href="http://www.tovhesed.com">홈페이지</a><a href="https://m.booking.naver.com/booking/13/bizes/1726621">네이버 예약</a><a href="https://cafe.naver.com/llchyll/2467977">웨딩킹 후기</a></nav>
+<details><summary>항목별 점수</summary><ul class="breakdown"><li><span>가격</span><span class="bar" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li><li><span>위치</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li><li><span>평점</span><span class="bar" role="img" aria-label="5점 중 1점"><i class="on"></i><i></i><i></i><i></i><i></i></span></li><li><span>후기 수</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li><li><span>최소 보증</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li><li><span>비수기 할인</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li><li><span>음식</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li></ul><p class="adnote">홍보 글: 블로그 2편 홍보(다이렉트 포인트·업체 공식), 카페 2편 양식 거의 동일, 2019년 5점은 후기 삭제 주장과 겹침</p></details>
+</article><article class="cand mid" id="v12">
+<figure class="cand-thumb"><img src="v12_0.jpg" alt="브라이드밸리 예식홀 내부" loading="lazy"><figcaption>사진: 네이버 플레이스 업체 사진</figcaption></figure>
+<div class="cand-top"><div><p class="eyebrow">강남구 역삼동 · 지하 단독홀</p><h3>브라이드밸리</h3></div><span class="tag">9위 · 54점</span></div>
+<dl class="facts"><div><dt>200명 정가</dt><dd>2,912만<small>대관 850만 + 식대 8.25만 × 250명</small></dd></div><div><dt>가까운 역</dt><dd>양재역 336m<small>직선거리</small></dd></div><div><dt>최소 보증</dt><dd>250명<small>후기 기준</small></dd></div></dl>
+<p class="summary">양재역에서 가깝고 주차가 250대라 하객이 편하고, 밥이 맛있는 가성비 홀이라는 평이 많아요. 다만 지하라 홀이 작고 천장이 낮아서 하객이 많으면 답답하다는 의견이 있어요.</p>
+<div class="themes"><ul><li class="good">뷔페 음식이 맛있다</li><li class="good">역 가깝고 주차 편리</li><li class="good">강남권 가성비 좋다</li></ul><ul><li class="bad">지하라 홀이 작고 낮다</li><li class="bad">식 간격 짧아 붐빔</li><li class="bad">음식이 달고 딱딱하다</li></ul></div>
+<p class="rating">후기를 읽고 매긴 점수 3.9 · 카카오맵 4.0 (20명)</p>
+<p class="caution"><b>확인할 것</b> 후기에 나온 보증인원이 250명이라 200명 이하로 가능한지 먼저 물어보세요. 공식 블로그에 2028년 8월 리뉴얼 예정이라고 나와 있으니 예식일과 공사 일정이 겹치는지도 확인하세요.</p>
+<p class="reserve"><b>예약</b> 전화 02-2058-0406, 홈페이지 bridevalley.co.kr, 공식 블로그 blog.naver.com/bvalleyinfo, 주말 투어</p>
+<nav class="links" aria-label="브라이드밸리 링크"><a href="https://map.naver.com/p/entry/place/369598662">네이버 지도</a><a href="https://place.map.kakao.com/522062793">카카오맵</a><a href="http://www.bridevalley.co.kr">홈페이지</a><a href="https://cafe.naver.com/llchyll/2329819">웨딩킹 후기</a></nav>
+<details><summary>항목별 점수</summary><ul class="breakdown"><li><span>가격</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li><li><span>위치</span><span class="bar" role="img" aria-label="5점 중 4점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li><li><span>평점</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li><li><span>후기 수</span><span class="bar" role="img" aria-label="5점 중 1점"><i class="on"></i><i></i><i></i><i></i><i></i></span></li><li><span>최소 보증</span><span class="bar" role="img" aria-label="5점 중 1점"><i class="on"></i><i></i><i></i><i></i><i></i></span></li><li><span>비수기 할인</span><span class="bar" role="img" aria-label="5점 중 5점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>음식</span><span class="bar" role="img" aria-label="5점 중 2점"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li></ul><p class="adnote">홍보 글: 블로그 4편 모두 업체 공식·플래너·다이렉트 포인트 홍보, 카페·카카오는 대체로 일반 후기</p></details>
+</article><article class="cand mid" id="v08">
+<figure class="cand-thumb"><img src="v08_2.jpg" alt="엘타워 예식홀 내부" loading="lazy"><figcaption>사진: 네이버 플레이스 업체 사진</figcaption></figure>
+<div class="cand-top"><div><p class="eyebrow">서초구 양재동 · 컨벤션</p><h3>엘타워</h3></div><span class="tag">10위 · 52점</span></div>
+<dl class="facts"><div><dt>200명 정가</dt><dd>4,145만<small>대관 1,155만 + 식대 13만 × 230명</small></dd></div><div><dt>가까운 역</dt><dd>양재역 218m<small>직선거리</small></dd></div><div><dt>최소 보증</dt><dd>230명<small>후기 기준</small></dd></div></dl>
+<p class="summary">2026년 계약 커플은 양재역 바로 앞 위치와 웅장한 홀을 높게 보고, 동시예식 코스 요리도 기대해요. 하지만 2024년까지의 하객 후기에는 기계식 주차 대기, 불친절한 직원, 붐비는 식사 공간에 대한 불만이 많고, 홀 변경을 거절당해 위약금을 낸 후기도 있어요.</p>
+<div class="themes"><ul><li class="good">코스 요리가 맛있다</li><li class="good">양재역 바로 앞이다</li><li class="good">홀이 웅장하고 예쁘다</li></ul><ul><li class="bad">직원이 불친절하다</li><li class="bad">식사 자리 부족, 혼잡</li><li class="bad">기계식 주차 대기가 길다</li></ul></div>
+<p class="rating">후기를 읽고 매긴 점수 3.3 · 카카오맵 3.4 (55명)</p>
+<p class="caution"><b>확인할 것</b> 위약금이 할인 전 정가 기준이고 홀 변경이 안 될 수 있어 계약서를 꼭 확인하세요</p>
+<p class="reserve"><b>예약</b> 전화 02-526-8600(온라인보다 빠름), 카카오톡 채널 @엘타워. 예약 오픈일은 인스타에 공지</p>
+<nav class="links" aria-label="엘타워 링크"><a href="https://map.naver.com/p/entry/place/12824078">네이버 지도</a><a href="https://place.map.kakao.com/10660163">카카오맵</a><a href="https://eltower.co.kr">홈페이지</a><a href="https://cafe.naver.com/llchyll/2459685">웨딩킹 후기</a></nav>
+<details><summary>항목별 점수</summary><ul class="breakdown"><li><span>가격</span><span class="bar" role="img" aria-label="5점 중 1점"><i class="on"></i><i></i><i></i><i></i><i></i></span></li><li><span>위치</span><span class="bar" role="img" aria-label="5점 중 5점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>평점</span><span class="bar" role="img" aria-label="5점 중 1점"><i class="on"></i><i></i><i></i><i></i><i></i></span></li><li><span>후기 수</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li><li><span>최소 보증</span><span class="bar" role="img" aria-label="5점 중 1점"><i class="on"></i><i></i><i></i><i></i><i></i></span></li><li><span>비수기 할인</span><span class="bar" role="img" aria-label="5점 중 5점"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li><li><span>음식</span><span class="bar" role="img" aria-label="5점 중 3점"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li></ul><p class="adnote">홍보 글: 협찬 표시는 없지만 4월 열흘 사이 칭찬 일색 카페 후기 7건이 몰려 있음</p></details>
+</article></div></section>
+<section class="how"><div class="sec-head"><h2>점수 매긴 방법</h2></div>
+<div class="scroll"><table><thead><tr><th>기준</th><th>비중</th><th>무엇으로 쟀나</th><th>5점</th><th>1점</th></tr></thead><tbody>
+<tr><th scope="row">가격</th><td>25</td><td>200명 정가 = 대관료 + 필수 부대비용 + 식대 × 200명 (최소 보증이 200명을 넘으면 그 인원)</td><td>2,000만 이하</td><td>3,500만 초과</td></tr>
+<tr><th scope="row">위치</th><td>20</td><td>가장 가까운 지하철역까지 직선거리</td><td>250m 이하</td><td>900m 초과</td></tr>
+<tr><th scope="row">평점</th><td>15</td><td>후기를 읽고 매긴 점수와 카카오맵·네이버 별점의 평균</td><td>4.7 이상</td><td>3.5 미만</td></tr>
+<tr><th scope="row">후기 수</th><td>15</td><td>네이버 방문자 리뷰 + 카카오맵 리뷰 + 웨딩킹 후기</td><td>500건 이상</td><td>60건 미만</td></tr>
+<tr><th scope="row">최소 보증</th><td>10</td><td>후기에 나온 가장 적은 보증인원</td><td>100명 이하</td><td>200명 초과</td></tr>
+<tr><th scope="row">비수기 할인</th><td>10</td><td>1·2·7·8월 예식 후기의 할인율과 「비수기 할인」 언급</td><td>할인 30% 이상</td><td>할인 거의 없음</td></tr>
+<tr><th scope="row">음식</th><td>5</td><td>웨딩킹 후기의 음식평 평균</td><td>4.7 이상</td><td>3.8 미만</td></tr>
+</tbody></table></div></section>
+<section><div class="sec-head"><h2>뺀 곳과 자료</h2></div>
+<ul class="notes">
+<li>직접 뺀 곳: 분당앤스퀘어, 더채플앳청담, 마리아쥬스퀘어, 브라이튼하우스 강남, 엘리에나호텔. 호텔 웨딩은 모두 뺐어요.</li>
+<li>가격을 적은 후기가 없는 7곳과 최대 110명까지만 받는 마리앤코 양재도 뺐어요.</li>
+<li>11위 아래: 더채플앳논현 48점 · 세인트메리엘 46점 · 루클라비더화이트 44점 · 플렌티컨벤션 41점 · 에스가든 강남 37점 · 더채플앳대치 36점</li>
+<li>정가와 최소 보증은 웨딩킹 카페 「웨딩홀후기」 게시판 최근 1년 후기에 적힌 값이에요. 홀 공식 가격표가 아니에요.</li>
+<li>후기 이벤트나 업체 링크가 붙은 글이 많은 곳(메리스에이프럴·오드힐하우스 등)은 별점이 높게 나와서, 직접 읽은 점수를 같이 넣어 평균했어요.</li>
+<li>역까지 거리는 직선거리라 실제 걷는 거리는 더 길어요. 지도 데이터 © OpenStreetMap contributors.</li>
+</ul></section>
+</div></body></html>
