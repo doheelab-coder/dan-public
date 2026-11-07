@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>ATTNDA 콜드메일</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{--acc:#4a840e;--acc-d:#3b6a0b;--acc-s:#e9fac8;--rep:#c2255c;--rep-s:#ffe3ee;--mint-s:#d3f9ec;--lav-s:#ede7ff;--lemon-s:#fff3bf;
+    --ink:#27302a;--ink2:#6b756d;--ink3:#a9b3aa;--sh-sm:0 1px 2px rgba(30,50,30,.05);
+    --sh:0 1px 2px rgba(30,50,30,.04),0 8px 24px rgba(110,150,80,.09)}
+  *{box-sizing:border-box}
+  body{margin:0;color:var(--ink);font-family:"Pretendard Variable",Pretendard;letter-spacing:-.01em;
+    background:linear-gradient(180deg,#f2fbe3 0%,#eef8df 55%,#e9f4dc 100%);min-height:100vh}
+  button,input,select{font-family:inherit}
+  .nav{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.8);backdrop-filter:blur(8px);
+    border-bottom:2px solid var(--acc-s);padding:0 22px;height:58px;position:sticky;top:0;z-index:20}
+  .nav .brand{font-weight:700;font-size:16px;margin-right:16px;display:flex;align-items:center;gap:7px;white-space:nowrap}
+  .nav .tab{display:flex;align-items:center;gap:6px;color:#fff;background:var(--acc);font-size:13px;font-weight:500;
+    padding:8px 14px;border-radius:999px;white-space:nowrap;box-shadow:0 2px 8px rgba(74,132,14,.30)}
+  .nav .right{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--ink2);white-space:nowrap}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .hero{padding:34px 0 16px}
+  .hero h1{font-size:27px;font-weight:700;margin:0 0 6px;display:flex;align-items:center;gap:10px;letter-spacing:-.02em}
+  .hero p{font-size:13.5px;color:var(--ink2);margin:0}
+  .gate{background:#f7fdee;border:1px solid #d8efb8;border-left:3px solid var(--acc);border-radius:12px;padding:11px 15px;
+    font-size:12.5px;color:var(--acc-d);margin:14px 0;display:flex;align-items:flex-start;gap:8px;font-weight:500;line-height:1.6}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:8px 0 26px}
+  .stat{border-radius:16px;padding:18px 20px;border:2px solid transparent;text-align:left;cursor:pointer;color:inherit;
+    transition:transform .18s,box-shadow .18s}
+  .stat:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(110,150,80,.14)}
+  .stat.on{border-color:var(--ink2)}
+  .stat.l{background:var(--lav-s)} .stat.y{background:var(--lemon-s)} .stat.m{background:var(--mint-s)}
+  .stat .e{font-size:22px} .stat .n,.stat .l2,.stat .l3{display:block} .stat .n{font-size:26px;font-weight:700;margin-top:2px}
+  .stat.l .n{color:#7048e8} .stat.y .n{color:#e67700} .stat.m .n{color:#0ca678}
+  .stat .l2{font-size:13px;color:var(--ink);margin-top:1px;font-weight:700}
+  .stat .l3{font-size:11.5px;color:var(--ink2);margin-top:3px}
+  .sec{background:#fff;border:1px solid #e3f0d3;border-radius:18px;box-shadow:var(--sh);margin-bottom:20px;overflow:hidden}
+  .sec-h{padding:15px 20px;border-bottom:2px solid #f1f8e8;font-weight:700;font-size:14.5px;display:flex;align-items:center;
+    gap:10px;justify-content:space-between;flex-wrap:wrap}
+  .filters{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .chipbtn{font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;border:2px solid #dcedc8;background:#fff;color:var(--ink2);cursor:pointer}
+  .chipbtn.on{background:var(--acc);border-color:var(--acc);color:#fff}
+  select{font-size:12px;padding:6px 10px;border:2px solid #dcedc8;border-radius:10px;background:#fafdf5;color:var(--ink);font-weight:600}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{text-align:left;font-weight:600;color:var(--ink2);font-size:11px;padding:10px 14px;border-bottom:2px solid #f1f8e8;background:#fafdf5;white-space:nowrap}
+  td{padding:11px 14px;border-bottom:1px solid #f2f8ea;vertical-align:middle}
+  tr.row{cursor:pointer;transition:.12s} tr.row:hover{background:#f4fbe9}
+  .cat-chip{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border:1px solid #d8ecc0;border-radius:999px;
+    background:#f4fbe9;color:#3f4a40;font-size:11.5px;font-weight:700;white-space:nowrap}
+  .name{font-weight:700}
+  .site{display:block;font-size:11.5px;color:var(--ink2);text-decoration:none;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .mail{font-size:12px;color:var(--ink2);word-break:break-all}
+  .when{font-size:12px;color:var(--ink2);white-space:nowrap}
+  .badge{font-size:11px;padding:3px 11px;border-radius:999px;font-weight:700;white-space:nowrap}
+  .b-발송후보{background:var(--lav-s);color:#7048e8} .b-대기중{background:var(--lemon-s);color:#e67700}
+  .b-발송완료{background:var(--mint-s);color:#0ca678} .b-회신{background:var(--rep-s);color:var(--rep)}
+  .b-반송,.b-수신거부{background:#ffe3e3;color:#e03131} .b-제외{background:#f1f0f3;color:var(--ink2)}
+  .detail td{background:#f6fbee;padding:16px 20px}
+  .dgrid{display:grid;grid-template-columns:112px 1fr;gap:8px 14px;font-size:13px;line-height:1.65}
+  .dgrid dt{color:var(--ink3);font-weight:600;font-size:12px}
+  .dgrid dd{margin:0;word-break:break-all}
+  .dgrid a{color:var(--acc-d)}
+  .muted{color:var(--ink3);text-align:center;padding:34px;font-size:13.5px;line-height:1.8}
+  .legend{font-size:11.5px;color:var(--ink2);padding:12px 20px;border-top:2px solid #f1f8e8;line-height:1.8}
+  .lock{max-width:380px;margin:70px auto;background:#fff;border:1px solid #e3f0d3;border-radius:18px;box-shadow:var(--sh);padding:26px 24px;text-align:center}
+  .lock h2{margin:0 0 6px;font-size:18px}
+  .lock p{margin:0 0 16px;font-size:13px;color:var(--ink2)}
+  .lock input{width:100%;font-size:15px;padding:11px 13px;border:2px solid #dcedc8;border-radius:12px;background:#fafdf5;margin-bottom:10px}
+  .lock input:focus{outline:none;border-color:var(--acc)}
+  .lock button,.linkbtn{font-size:13px;font-weight:700;padding:10px 18px;border-radius:999px;border:none;background:var(--acc);color:#fff;cursor:pointer;width:100%}
+  .linkbtn{width:auto;padding:5px 11px;font-size:11.5px;background:#fff;color:var(--ink2);border:2px solid #dcedc8}
+  .err{color:#e03131;font-size:12.5px;min-height:18px;margin-top:8px}
+  [hidden]{display:none!important}
+  @media(max-width:720px){
+    .nav{padding:8px 12px;height:auto;gap:8px}
+    .nav .brand{font-size:14px;margin-right:2px}
+    .nav .tab{display:none}
+    .wrap{padding:0 16px}
+    .hero{padding:24px 0 12px} .hero h1{font-size:23px}
+    .stats{grid-template-columns:1fr;gap:10px}
+    .stat{padding:13px 16px;display:grid;grid-template-columns:auto auto 1fr;align-items:center;column-gap:10px}
+    .stat .n{margin:0;font-size:22px} .stat .l3{grid-column:1/4}
+    .sec-h{padding:14px 16px}
+    table,tbody{display:block;width:100%}
+    thead{display:none}
+    tr.row{display:block;border:1px solid #dcedc8;border-radius:13px;padding:8px 13px;margin:10px 12px;background:#fff;box-shadow:var(--sh-sm)}
+    tr.row td{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:5px 0;border:none;text-align:right;min-width:0}
+    tr.row td::before{content:attr(data-label);color:var(--ink3);font-weight:600;font-size:11px;flex:0 0 auto;text-align:left}
+    tr.row td .site{max-width:200px}
+    tr.detail{display:block;margin:-6px 12px 10px}
+    tr.detail td{display:block;border-radius:0 0 13px 13px;padding:12px 14px}
+    .dgrid{grid-template-columns:1fr;gap:2px}
+    .dgrid dd{margin-bottom:8px}
+  }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <span class="brand">💌 ATTNDA 콜드메일</span>
+  <span class="tab">🏢 업체 리스트</span>
+  <span class="right"><span id="updated"></span><button class="linkbtn" id="lockBtn" hidden>잠그기</button></span>
+</nav>
+
+<form class="lock" id="lock" hidden>
+  <h2>🔒 비밀번호</h2>
+  <p>업체 기록은 잠겨 있습니다. 한 번 열면 이 브라우저는 기억합니다.</p>
+  <input type="password" id="pw" autocomplete="current-password" placeholder="비밀번호">
+  <button type="submit">열기</button>
+  <div class="err" id="err"></div>
+</form>
+
+<div class="wrap" id="app" hidden>
+  <div class="hero">
+    <h1>🏢 업체 리스트</h1>
+    <p>이로가 찾은 업체와 메일 상태입니다.</p>
+  </div>
+  <div class="gate">🔒 보기 전용 — 업체 추가·제외는 이로에게 말로, 보내기는 pm@attnda.kr Gmail 임시보관함에서 댄이 누릅니다.</div>
+  <div class="stats">
+    <button class="stat l" data-group="발송후보"><span class="e">🎯</span><span class="n" id="n-발송후보">0</span><span class="l2">발송후보</span><span class="l3">찾았고 아직 초안 전</span></button>
+    <button class="stat y" data-group="대기중"><span class="e">📝</span><span class="n" id="n-대기중">0</span><span class="l2">대기중</span><span class="l3">임시보관함에서 보내기 기다림</span></button>
+    <button class="stat m" data-group="발송완료"><span class="e">📤</span><span class="n" id="n-발송완료">0</span><span class="l2">발송완료</span><span class="l3" id="sub-발송완료">회신 0 · 반송 0 · 수신거부 0</span></button>
+  </div>
+  <div class="sec">
+    <div class="sec-h">
+      <span>🏢 업체 리스트 <select id="cat" aria-label="업종"></select></span>
+      <span class="filters" id="groups"></span>
+    </div>
+    <table>
+      <thead><tr><th>ID</th><th>업종</th><th>업체</th><th>메일</th><th>상태</th><th>날짜</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="legend">발송완료에는 답이 온 곳(회신)·돌아온 메일(반송)·수신거부한 곳이 함께 들어갑니다. 줄을 누르면 업체 정보가 열립니다.</div>
+  </div>
+</div>
+
+<script>
+const PW_KEY = "attnda-coldmail-pw";
+const GROUPS = ["전체", "발송후보", "대기중", "발송완료", "제외"];
+const CAT_EMOJI = {"기업":"🏢","브랜드사은품":"🎁","카페":"☕","게임":"🎮","엔터·팬덤":"🎤","캐릭터·작가":"🧸","펀딩":"💡","팝업":"🎪","학교·단체":"🏫"};
+const GMAIL = "https://mail.google.com/mail/u/?authuser=pm%40attnda.kr";
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const safeUrl = u => /^https?:\/\//i.test(u || "") ? u : /^[\w-]+(\.[\w-]+)+(\/\S*)?$/.test(u || "") ? "https://" + u : "";
+const shortUrl = u => (u || "").replace(/^https?:\/\/(www\.)?/i, "").replace(/\/$/, "");
+const md = s => s ? s.slice(5, 10).replace("-", "/") + (s.length > 10 ? " " + s.slice(11, 16) : "") : "";
+let DATA = null, group = "전체", cat = "전체", open = null;
+
+function store(fn) { try { return fn(); } catch (e) { return null; } }
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+
+async function decrypt(box, pw) {
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey({name: "PBKDF2", salt: b64(box.salt), iterations: box.iter, hash: "SHA-256"},
+    base, {name: "AES-GCM", length: 256}, false, ["decrypt"]);
+  const plain = await crypto.subtle.decrypt({name: "AES-GCM", iv: b64(box.iv)}, key, b64(box.ct));
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+
+let BOX = null;
+async function unlock(pw) {
+  if (!BOX) {
+    const res = await fetch("data.json", {cache: "no-store"});
+    if (!res.ok) throw new Error("load");
+    BOX = await res.json();
+  }
+  DATA = await decrypt(BOX, pw);
+  store(() => localStorage.setItem(PW_KEY, pw));
+  $("#lock").hidden = true; $("#app").hidden = false; $("#lockBtn").hidden = false;
+  $("#updated").textContent = "기록 바뀐 시각 " + md(DATA.updated);
+  render();
+}
+
+function dateOf(r) {
+  if (r.group === "발송후보") return "찾음 " + md(r.found_date);
+  if (r.group === "대기중") return "초안 " + md(r.drafted_at);
+  if (r.group === "발송완료") return "보냄 " + md(r.sent_at) + (r.replied_at ? " · 답 " + md(r.replied_at) : "");
+  return "찾음 " + md(r.found_date);
+}
+
+function gmailLink(r) {
+  if (r.group === "대기중") return `<a href="${GMAIL}#drafts" target="_blank" rel="noopener">임시보관함 열기</a>`;
+  if (r.group === "발송완료" && r.thread_id) return `<a href="${GMAIL}#all/${esc(r.thread_id)}" target="_blank" rel="noopener">메일 스레드 열기</a>`;
+  return "";
+}
+
+function detailHTML(r) {
+  const link = u => safeUrl(u) ? `<a href="${esc(safeUrl(u))}" target="_blank" rel="noopener">${esc(shortUrl(u))}</a>` : esc(u);
+  const items = [
+    ["회사 소개", esc(r.description)],
+    ["메일 포인트", esc(r.hook)],
+    ["사이트", link(r.website)],
+    ["메일 찾은 곳", link(r.source_url)],
+    ["찾은 날", md(r.found_date)],
+    ["초안 넣은 날", md(r.drafted_at)],
+    ["보낸 날", md(r.sent_at)],
+    ["답 온 날", md(r.replied_at)],
+    ["제외 사유", esc(r.group === "제외" ? r.note : "")],
+    ["Gmail", gmailLink(r)],
+  ].filter(([, v]) => v);
+  return `<td colspan="6"><dl class="dgrid">${items.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("")}</dl></td>`;
+}
+
+function render() {
+  const rows = DATA.rows;
+  const count = g => rows.filter(r => r.group === g).length;
+  for (const g of ["발송후보", "대기중", "발송완료"]) $("#n-" + g).textContent = count(g);
+  const sub = s => rows.filter(r => r.status === s).length;
+  $("#sub-발송완료").textContent = `회신 ${sub("회신")} · 반송 ${sub("반송")} · 수신거부 ${sub("수신거부")}`;
+  document.querySelectorAll(".stat").forEach(b => b.classList.toggle("on", b.dataset.group === group));
+
+  const inGroup = r => group === "전체" ? r.group !== "제외" : r.group === group;
+  const catCount = c => rows.filter(r => inGroup(r) && (c === "전체" || r.category === c)).length;
+  $("#cat").innerHTML = ["전체", ...DATA.categories].map(c =>
+    `<option value="${esc(c)}"${c === cat ? " selected" : ""}>${c === "전체" ? "업종 전체" : (CAT_EMOJI[c] || "") + " " + esc(c)} (${catCount(c)})</option>`).join("");
+  $("#groups").innerHTML = GROUPS.map(g =>
+    `<button class="chipbtn${g === group ? " on" : ""}" data-group="${g}">${g}${g === "전체" ? "" : " " + count(g)}</button>`).join("");
+
+  const order = {"대기중": 0, "발송후보": 1, "발송완료": 2, "제외": 3};
+  const when = r => r.replied_at || r.sent_at || r.drafted_at || r.found_date || "";
+  const list = rows.filter(r => inGroup(r) && (cat === "전체" || r.category === cat))
+    .sort((a, b) => order[a.group] - order[b.group] || when(b).localeCompare(when(a)));
+  if (!list.length) { $("#tbody").innerHTML = `<tr><td colspan="6" class="muted">이 조건에 맞는 업체가 없습니다 🌱</td></tr>`; return; }
+  $("#tbody").innerHTML = list.map(r => {
+    const site = safeUrl(r.website) ? `<a class="site" href="${esc(safeUrl(r.website))}" target="_blank" rel="noopener">${esc(shortUrl(r.website))}</a>` : "";
+    const label = r.group === "발송완료" && r.status !== "발송" ? r.status : r.group;
+    return `<tr class="row" data-id="${esc(r.id)}">
+      <td data-label="ID"><b>${esc(r.id)}</b></td>
+      <td data-label="업종"><span class="cat-chip">${CAT_EMOJI[r.category] || "🏷️"} ${esc(r.category || "-")}</span></td>
+      <td data-label="업체"><span><span class="name">${esc(r.name)}</span>${site}</span></td>
+      <td data-label="메일" class="mail">${esc(r.email)}</td>
+      <td data-label="상태"><span class="badge b-${label}">${label}</span></td>
+      <td data-label="날짜" class="when">${dateOf(r)}</td></tr>` +
+      (open === r.id ? `<tr class="detail">${detailHTML(r)}</tr>` : "");
+  }).join("");
+}
+
+document.addEventListener("click", e => {
+  const g = e.target.closest("[data-group]");
+  if (g) { group = g.dataset.group === group && g.classList.contains("stat") ? "전체" : g.dataset.group; open = null; render(); return; }
+  if (e.target.closest("a")) return;
+  const row = e.target.closest("tr.row");
+  if (row) { open = open === row.dataset.id ? null : row.dataset.id; render(); }
+});
+$("#cat").addEventListener("change", e => { cat = e.target.value; open = null; render(); });
+$("#lockBtn").addEventListener("click", () => { store(() => localStorage.removeItem(PW_KEY)); location.reload(); });
+$("#lock").addEventListener("submit", async e => {
+  e.preventDefault();
+  $("#err").textContent = "";
+  try { await unlock($("#pw").value); }
+  catch (err) { $("#err").textContent = BOX ? "비밀번호가 맞지 않습니다" : "기록을 불러오지 못했습니다. 잠시 뒤 다시 열어 주십시오"; }
+});
+
+(async () => {
+  const saved = store(() => localStorage.getItem(PW_KEY));
+  if (saved) { try { await unlock(saved); return; } catch (e) { store(() => localStorage.removeItem(PW_KEY)); } }
+  $("#lock").hidden = false;
+  $("#pw").focus();
+})();
+</script>
+</body>
+</html>
