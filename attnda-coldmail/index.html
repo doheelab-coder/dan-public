@@ -52,6 +52,11 @@
   .name{font-weight:700}
   .site{display:block;font-size:11.5px;color:var(--ink2);text-decoration:none;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .mail{font-size:12px;color:var(--ink2);word-break:break-all}
+  .via{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;margin-bottom:3px;white-space:nowrap}
+  .via-mail{background:#e7f0ff;color:#1c4fa8} .via-form{background:#fff1d6;color:#8a4b00}
+  .mail .addr{display:block} .mail a{color:var(--acc-d)}
+  .b-제출{background:var(--mint-s);color:#0ca678}
+  .sent{font-family:inherit;white-space:pre-wrap;font-size:12.5px;line-height:1.6;background:#fff;border:1px solid #dcedc8;border-radius:10px;padding:10px 12px;margin:0}
   .when{font-size:12px;color:var(--ink2);white-space:nowrap}
   .badge{font-size:11px;padding:3px 11px;border-radius:999px;font-weight:700;white-space:nowrap}
   .b-발송후보{background:var(--lav-s);color:#7048e8} .b-대기중{background:var(--lemon-s);color:#e67700}
@@ -114,24 +119,24 @@
 <div class="wrap" id="app" hidden>
   <div class="hero">
     <h1>🏢 업체 리스트</h1>
-    <p>이로가 찾은 업체와 메일 상태입니다.</p>
+    <p>이로가 찾은 업체와 제안을 보낸 상태입니다.</p>
   </div>
-  <div class="gate">🔒 보기 전용 — 업체 추가·제외는 이로에게 말로, 보내기는 pm@attnda.kr Gmail 임시보관함에서 댄이 누릅니다.</div>
+  <div class="gate">🔒 보기 전용 — 업체 추가·제외는 이로에게 말로 합니다. ✉️ 제휴메일은 pm@attnda.kr Gmail 임시보관함에서, 📝 제안폼은 그 회사 페이지에서 댄이 직접 보냅니다.</div>
   <div class="stats">
-    <button class="stat l" data-group="발송후보"><span class="e">🎯</span><span class="n" id="n-발송후보">0</span><span class="l2">발송후보</span><span class="l3">찾았고 아직 초안 전</span></button>
-    <button class="stat y" data-group="대기중"><span class="e">📝</span><span class="n" id="n-대기중">0</span><span class="l2">대기중</span><span class="l3">임시보관함에서 보내기 기다림</span></button>
+    <button class="stat l" data-group="발송후보"><span class="e">🎯</span><span class="n" id="n-발송후보">0</span><span class="l2">발송후보</span><span class="l3">찾았고 아직 초안·문안 전</span></button>
+    <button class="stat y" data-group="대기중"><span class="e">📝</span><span class="n" id="n-대기중">0</span><span class="l2">대기중</span><span class="l3">✉️ 초안 보내기 · 📝 폼 제출 기다림</span></button>
     <button class="stat m" data-group="발송완료"><span class="e">📤</span><span class="n" id="n-발송완료">0</span><span class="l2">발송완료</span><span class="l3" id="sub-발송완료">회신 0 · 반송 0 · 수신거부 0</span></button>
   </div>
   <div class="sec">
     <div class="sec-h">
-      <span>🏢 업체 리스트 <select id="cat" aria-label="업종"></select></span>
+      <span>🏢 업체 리스트 <select id="cat" aria-label="업종"></select> <select id="via" aria-label="창구"></select></span>
       <span class="filters" id="groups"></span>
     </div>
     <table>
-      <thead><tr><th>ID</th><th>업종</th><th>업체</th><th>메일</th><th>상태</th><th>날짜</th></tr></thead>
+      <thead><tr><th>ID</th><th>업종</th><th>업체</th><th>창구</th><th>상태</th><th>날짜</th></tr></thead>
       <tbody id="tbody"></tbody>
     </table>
-    <div class="legend">발송완료에는 답이 온 곳(회신)·돌아온 메일(반송)·수신거부한 곳이 함께 들어갑니다. 줄을 누르면 업체 정보가 열립니다.</div>
+    <div class="legend">창구는 둘입니다. ✉️ 제휴메일은 사이트에 제휴·협업 문의용으로 올린 메일, 📝 제안폼은 그 회사의 제휴 제안·협력사 등록 페이지입니다. 발송완료에는 보낸 곳·폼 제출한 곳과 답이 온 곳(회신)·돌아온 메일(반송)·수신거부한 곳이 함께 들어갑니다. 줄을 누르면 업체 정보가 열립니다.</div>
   </div>
 </div>
 
@@ -145,7 +150,9 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt
 const safeUrl = u => /^https?:\/\//i.test(u || "") ? u : /^[\w-]+(\.[\w-]+)+(\/\S*)?$/.test(u || "") ? "https://" + u : "";
 const shortUrl = u => (u || "").replace(/^https?:\/\/(www\.)?/i, "").replace(/\/$/, "");
 const md = s => s ? s.slice(5, 10).replace("-", "/") + (s.length > 10 ? " " + s.slice(11, 16) : "") : "";
-let DATA = null, group = "전체", cat = "전체", open = null;
+let DATA = null, group = "전체", cat = "전체", via = "전체", open = null;
+const VIA = {"전체": "창구 전체", "mail": "✉️ 제휴메일", "form": "📝 제안폼"};
+const viaOf = r => r.email ? "mail" : r.channel ? "form" : "";
 
 function store(fn) { try { return fn(); } catch (e) { return null; } }
 const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
@@ -174,12 +181,13 @@ async function unlock(pw) {
 
 function dateOf(r) {
   if (r.group === "발송후보") return "찾음 " + md(r.found_date);
-  if (r.group === "대기중") return "초안 " + md(r.drafted_at);
-  if (r.group === "발송완료") return "보냄 " + md(r.sent_at) + (r.replied_at ? " · 답 " + md(r.replied_at) : "");
+  if (r.group === "대기중") return r.status === "문안" ? "문안 " + md(r.copied_at) : "초안 " + md(r.drafted_at);
+  if (r.group === "발송완료") return (r.submitted_at ? "제출 " + md(r.submitted_at) : "보냄 " + md(r.sent_at)) + (r.replied_at ? " · 답 " + md(r.replied_at) : "");
   return "찾음 " + md(r.found_date);
 }
 
 function gmailLink(r) {
+  if (!r.email) return "";
   if (r.group === "대기중") return `<a href="${GMAIL}#drafts" target="_blank" rel="noopener">임시보관함 열기</a>`;
   if (r.group === "발송완료" && r.thread_id) return `<a href="${GMAIL}#all/${esc(r.thread_id)}" target="_blank" rel="noopener">메일 스레드 열기</a>`;
   return "";
@@ -189,13 +197,20 @@ function detailHTML(r) {
   const link = u => safeUrl(u) ? `<a href="${esc(safeUrl(u))}" target="_blank" rel="noopener">${esc(shortUrl(u))}</a>` : esc(u);
   const items = [
     ["회사 소개", esc(r.description)],
-    ["메일 포인트", esc(r.hook)],
+    ["문안 포인트", esc(r.hook)],
     ["사이트", link(r.website)],
-    ["메일 찾은 곳", link(r.source_url)],
+    ["창구", VIA[viaOf(r)] || ""],
+    ["제휴 메일", esc(r.email)],
+    ["사이트 표기", esc(r.email_label)],
+    ["제안 페이지", link(r.channel)],
+    ["찾은 곳", link(r.source_url)],
     ["찾은 날", md(r.found_date)],
     ["초안 넣은 날", md(r.drafted_at)],
+    ["문안 쓴 날", md(r.copied_at)],
     ["보낸 날", md(r.sent_at)],
+    ["폼 제출한 날", md(r.submitted_at)],
     ["답 온 날", md(r.replied_at)],
+    ["보낸 내용", r.sent_text ? `<pre class="sent">${esc(r.sent_text)}</pre>` : ""],
     ["제외 사유", esc(r.group === "제외" ? r.note : "")],
     ["Gmail", gmailLink(r)],
   ].filter(([, v]) => v);
@@ -210,15 +225,18 @@ function render() {
   $("#sub-발송완료").textContent = `회신 ${sub("회신")} · 반송 ${sub("반송")} · 수신거부 ${sub("수신거부")}`;
   document.querySelectorAll(".stat").forEach(b => b.classList.toggle("on", b.dataset.group === group));
 
-  const inGroup = r => group === "전체" ? r.group !== "제외" : r.group === group;
+  const inGroup = r => (group === "전체" ? r.group !== "제외" : r.group === group) && (via === "전체" || viaOf(r) === via);
   const catCount = c => rows.filter(r => inGroup(r) && (c === "전체" || r.category === c)).length;
   $("#cat").innerHTML = ["전체", ...DATA.categories].map(c =>
     `<option value="${esc(c)}"${c === cat ? " selected" : ""}>${c === "전체" ? "업종 전체" : (CAT_EMOJI[c] || "") + " " + esc(c)} (${catCount(c)})</option>`).join("");
+  const viaCount = v => rows.filter(r => (group === "전체" ? r.group !== "제외" : r.group === group) && (cat === "전체" || r.category === cat) && (v === "전체" || viaOf(r) === v)).length;
+  $("#via").innerHTML = Object.keys(VIA).map(v =>
+    `<option value="${v}"${v === via ? " selected" : ""}>${VIA[v]} (${viaCount(v)})</option>`).join("");
   $("#groups").innerHTML = GROUPS.map(g =>
     `<button class="chipbtn${g === group ? " on" : ""}" data-group="${g}">${g}${g === "전체" ? "" : " " + count(g)}</button>`).join("");
 
   const order = {"대기중": 0, "발송후보": 1, "발송완료": 2, "제외": 3};
-  const when = r => r.replied_at || r.sent_at || r.drafted_at || r.found_date || "";
+  const when = r => r.replied_at || r.sent_at || r.submitted_at || r.drafted_at || r.copied_at || r.found_date || "";
   const list = rows.filter(r => inGroup(r) && (cat === "전체" || r.category === cat))
     .sort((a, b) => order[a.group] - order[b.group] || when(b).localeCompare(when(a)));
   if (!list.length) { $("#tbody").innerHTML = `<tr><td colspan="6" class="muted">이 조건에 맞는 업체가 없습니다 🌱</td></tr>`; return; }
@@ -229,7 +247,8 @@ function render() {
       <td data-label="ID"><b>${esc(r.id)}</b></td>
       <td data-label="업종"><span class="cat-chip">${CAT_EMOJI[r.category] || "🏷️"} ${esc(r.category || "-")}</span></td>
       <td data-label="업체"><span><span class="name">${esc(r.name)}</span>${site}</span></td>
-      <td data-label="메일" class="mail">${esc(r.email)}</td>
+      <td data-label="창구" class="mail">${viaOf(r) === "mail" ? `<span class="via via-mail">✉️ 제휴메일</span><span class="addr">${esc(r.email)}</span>`
+        : viaOf(r) === "form" ? `<span class="via via-form">📝 제안폼</span>${safeUrl(r.channel) ? `<a class="addr" href="${esc(safeUrl(r.channel))}" target="_blank" rel="noopener">${esc(shortUrl(r.channel))}</a>` : ""}` : ""}</td>
       <td data-label="상태"><span class="badge b-${label}">${label}</span></td>
       <td data-label="날짜" class="when">${dateOf(r)}</td></tr>` +
       (open === r.id ? `<tr class="detail">${detailHTML(r)}</tr>` : "");
@@ -244,6 +263,7 @@ document.addEventListener("click", e => {
   if (row) { open = open === row.dataset.id ? null : row.dataset.id; render(); }
 });
 $("#cat").addEventListener("change", e => { cat = e.target.value; open = null; render(); });
+$("#via").addEventListener("change", e => { via = e.target.value; open = null; render(); });
 $("#lockBtn").addEventListener("click", () => { store(() => localStorage.removeItem(PW_KEY)); location.reload(); });
 $("#lock").addEventListener("submit", async e => {
   e.preventDefault();
