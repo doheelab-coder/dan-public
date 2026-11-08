@@ -211,6 +211,7 @@ function detailHTML(r) {
     ["보낸 날", md(r.sent_at)],
     ["폼 제출한 날", md(r.submitted_at)],
     ["답 온 날", md(r.replied_at)],
+    ["보낼 내용", r.draft_text ? `<pre class="sent">${esc(r.draft_text)}</pre>` : ""],
     ["보낸 내용", r.sent_text ? `<pre class="sent">${esc(r.sent_text)}</pre>` : ""],
     ["제외 사유", esc(r.group === "제외" ? r.note : "")],
     ["Gmail", gmailLink(r)],
