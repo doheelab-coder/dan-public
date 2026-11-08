@@ -26,14 +26,14 @@
   .hero p{font-size:13.5px;color:var(--ink2);margin:0}
   .gate{background:#f7fdee;border:1px solid #d8efb8;border-left:3px solid var(--acc);border-radius:12px;padding:11px 15px;
     font-size:12.5px;color:var(--acc-d);margin:14px 0;display:flex;align-items:flex-start;gap:8px;font-weight:500;line-height:1.6}
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:8px 0 26px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:8px 0 26px}
   .stat{border-radius:16px;padding:18px 20px;border:2px solid transparent;text-align:left;cursor:pointer;color:inherit;
     transition:transform .18s,box-shadow .18s}
   .stat:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(110,150,80,.14)}
   .stat.on{border-color:var(--ink2)}
-  .stat.l{background:var(--lav-s)} .stat.y{background:var(--lemon-s)} .stat.m{background:var(--mint-s)}
+  .stat.l{background:var(--lav-s)} .stat.y{background:var(--lemon-s)} .stat.m{background:var(--mint-s)} .stat.g{background:#e9ecef}
   .stat .e{font-size:22px} .stat .n,.stat .l2,.stat .l3{display:block} .stat .n{font-size:26px;font-weight:700;margin-top:2px}
-  .stat.l .n{color:#7048e8} .stat.y .n{color:#e67700} .stat.m .n{color:#0ca678}
+  .stat.l .n{color:#7048e8} .stat.y .n{color:#e67700} .stat.m .n{color:#0ca678} .stat.g .n{color:#495057}
   .stat .l2{font-size:13px;color:var(--ink);margin-top:1px;font-weight:700}
   .stat .l3{font-size:11.5px;color:var(--ink2);margin-top:3px}
   .sec{background:#fff;border:1px solid #e3f0d3;border-radius:18px;box-shadow:var(--sh);margin-bottom:20px;overflow:hidden}
@@ -61,7 +61,7 @@
   .badge{font-size:11px;padding:3px 11px;border-radius:999px;font-weight:700;white-space:nowrap}
   .b-발송후보{background:var(--lav-s);color:#7048e8} .b-대기중{background:var(--lemon-s);color:#e67700}
   .b-발송완료{background:var(--mint-s);color:#0ca678} .b-회신{background:var(--rep-s);color:var(--rep)}
-  .b-반송,.b-수신거부{background:#ffe3e3;color:#e03131} .b-제외{background:#f1f0f3;color:var(--ink2)}
+  .b-반송,.b-수신거부{background:#ffe3e3;color:#e03131} .b-제외{background:#f1f0f3;color:var(--ink2)} .b-대기업{background:#e9ecef;color:#495057}
   .detail td{background:#f6fbee;padding:16px 20px}
   .dgrid{display:grid;grid-template-columns:112px 1fr;gap:8px 14px;font-size:13px;line-height:1.65}
   .dgrid dt{color:var(--ink3);font-weight:600;font-size:12px}
@@ -126,6 +126,7 @@
     <button class="stat l" data-group="발송후보"><span class="e">🎯</span><span class="n" id="n-발송후보">0</span><span class="l2">발송후보</span><span class="l3">찾았고 아직 초안·문안 전</span></button>
     <button class="stat y" data-group="대기중"><span class="e">📝</span><span class="n" id="n-대기중">0</span><span class="l2">대기중</span><span class="l3">✉️ 초안 보내기 · 📝 폼 제출 기다림</span></button>
     <button class="stat m" data-group="발송완료"><span class="e">📤</span><span class="n" id="n-발송완료">0</span><span class="l2">발송완료</span><span class="l3" id="sub-발송완료">회신 0 · 반송 0 · 수신거부 0</span></button>
+    <button class="stat g" data-group="대기업"><span class="e">🏛️</span><span class="n" id="n-대기업">0</span><span class="l2">대기업</span><span class="l3">대기업집단 소속, 보내기 전</span></button>
   </div>
   <div class="sec">
     <div class="sec-h">
@@ -136,13 +137,13 @@
       <thead><tr><th>ID</th><th>업종</th><th>업체</th><th>창구</th><th>상태</th><th>날짜</th></tr></thead>
       <tbody id="tbody"></tbody>
     </table>
-    <div class="legend">창구는 둘입니다. ✉️ 제휴메일은 사이트에 제휴·협업 문의용으로 올린 메일, 📝 제안폼은 그 회사의 제휴 제안·협력사 등록 페이지입니다. 발송완료에는 보낸 곳·폼 제출한 곳과 답이 온 곳(회신)·돌아온 메일(반송)·수신거부한 곳이 함께 들어갑니다. 줄을 누르면 업체 정보가 열립니다.</div>
+    <div class="legend">창구는 둘입니다. ✉️ 제휴메일은 사이트에 제휴·협업 문의용으로 올린 메일, 📝 제안폼은 그 회사의 제휴 제안·협력사 등록 페이지입니다. 발송완료에는 보낸 곳·폼 제출한 곳과 답이 온 곳(회신)·돌아온 메일(반송)·수신거부한 곳이 함께 들어갑니다. 공정위 대기업집단 소속은 보내기 전까지 대기업에 따로 모이고, 보낸 뒤에는 발송완료로 갑니다. 줄을 누르면 업체 정보가 열립니다.</div>
   </div>
 </div>
 
 <script>
 const PW_KEY = "attnda-coldmail-pw";
-const GROUPS = ["전체", "발송후보", "대기중", "발송완료", "제외"];
+const GROUPS = ["전체", "발송후보", "대기중", "발송완료", "대기업", "제외"];
 const CAT_EMOJI = {"기업":"🏢","브랜드사은품":"🎁","카페":"☕","게임":"🎮","엔터·팬덤":"🎤","캐릭터·작가":"🧸","펀딩":"💡","팝업":"🎪","학교·단체":"🏫"};
 const GMAIL = "https://mail.google.com/mail/u/?authuser=pm%40attnda.kr";
 const $ = s => document.querySelector(s);
@@ -201,6 +202,7 @@ function detailHTML(r) {
     ["사이트", link(r.website)],
     ["창구", VIA[viaOf(r)] || ""],
     ["제휴·협업 판단 근거", esc(r.basis)],
+    ["대기업집단", esc(r.big_group)],
     ["제휴 메일", esc(r.email)],
     ["사이트 표기", esc(r.email_label)],
     ["제안 페이지", link(r.channel)],
@@ -221,30 +223,31 @@ function detailHTML(r) {
 
 function render() {
   const rows = DATA.rows;
-  const count = g => rows.filter(r => r.group === g).length;
-  for (const g of ["발송후보", "대기중", "발송완료"]) $("#n-" + g).textContent = count(g);
+  const seg = r => r.big_group && ["발송후보", "대기중"].includes(r.group) ? "대기업" : r.group;
+  const count = g => rows.filter(r => seg(r) === g).length;
+  for (const g of ["발송후보", "대기중", "발송완료", "대기업"]) $("#n-" + g).textContent = count(g);
   const sub = s => rows.filter(r => r.status === s).length;
   $("#sub-발송완료").textContent = `회신 ${sub("회신")} · 반송 ${sub("반송")} · 수신거부 ${sub("수신거부")}`;
   document.querySelectorAll(".stat").forEach(b => b.classList.toggle("on", b.dataset.group === group));
 
-  const inGroup = r => (group === "전체" ? r.group !== "제외" : r.group === group) && (via === "전체" || viaOf(r) === via);
+  const inGroup = r => (group === "전체" ? seg(r) !== "제외" : seg(r) === group) && (via === "전체" || viaOf(r) === via);
   const catCount = c => rows.filter(r => inGroup(r) && (c === "전체" || r.category === c)).length;
   $("#cat").innerHTML = ["전체", ...DATA.categories].map(c =>
     `<option value="${esc(c)}"${c === cat ? " selected" : ""}>${c === "전체" ? "업종 전체" : (CAT_EMOJI[c] || "") + " " + esc(c)} (${catCount(c)})</option>`).join("");
-  const viaCount = v => rows.filter(r => (group === "전체" ? r.group !== "제외" : r.group === group) && (cat === "전체" || r.category === cat) && (v === "전체" || viaOf(r) === v)).length;
+  const viaCount = v => rows.filter(r => (group === "전체" ? seg(r) !== "제외" : seg(r) === group) && (cat === "전체" || r.category === cat) && (v === "전체" || viaOf(r) === v)).length;
   $("#via").innerHTML = Object.keys(VIA).map(v =>
     `<option value="${v}"${v === via ? " selected" : ""}>${VIA[v]} (${viaCount(v)})</option>`).join("");
   $("#groups").innerHTML = GROUPS.map(g =>
     `<button class="chipbtn${g === group ? " on" : ""}" data-group="${g}">${g}${g === "전체" ? "" : " " + count(g)}</button>`).join("");
 
-  const order = {"대기중": 0, "발송후보": 1, "발송완료": 2, "제외": 3};
+  const order = {"대기중": 0, "발송후보": 1, "발송완료": 2, "대기업": 3, "제외": 4};
   const when = r => r.replied_at || r.sent_at || r.submitted_at || r.drafted_at || r.copied_at || r.found_date || "";
   const list = rows.filter(r => inGroup(r) && (cat === "전체" || r.category === cat))
-    .sort((a, b) => order[a.group] - order[b.group] || when(b).localeCompare(when(a)));
+    .sort((a, b) => order[seg(a)] - order[seg(b)] || when(b).localeCompare(when(a)));
   if (!list.length) { $("#tbody").innerHTML = `<tr><td colspan="6" class="muted">이 조건에 맞는 업체가 없습니다 🌱</td></tr>`; return; }
   $("#tbody").innerHTML = list.map(r => {
     const site = safeUrl(r.website) ? `<a class="site" href="${esc(safeUrl(r.website))}" target="_blank" rel="noopener">${esc(shortUrl(r.website))}</a>` : "";
-    const label = r.group === "발송완료" && r.status !== "발송" ? r.status : r.group;
+    const label = r.group === "발송완료" && r.status !== "발송" ? r.status : seg(r);
     return `<tr class="row" data-id="${esc(r.id)}">
       <td data-label="ID"><b>${esc(r.id)}</b></td>
       <td data-label="업종"><span class="cat-chip">${CAT_EMOJI[r.category] || "🏷️"} ${esc(r.category || "-")}</span></td>
