@@ -7,4 +7,3 @@
 | 겨울 온천 여행지 다섯 후보 | https://doheelab-coder.github.io/dan-public/japan-onsen-picker/ |
 | 강남·판교 예식장 Top 10 | https://doheelab-coder.github.io/dan-public/wedding-venue-top10/ |
 | 아튼다 네이버 블로그 옆 칸 배너 이미지 | https://doheelab-coder.github.io/dan-public/attnda-blog/ |
-| VSCode 배경용 유튜브 감싸기 (보는 페이지 아님) | https://doheelab-coder.github.io/dan-public/yt-bg/?v=영상id |
